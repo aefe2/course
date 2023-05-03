@@ -45,6 +45,7 @@ export default {
   text-transform: uppercase;
   filter: opacity(80%);
   color: #00A26D;
+  font-weight: bold;
 }
 
 .footer > img {
