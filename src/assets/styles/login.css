@@ -1,0 +1,60 @@
+.login-form {
+    font-size: 18px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: .2fr;
+}
+
+.login-form > label {
+    color: #00A26D;
+    margin-bottom: 7px;
+}
+
+.login-form > input {
+    color: #FFFFFF;
+    font-size: 16px;
+    padding: 8px;
+    background-color: #2D2D2D;
+    border: solid 1.5px #FFF;
+    border-radius: 5px;
+}
+
+.login-form > input[type='text']:focus {
+    outline: none;
+    outline-offset: 0;
+    background-color: rgba(0, 162, 109, 0.58);
+}
+
+.login-form > input[type='text'], select, input[type='password'] {
+    margin-bottom: 20px;
+}
+
+.login-form > select {
+    background-color: rgba(45, 45, 45, 1);
+    border-color: #FFFFFF;
+    color: #FFF;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.login-form > input:last-child {
+    background-color: #00A26D;
+    border: none;
+    font-size: 18px;
+    width: 170px;
+    cursor: pointer;
+}
+
+.login-form > input:last-child:hover {
+    background-color: rgba(0, 162, 109, 0.49);
+    transition-duration: .3s;
+}
+
+.main {
+    margin-top: 100px;
+}
+
+/*.login-form {*/
+/*    margin: auto;*/
+/*}*/
