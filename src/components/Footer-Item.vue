@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <img src="@/assets/img/umbrella.png" alt="Umbrella logo">
-    <span>Umbrella Corporation &copy;</span>
+    <span>Umbrella Corporation</span>
   </div>
 </template>
 
