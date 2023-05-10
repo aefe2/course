@@ -16,6 +16,7 @@
       <li class="link-item"><a href="#">Добавить врача</a></li>
       <li class="link-item"><a href="#">Добававить прием</a></li>
     </ul>
+    <img class="nav-bg" src="@/assets/img/diavolo.svg" alt="diavolo">
   </div>
 </template>
 
@@ -59,7 +60,7 @@ export default {
 
 .sidenav a {
   padding: 8px 8px 8px 32px;
-  font-size: 15px;
+  font-size: 16px;
   color: #00A26D;
   display: block;
   transition: 0.3s;

@@ -4,10 +4,10 @@
     <nav-item></nav-item>
     <form class="login-form">
       <label for="login">Логин</label>
-      <input type="text" id="login">
+      <input-text-ui id="login"></input-text-ui>
       <label for="password">Пароль</label>
-      <input type="password" id="password">
-      <input type="submit" value="войти">
+      <input-password-ui id="password"></input-password-ui>
+      <button-ui>Войти</button-ui>
     </form>
   </div>
   <footer-item></footer-item>
@@ -19,9 +19,12 @@ import {defineComponent} from "vue";
 import FooterItem from "@/components/Footer-Item.vue";
 import HeaderItem from "@/components/Header-Item.vue";
 import NavItem from "@/components/Nav-Item.vue";
+import ButtonUi from "@/components/UI/ButtonUi.vue";
+import InputPasswordUi from "@/components/UI/InputPasswordUi.vue";
+import InputTextUi from "@/components/UI/InputTextUi.vue";
 
 export default defineComponent({
-  components: {NavItem, HeaderItem, FooterItem}
+  components: {InputTextUi, InputPasswordUi, ButtonUi, NavItem, HeaderItem, FooterItem}
 })
 </script>
 
@@ -38,21 +41,6 @@ export default defineComponent({
   margin-bottom: 7px;
 }
 
-.login-form > input {
-  color: #FFFFFF;
-  font-size: 16px;
-  padding: 8px;
-  background-color: #2D2D2D;
-  border: solid 1.5px #FFF;
-  border-radius: 5px;
-}
-
-.login-form > input[type='text']:focus {
-  outline: none;
-  outline-offset: 0;
-  background-color: rgba(0, 162, 109, 0.58);
-}
-
 .login-form > input[type='text'], select, input[type='password'] {
   margin-bottom: 20px;
 }
@@ -66,26 +54,9 @@ export default defineComponent({
   padding: 5px;
 }
 
-.login-form > input:last-child {
-  background-color: #00A26D;
-  border: none;
-  font-size: 18px;
-  width: 170px;
-  cursor: pointer;
-}
-
-.login-form > input:last-child:hover {
-  background-color: rgba(0, 162, 109, 0.49);
-  transition-duration: .3s;
-}
-
 .main {
   margin-top: 100px;
 }
-
-/*.login-form {*/
-/*    margin: auto;*/
-/*}*/
 </style>
 
 <style>
@@ -93,17 +64,17 @@ export default defineComponent({
 * {
   padding: 0;
   margin: 0;
-  font-family: 'Avalon', serif;
+  font-family: 'Montserrat', serif;
   list-style: none;
   text-decoration: none;
 }
 
-@font-face {
-  font-family: 'Avalon';
-  src: url("~@/assets/fonts/CormorantInfant-Regular.ttf") format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
+/*@font-face {*/
+/*  font-family: 'Avalon';*/
+/*  src: url("~@/assets/fonts/motorola.ttf") format('woff2');*/
+/*  font-weight: normal;*/
+/*  font-style: normal;*/
+/*}*/
 
 #app {
   scroll-behavior: smooth;
