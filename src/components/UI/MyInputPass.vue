@@ -1,15 +1,15 @@
 <template>
-  <input type="text" class="input">
+  <input type="password" class="input-pass">
 </template>
 
 <script>
 export default {
-  name: "InputTextUi"
+  name: "MyInputPass"
 }
 </script>
 
 <style scoped>
-.input {
+.input-pass {
   color: #FFFFFF;
   font-size: 16px;
   padding: 8px;
@@ -19,7 +19,7 @@ export default {
   margin-bottom: 20px;
 }
 
-.input:focus {
+.input-pass:focus {
   outline: none;
   outline-offset: 0;
   background-color: rgba(0, 162, 109, 0.58);

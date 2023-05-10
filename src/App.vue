@@ -2,13 +2,7 @@
   <header-item></header-item>
   <div class="main">
     <nav-item></nav-item>
-    <form class="login-form">
-      <label for="login">Логин</label>
-      <input-text-ui id="login"></input-text-ui>
-      <label for="password">Пароль</label>
-      <input-password-ui id="password"></input-password-ui>
-      <button-ui>Войти</button-ui>
-    </form>
+    <login-form></login-form>
   </div>
   <footer-item></footer-item>
 </template>
@@ -19,28 +13,14 @@ import {defineComponent} from "vue";
 import FooterItem from "@/components/Footer-Item.vue";
 import HeaderItem from "@/components/Header-Item.vue";
 import NavItem from "@/components/Nav-Item.vue";
-import ButtonUi from "@/components/UI/ButtonUi.vue";
-import InputPasswordUi from "@/components/UI/InputPasswordUi.vue";
-import InputTextUi from "@/components/UI/InputTextUi.vue";
+import LoginForm from "@/components/LoginForm.vue";
 
 export default defineComponent({
-  components: {InputTextUi, InputPasswordUi, ButtonUi, NavItem, HeaderItem, FooterItem}
+  components: {LoginForm, NavItem, HeaderItem, FooterItem}
 })
 </script>
 
 <style scoped>
-.login-form {
-  font-size: 18px;
-  display: grid;
-  justify-content: center;
-  grid-template-columns: .2fr;
-}
-
-.login-form > label {
-  color: #00A26D;
-  margin-bottom: 7px;
-}
-
 .login-form > input[type='text'], select, input[type='password'] {
   margin-bottom: 20px;
 }

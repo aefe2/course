@@ -1,6 +1,6 @@
-import ButtonUi from "@/components/UI/ButtonUi.vue";
-import InputPasswordUi from "@/components/UI/InputPasswordUi.vue";
-import InputTextUi from "@/components/UI/InputTextUi.vue";
+import ButtonUi from "@/components/UI/MyButton.vue";
+import InputPasswordUi from "@/components/UI/MyInputPass.vue";
+import InputTextUi from "@/components/UI/MyInputText.vue";
 
 export default [
     ButtonUi,
