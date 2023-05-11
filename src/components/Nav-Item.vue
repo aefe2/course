@@ -1,7 +1,7 @@
 <template>
-  <button onclick="openNav()" class="menu-toggle">&#9776;</button>
+  <button @click="openNav" class="menu-toggle">&#9776;</button>
   <div id="sidenav" class="sidebar sidenav">
-    <a class="closebtn" onclick="closeNav()">&times;</a>
+    <a class="closebtn" @click="closeNav">&times;</a>
     <ul class="other-links">
       <li class="link-item"><a href="#">Контроль</a></li>
       <li class="link-item"><a href="#">История пациента</a></li>
@@ -23,6 +23,11 @@
 <script>
 export default {
   name: "Nav-Item",
+  data() {
+    return {
+      isOpen: false
+    }
+  },
   methods: {
     openNav() {
 

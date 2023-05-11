@@ -2,118 +2,6 @@
   <header-item></header-item>
   <div class="main">
     <nav-item></nav-item>
-    <button-to-top></button-to-top>
-    <div class="btn-link-container">
-      <my-button>Создать пациента</my-button>
-    </div>
-    <div class="table-wrapper">
-      <table class="table">
-        <thead>
-        <tr class="head-row">
-          <th>ФИО врача</th>
-          <th>Кабинет</th>
-          <th>Время</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        <tr>
-          <td>143</td>
-          <td>А.Б.В.ы.</td>
-          <td>Укол в jop9</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
   <footer-item></footer-item>
 </template>
@@ -124,11 +12,9 @@ import {defineComponent} from "vue";
 import FooterItem from "@/components/Footer-Item.vue";
 import HeaderItem from "@/components/Header-Item.vue";
 import NavItem from "@/components/Nav-Item.vue";
-import MyButton from "@/components/UI/MyButton.vue";
-import ButtonToTop from "@/components/UI/ButtonToTop.vue";
 
 export default defineComponent({
-  components: {ButtonToTop, MyButton, NavItem, HeaderItem, FooterItem}
+  components: {NavItem, HeaderItem, FooterItem}
 })
 </script>
 
