@@ -35,7 +35,8 @@
           <router-link to="/appointment">Добававить прием</router-link>
         </li>
       </ul>
-      <img key="18" class="nav-bg" src="@/assets/img/diavolo.svg" alt="diavolo">
+      <img @click="$router.push('/')" style="cursor:pointer;" key="18" class="nav-bg" src="@/assets/img/diavolo.svg"
+           alt="diavolo">
     </div>
   </transition-group>
 </template>
