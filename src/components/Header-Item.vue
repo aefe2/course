@@ -1,7 +1,7 @@
 <template>
   <div class="header-container">
     <div class="header">
-      <h3 class="title">Авторизация</h3>
+      <h3 class="title">{{ $route.name }}</h3>
       <div class="switch-container">
         <svg width="27" height="27" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg">
           <ellipse cx="18" cy="18.5" rx="18" ry="18.5" fill="#F9F9F9"/>
@@ -17,7 +17,8 @@
 
 <script>
 export default {
-  name: "Header-Item"
+  name: "Header-Item",
+
 }
 </script>
 

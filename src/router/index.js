@@ -13,43 +13,53 @@ import RecordPatient from "@/pages/RecordPatient.vue";
 const routes = [
     {
         path: '/',
-        component: TimetablePage
+        component: TimetablePage,
+        name: 'Расписание',
     },
     {
         path: '/add-doctor',
-        component: AddDoctor
+        component: AddDoctor,
+        name: 'Добавить врача',
     },
     {
         path: '/appointment',
-        component: Appointment
+        component: Appointment,
+        name: 'Прием',
     },
     {
         path: '/control',
-        component: Control
+        component: Control,
+        name: 'Контроль',
     },
     {
         path: '/diagnosis-add',
-        component: DiagnosisAdd
+        component: DiagnosisAdd,
+        name: 'Добавить диагноз',
     },
     {
         path: '/heal-add',
-        component: HealAdd
+        component: HealAdd,
+        name: 'Добавить лечение',
     },
     {
         path: '/login',
-        component: Login
+        component: Login,
+        name: 'Авторизация',
     },
     {
         path: '/patient-history',
-        component: PatientHistory
+        component: PatientHistory,
+        name: 'История пациента',
     },
     {
         path: '/patients',
-        component: Patients
+        component: Patients,
+        name: 'Пациенты',
     },
     {
         path: '/record-patient',
-        component: RecordPatient
+        component: RecordPatient,
+        name: 'Записать пациента',
     },
     // {
     //     path: '*',
@@ -61,5 +71,11 @@ const router = createRouter({
     history: createWebHistory(),
     routes
 })
+
+// router.beforeEach((to, from, next) => {
+//     // console.log(to)
+//     document.title = to.meta.name;
+//     next()
+// })
 
 export default router

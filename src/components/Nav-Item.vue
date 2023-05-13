@@ -125,7 +125,8 @@ a:hover {
   display: inline-block;
   position: absolute;
   cursor: pointer;
-  background-color: #262626;
+  font-size: 25px;
+  background-color: #2D2D2D;
   color: white;
   padding: 10px 15px;
   border: none;
