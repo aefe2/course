@@ -11,61 +11,12 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>143</td>
-        <td>А.Б.В.ы.</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-        <td><input type="checkbox" name="status" id="status"></td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>А.Б.В.ы.</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-        <td><input type="checkbox" name="status" id=""></td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>А.Б.В.ы.</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-        <td><input type="checkbox" name="status" id=""></td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>А.Б.В.ы.</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-        <td><input type="checkbox" name="status" id=""></td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>А.Б.В.ы.</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-        <td><input type="checkbox" name="status" id=""></td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>А.Б.В.ы.</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-        <td><input type="checkbox" name="status" id=""></td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>А.Б.В.ы.</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-        <td><input type="checkbox" name="status" id=""></td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>А.Б.В.ы.</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-        <td><input type="checkbox" name="status" id=""></td>
+      <tr v-for="patient in patients" :key="patient.id">
+        <td>{{ patient.palaceNum }}</td>
+        <td>{{ patient.lastName[0] }}.{{ patient.firstName[0] }}.{{ patient.patronymic[0] }}</td>
+        <td>{{ patient.time }}</td>
+        <td>{{ patient.procedure }}</td>
+        <td><input type="checkbox" name="status"></td>
       </tr>
       </tbody>
     </table>
@@ -74,7 +25,21 @@
 
 <script>
 export default {
-  name: "Control"
+  name: "Control",
+  data() {
+    return {
+      patients: [
+        {id: 1, palaceNum: 1, lastName: 'Asddas', firstName: 'Cxzczx', patronymic: 'Zxc', time: 12.30, procedure: 'Aasdad'},
+        {id: 2, palaceNum: 123, lastName: 'Asddas', firstName: 'Cxzczx', patronymic: 'Zxc', time: 12.30, procedure: 'Aassd'},
+        {id: 3, palaceNum: 2, lastName: 'Asddas', firstName: 'Cxzczx', patronymic: 'Zxc', time: 12.30, procedure: 'sAasd'},
+        {id: 4, palaceNum: 3123, lastName: 'Asddas', firstName: 'Cxzczx', patronymic: 'Zxc', time: 12.30, procedure: 'Aadsd'},
+        {id: 5, palaceNum: 12, lastName: 'Asddas', firstName: 'Cxzczx', patronymic: 'Zxc', time: 12.30, procedure: 'Aasds'},
+        {id: 6, palaceNum: 11, lastName: 'Asddas', firstName: 'Cxzczx', patronymic: 'Zxc', time: 12.30, procedure: 'Aaxsd'},
+        {id: 7, palaceNum: 134, lastName: 'Asddas', firstName: 'Cxzczx', patronymic: 'Zxc', time: 12.30, procedure: 'Aazxsd'},
+        {id: 8, palaceNum: 111, lastName: 'Asddas', firstName: 'Cxzczx', patronymic: 'Zxc', time: 12.30, procedure: 'Agasd'},
+      ]
+    }
+  }
 }
 </script>
 
