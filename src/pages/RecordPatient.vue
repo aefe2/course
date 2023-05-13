@@ -1,29 +1,37 @@
 <template>
-  <form class="record-patient-form">
-    <label for="choose-patient">Выбрать пациента</label>
-    <select name="choose" id="choose-patient">
+  <form-item class="record-patient-form">
+    <my-label for="choose-patient">Выбрать пациента</my-label>
+    <my-select name="choose" id="choose-patient">
       <option value="1">aposdpo</option>
       <option value="2">sadasd</option>
       <option value="3">ghjk</option>
-    </select>
-    <button class="create-patient-btn"><span>Создать пациента</span></button>
-    <label for="chooce-cab">Выбрать кабинет</label>
-    <select name="cab" id="chooce-cab">
+    </my-select>
+    <my-button class="create-patient-btn"><span>Создать пациента</span></my-button>
+    <my-label for="chooce-cab">Выбрать кабинет</my-label>
+    <my-select name="cab" id="chooce-cab">
       <option value="1">asd</option>
       <option value="12">sadas</option>
       <option value="13">asdas</option>
-    </select>
-    <label for="date">Дата</label>
-    <input type="date" name="date" id="date">
-    <label for="time">Время</label>
-    <input type="time" name="time" id="time">
-    <input type="submit" value="записать">
-  </form>
+    </my-select>
+    <my-label for="date">Дата</my-label>
+    <my-input-date type="date" name="date" id="date"></my-input-date>
+    <my-label for="time">Время</my-label>
+    <my-input-time type="time" name="time" id="time"></my-input-time>
+    <my-button type="submit">Записать</my-button>
+  </form-item>
 </template>
 
 <script>
+import FormItem from "@/components/Form-Item.vue";
+import MyLabel from "@/components/UI/MyLabel.vue";
+import MySelect from "@/components/UI/MySelect.vue";
+import MyButton from "@/components/UI/MyButton.vue";
+import MyInputDate from "@/components/UI/MyInputDate.vue";
+import MyInputTime from "@/components/UI/MyInputTime.vue";
+
 export default {
-  name: "RecordPatient"
+  name: "RecordPatient",
+  components: {MyInputTime, MyInputDate, MyButton, MySelect, MyLabel, FormItem}
 }
 </script>
 
@@ -31,19 +39,19 @@ export default {
 .record-patient-form {
   font-size: 18px;
   display: grid;
+  grid-gap: 15px;
   justify-content: center;
   grid-template-columns: .2fr;
 }
 
 .record-patient-form > label {
   color: #00A26D;
-  margin-bottom: 7px;
 }
 
 .record-patient-form > select {
   color: #FFFFFF;
   font-size: 16px;
-  padding: 8px;
+  padding: 7px;
   background-color: #2D2D2D;
   border: solid 1.5px #FFF;
   border-radius: 5px;
@@ -55,9 +63,6 @@ export default {
   background-color: rgba(0, 162, 109, 0.58);
 }
 
-.record-patient-form > input[type='text'], select, input[type='password'] {
-  margin-bottom: 20px;
-}
 
 .record-patient-form > select {
   background-color: rgba(45, 45, 45, 1);
@@ -68,7 +73,7 @@ export default {
   padding: 5px;
 }
 
-.record-patient-form > input:last-child {
+.btn:last-child {
   color: #FFFFFF;
   padding: 8px;
   border-radius: 5px;
@@ -79,7 +84,7 @@ export default {
   cursor: pointer;
 }
 
-.record-patient-form > input:last-child:hover {
+.btn:hover {
   background-color: rgba(0, 162, 109, 0.49);
   transition-duration: .3s;
 }
@@ -88,7 +93,6 @@ export default {
   color: #FFFFFF;
   padding: 8px;
   border-radius: 5px;
-  margin-bottom: 20px;
   background-color: #00A26D;
   border: none;
   font-size: 18px;
@@ -100,40 +104,8 @@ export default {
   transition-duration: .3s;
 }
 
-#time {
-  color: #FFFFFF;
-  font-size: 16px;
-  padding: 8px;
-  background-color: #2D2D2D;
-  border: solid 1.5px #FFF;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-#time:focus {
-  outline: none;
-  outline-offset: 0;
-  background-color: rgba(0, 162, 109, 0.58);
-}
-
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
-}
-
-#date {
-  color: #FFFFFF;
-  font-size: 16px;
-  padding: 8px;
-  background-color: #2D2D2D;
-  border: solid 1.5px #FFF;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-#date:focus {
-  outline: none;
-  outline-offset: 0;
-  background-color: rgba(0, 162, 109, 0.58);
 }
 
 /**/

@@ -1,4 +1,8 @@
 <template>
+  <button-to-top></button-to-top>
+  <div class="btn-link-container">
+    <my-button class="create-patient"><span>Создать пациента</span></my-button>
+  </div>
   <div class="table-wrapper">
     <table class="table">
       <thead>
@@ -130,28 +134,16 @@
 </template>
 
 <script>
+import ButtonToTop from "@/components/UI/ButtonToTop.vue";
+import MyButton from "@/components/UI/MyButton.vue";
+
 export default {
-  name: "Patients"
+  name: "Patients",
+  components: {MyButton, ButtonToTop}
 }
 </script>
 
 <style scoped>
-html {
-  scroll-behavior: smooth;
-}
-
-@keyframes flow {
-  0% {
-    background-position: 0 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0 50%;
-  }
-}
-
 .table {
   width: 100%;
   margin-bottom: 20px;

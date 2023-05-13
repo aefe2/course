@@ -24,7 +24,7 @@ const routes = [
     {
         path: '/appointment',
         component: Appointment,
-        name: 'Прием',
+        name: 'Добавить прием',
     },
     {
         path: '/control',

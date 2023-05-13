@@ -1,6 +1,7 @@
 <template>
   <select>
-    <option v-for="option in options" :key="option.value" :value="option.value">{{ option.name }}</option>
+<!--    <option v-for="option in options" :key="option.value" :value="option.value">{{ option.name }}</option>-->
+    <slot></slot>
   </select>
 </template>
 

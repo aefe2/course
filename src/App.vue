@@ -45,7 +45,7 @@ export default defineComponent({
 }
 
 .main {
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 ::-webkit-scrollbar {

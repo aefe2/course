@@ -69,18 +69,6 @@ export default {
 </script>
 
 <style scoped>
-@keyframes flow {
-  0% {
-    background-position: 0 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0 50%;
-  }
-}
-
 .table {
   width: 100%;
   border: none;

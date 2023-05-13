@@ -1,5 +1,5 @@
 <template>
-  <form-item>
+  <form-item class="login-form">
     <my-label for="login">Логин</my-label>
     <my-input-text id="login"></my-input-text>
     <my-label for="password">Пароль</my-label>
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style scoped>
-.form {
+.login-form {
   font-size: 18px;
   display: grid;
   justify-content: center;

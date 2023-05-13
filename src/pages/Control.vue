@@ -121,10 +121,6 @@ export default {
   background-color: #86cbb6;
 }
 
-/*.table tbody tr:nth-child(odd) {*/
-/*    background-color: rgb(229, 224, 224);*/
-/*}*/
-
 .table tbody tr td:first-child {
   border-radius: 8px 0 0 8px;
 }

@@ -13,6 +13,5 @@ export default {
 <style scoped>
 .label {
   color: #00A26D;
-  margin-bottom: 7px;
 }
 </style>

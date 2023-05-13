@@ -1,24 +1,24 @@
 <template>
-  <input type="text" class="input">
+  <input type="date" name="date" id="date">
 </template>
 
 <script>
 export default {
-  name: "MyInputText"
+  name: "MyInputDate"
 }
 </script>
 
 <style scoped>
-.input {
+#date {
   color: #FFFFFF;
   font-size: 16px;
-  padding: 5px;
+  padding: 8px;
   background-color: #2D2D2D;
   border: solid 1.5px #FFF;
   border-radius: 5px;
 }
 
-.input:focus {
+#date:focus {
   outline: none;
   outline-offset: 0;
   background-color: rgba(0, 162, 109, 0.58);

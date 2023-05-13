@@ -13,15 +13,15 @@
         <li key="9" class="link-item">
           <router-link to="/patients">Пациенты</router-link>
         </li>
-        <li key="10" class="link-item">
-          <router-link to="/record-patient">Записать пациента</router-link>
-        </li>
         <li key="11" class="link-item">
           <router-link to="/">Расписание</router-link>
         </li>
       </ul>
       <p key="12">Добавления</p>
       <ul key="13" class="add-links">
+        <li key="10" class="link-item">
+          <router-link to="/record-patient">Записать пациента</router-link>
+        </li>
         <li key="14" class="link-item">
           <router-link to="/diagnosis-add">Добавить диагноз</router-link>
         </li>

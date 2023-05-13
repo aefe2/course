@@ -12,11 +12,10 @@ export default {
 .input-pass {
   color: #FFFFFF;
   font-size: 16px;
-  padding: 8px;
+  padding: 5px;
   background-color: #2D2D2D;
   border: solid 1.5px #FFF;
   border-radius: 5px;
-  margin-bottom: 20px;
 }
 
 .input-pass:focus {

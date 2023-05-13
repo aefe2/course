@@ -1,30 +1,36 @@
 <template>
-  <form class="appointment-form">
-    <label for="patient">пациент</label>
-    <select name="patient-select" id="patient">
+  <form-item class="appointment-form">
+    <my-label for="patient">Пациент</my-label>
+    <my-select name="patient-select" id="patient">
       <option value="1">AaAaA</option>
-    </select>
-    <label for="diagnos">диагноз</label>
-    <select name="diagnos" id="diagnos">
+    </my-select>
+    <my-label for="diagnos">Диагноз</my-label>
+    <my-select name="diagnosis" id="diagnos">
       <option value="13">DS5</option>
-    </select>
-    <button class="diagnos-add"><span>добавить диагноз</span></button>
-    <label for="heal">лечение</label>
-    <select name="heal" id="heal">
+    </my-select>
+    <my-button class="diagnos-add"><span>Добавить диагноз</span></my-button>
+    <my-label for="heal">Лечение</my-label>
+    <my-select name="heal" id="heal">
       <option value="123">pipi</option>
-    </select>
-    <button class="heal-add"><span>добавить лечение</span></button>
-    <label for="doctor">врач</label>
-    <select name="doctor" id="doctor">
+    </my-select>
+    <my-button class="heal-add"><span>Добавить лечение</span></my-button>
+    <my-label for="doctor">Врач</my-label>
+    <my-select name="doctor" id="doctor">
       <option value="123">dadaya</option>
-    </select>
-    <input type="submit" value="отправить">
-  </form>
+    </my-select>
+    <my-button type="submit">Отправить</my-button>
+  </form-item>
 </template>
 
 <script>
+import FormItem from "@/components/Form-Item.vue";
+import MyLabel from "@/components/UI/MyLabel.vue";
+import MySelect from "@/components/UI/MySelect.vue";
+import MyButton from "@/components/UI/MyButton.vue";
+
 export default {
-  name: "Appointment"
+  name: "Appointment",
+  components: {MyButton, MySelect, MyLabel, FormItem}
 }
 </script>
 
@@ -32,6 +38,7 @@ export default {
 .appointment-form {
   font-size: 18px;
   display: grid;
+  grid-gap: 11px;
   justify-content: center;
   grid-template-columns: .2fr;
 }
@@ -64,7 +71,7 @@ export default {
   padding: 5px;
 }
 
-.appointment-form > input:last-child {
+.btn:last-child {
   margin-top: 5px;
   background-color: #00A26D;
   border: none;
@@ -73,22 +80,16 @@ export default {
   cursor: pointer;
 }
 
-.appointment-form > input:last-child:hover {
+.btn:hover {
   background-color: rgba(0, 162, 109, 0.49);
   transition-duration: .3s;
 }
 
-label {
-  margin: 0 0 10px 0;
-}
-
 select {
   border-color: #79b7a3;
-  margin: 0 0 10px 0;
 }
 
 .appointment-form button {
-  margin: 10px 0 10px 0;
   background-color: #00A26D;
   border: none;
   cursor: pointer;

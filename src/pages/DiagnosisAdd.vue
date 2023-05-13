@@ -1,27 +1,30 @@
 <template>
   <div class="form-container">
-    <form class="diagnos-form">
-      <label for="diagnos-name">Название диагноза</label>
-      <input type="text" name="diagnos-name" id="diagnos-name">
-      <input type="submit" value="добавить">
-    </form>
+    <form-item class="diagnos-form">
+      <my-label for="diagnos-name">Название диагноза</my-label>
+      <my-input-text type="text" name="diagnos-name" id="diagnos-name"></my-input-text>
+      <my-button type="submit">Добавить</my-button>
+    </form-item>
   </div>
 </template>
 
 <script>
+import MyLabel from "@/components/UI/MyLabel.vue";
+import MyInputText from "@/components/UI/MyInputText.vue";
+import MyButton from "@/components/UI/MyButton.vue";
+import FormItem from "@/components/Form-Item.vue";
+
 export default {
-  name: "DiagnosisAdd"
+  name: "DiagnosisAdd",
+  components: {FormItem, MyButton, MyInputText, MyLabel}
 }
 </script>
 
 <style scoped>
-.main {
-  margin-top: 90px;
-}
-
 .diagnos-form {
   font-size: 18px;
   display: grid;
+  grid-gap: 15px;
   justify-content: center;
   grid-template-columns: .2fr;
 }
@@ -33,11 +36,10 @@ export default {
 .diagnos-form > input {
   color: #FFFFFF;
   font-size: 16px;
-  padding: 8px;
+  padding: 7px;
   background-color: #2D2D2D;
   border: solid 1.5px #FFF;
   border-radius: 5px;
-  margin-bottom: 10px;
 }
 
 .diagnos-form > input[type='text']:focus {
@@ -46,7 +48,7 @@ export default {
   background-color: rgba(0, 162, 109, 0.58);
 }
 
-.diagnos-form > input:last-child {
+.btn {
   background-color: #00A26D;
   border: none;
   font-size: 18px;
@@ -54,23 +56,18 @@ export default {
   cursor: pointer;
 }
 
-.diagnos-form > input:last-child:hover {
+.btn:hover {
   background-color: rgba(0, 162, 109, 0.49);
   transition-duration: .3s;
 }
 
-label {
-  margin: 0 0 10px 0;
-}
-
-.diagnos-form input[type='button'] {
-  margin: 10px 0 10px 0;
+.btn {
   background-color: #00A26D;
   border: none;
   cursor: pointer;
 }
 
-.diagnos-form input[type='button']:hover {
+.btn:hover {
   background-color: rgba(0, 162, 109, 0.49);
   transition-duration: .3s;
 }

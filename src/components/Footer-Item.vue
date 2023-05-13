@@ -27,7 +27,7 @@ export default {
 .footer {
   display: flex;
   background-color: rgba(52, 52, 52, 1);
-  margin-top: 30px;
+  margin-top: 40px;
   height: 45px;
   justify-content: center;
   align-items: center;
