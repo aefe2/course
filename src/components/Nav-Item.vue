@@ -4,18 +4,36 @@
     <div key="2" v-show="isActive" id="sidenav" class="sidebar sidenav">
       <a key="4" class="closebtn" @click="toggle">&times;</a>
       <ul key="5" class="other-links">
-        <li key="7" class="link-item"><a href="#">Контроль</a></li>
-        <li key="8" class="link-item"><a href="#">История пациента</a></li>
-        <li key="9" class="link-item"><a href="#">Пациенты</a></li>
-        <li key="10" class="link-item"><a href="#">Записать пациента</a></li>
-        <li key="11" class="link-item"><a href="#">Расписание</a></li>
+        <li key="7" class="link-item">
+          <router-link to="/control">Контроль</router-link>
+        </li>
+        <li key="8" class="link-item">
+          <router-link to="/history">История пациента</router-link>
+        </li>
+        <li key="9" class="link-item">
+          <router-link to="/patients">Пациенты</router-link>
+        </li>
+        <li key="10" class="link-item">
+          <router-link to="/record-patient">Записать пациента</router-link>
+        </li>
+        <li key="11" class="link-item">
+          <router-link to="/">Расписание</router-link>
+        </li>
       </ul>
       <p key="12">Добавления</p>
       <ul key="13" class="add-links">
-        <li key="14" class="link-item"><a href="#">Добавить диагноз</a></li>
-        <li key="15" class="link-item"><a href="#">Добавить лечение</a></li>
-        <li key="16" class="link-item"><a href="#">Добавить врача</a></li>
-        <li key="17" class="link-item"><a href="#">Добававить прием</a></li>
+        <li key="14" class="link-item">
+          <router-link to="/diagnosis-add">Добавить диагноз</router-link>
+        </li>
+        <li key="15" class="link-item">
+          <router-link to="/heal-add">Добавить лечение</router-link>
+        </li>
+        <li key="16" class="link-item">
+          <router-link to="/add-doctor">Добавить врача</router-link>
+        </li>
+        <li key="17" class="link-item">
+          <router-link to="/appointment">Добававить прием</router-link>
+        </li>
       </ul>
       <img key="18" class="nav-bg" src="@/assets/img/diavolo.svg" alt="diavolo">
     </div>

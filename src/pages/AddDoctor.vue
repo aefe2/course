@@ -1,10 +1,13 @@
 <template>
-
+  <add-doctor-form></add-doctor-form>
 </template>
 
 <script>
+import AddDoctorForm from "@/components/AddDoctorForm.vue";
+
 export default {
-  name: "AddDoctor"
+  name: "AddDoctor",
+  components: {AddDoctorForm}
 }
 </script>
 

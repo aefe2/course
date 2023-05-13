@@ -1,9 +1,24 @@
-import {createRouter, createWebHashHistory} from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
+import AddDoctor from "@/pages/AddDoctor.vue";
+import TimetablePage from "@/pages/TimetablePage.vue";
 
-const routes = []
+const routes = [
+    {
+        path: '/',
+        component: TimetablePage
+    },
+    {
+        path: '/add-doctor',
+        component: AddDoctor
+    },
+    // {
+    //     path: '*',
+    //     redirect: NotFoundPage
+    // }
+]
 
 const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes
 })
 
