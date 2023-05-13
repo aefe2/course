@@ -8,7 +8,7 @@
           <router-link to="/control">Контроль</router-link>
         </li>
         <li key="8" class="link-item">
-          <router-link to="/history">История пациента</router-link>
+          <router-link to="/patient-history">История пациента</router-link>
         </li>
         <li key="9" class="link-item">
           <router-link to="/patients">Пациенты</router-link>

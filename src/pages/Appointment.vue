@@ -1,5 +1,25 @@
 <template>
-
+  <form class="appointment-form">
+    <label for="patient">пациент</label>
+    <select name="patient-select" id="patient">
+      <option value="1">AaAaA</option>
+    </select>
+    <label for="diagnos">диагноз</label>
+    <select name="diagnos" id="diagnos">
+      <option value="13">DS5</option>
+    </select>
+    <button class="diagnos-add"><span>добавить диагноз</span></button>
+    <label for="heal">лечение</label>
+    <select name="heal" id="heal">
+      <option value="123">pipi</option>
+    </select>
+    <button class="heal-add"><span>добавить лечение</span></button>
+    <label for="doctor">врач</label>
+    <select name="doctor" id="doctor">
+      <option value="123">dadaya</option>
+    </select>
+    <input type="submit" value="отправить">
+  </form>
 </template>
 
 <script>
@@ -9,5 +29,124 @@ export default {
 </script>
 
 <style scoped>
+.appointment-form {
+  font-size: 18px;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: .2fr;
+}
 
+.appointment-form > label {
+  color: #00A26D;
+}
+
+.appointment-form > button, input {
+  color: #FFFFFF;
+  font-size: 16px;
+  padding: 8px;
+  background-color: #2D2D2D;
+  border: solid 1.5px #FFF;
+  border-radius: 5px;
+}
+
+.appointment-form > input[type='text']:focus {
+  outline: none;
+  outline-offset: 0;
+  background-color: rgba(0, 162, 109, 0.58);
+}
+
+.appointment-form > select {
+  background-color: rgba(45, 45, 45, 1);
+  border-color: #FFFFFF;
+  color: #FFF;
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.appointment-form > input:last-child {
+  margin-top: 5px;
+  background-color: #00A26D;
+  border: none;
+  font-size: 18px;
+  width: 170px;
+  cursor: pointer;
+}
+
+.appointment-form > input:last-child:hover {
+  background-color: rgba(0, 162, 109, 0.49);
+  transition-duration: .3s;
+}
+
+label {
+  margin: 0 0 10px 0;
+}
+
+select {
+  border-color: #79b7a3;
+  margin: 0 0 10px 0;
+}
+
+.appointment-form button {
+  margin: 10px 0 10px 0;
+  background-color: #00A26D;
+  border: none;
+  cursor: pointer;
+}
+
+.appointment-form button:hover {
+  background-color: rgba(0, 162, 109, 0.49);
+  transition-duration: .3s;
+}
+
+.diagnos-add span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.diagnos-add span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.diagnos-add:hover span {
+  padding-right: 15px;
+}
+
+.diagnos-add:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/**/
+.heal-add span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.heal-add span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.heal-add:hover span {
+  padding-right: 15px;
+}
+
+.heal-add:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 </style>

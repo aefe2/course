@@ -1,5 +1,24 @@
 <template>
-
+  <form class="record-patient-form">
+    <label for="choose-patient">Выбрать пациента</label>
+    <select name="choose" id="choose-patient">
+      <option value="1">aposdpo</option>
+      <option value="2">sadasd</option>
+      <option value="3">ghjk</option>
+    </select>
+    <button class="create-patient-btn"><span>Создать пациента</span></button>
+    <label for="chooce-cab">Выбрать кабинет</label>
+    <select name="cab" id="chooce-cab">
+      <option value="1">asd</option>
+      <option value="12">sadas</option>
+      <option value="13">asdas</option>
+    </select>
+    <label for="date">Дата</label>
+    <input type="date" name="date" id="date">
+    <label for="time">Время</label>
+    <input type="time" name="time" id="time">
+    <input type="submit" value="записать">
+  </form>
 </template>
 
 <script>
@@ -9,5 +28,137 @@ export default {
 </script>
 
 <style scoped>
+.record-patient-form {
+  font-size: 18px;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: .2fr;
+}
 
+.record-patient-form > label {
+  color: #00A26D;
+  margin-bottom: 7px;
+}
+
+.record-patient-form > select {
+  color: #FFFFFF;
+  font-size: 16px;
+  padding: 8px;
+  background-color: #2D2D2D;
+  border: solid 1.5px #FFF;
+  border-radius: 5px;
+}
+
+.record-patient-form > input[type='text']:focus {
+  outline: none;
+  outline-offset: 0;
+  background-color: rgba(0, 162, 109, 0.58);
+}
+
+.record-patient-form > input[type='text'], select, input[type='password'] {
+  margin-bottom: 20px;
+}
+
+.record-patient-form > select {
+  background-color: rgba(45, 45, 45, 1);
+  border-color: #FFFFFF;
+  color: #FFF;
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.record-patient-form > input:last-child {
+  color: #FFFFFF;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #00A26D;
+  border: none;
+  font-size: 18px;
+  width: 170px;
+  cursor: pointer;
+}
+
+.record-patient-form > input:last-child:hover {
+  background-color: rgba(0, 162, 109, 0.49);
+  transition-duration: .3s;
+}
+
+.create-patient-btn {
+  color: #FFFFFF;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  background-color: #00A26D;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.create-patient-btn:hover {
+  background-color: rgba(0, 162, 109, 0.49);
+  transition-duration: .3s;
+}
+
+#time {
+  color: #FFFFFF;
+  font-size: 16px;
+  padding: 8px;
+  background-color: #2D2D2D;
+  border: solid 1.5px #FFF;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+#time:focus {
+  outline: none;
+  outline-offset: 0;
+  background-color: rgba(0, 162, 109, 0.58);
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+#date {
+  color: #FFFFFF;
+  font-size: 16px;
+  padding: 8px;
+  background-color: #2D2D2D;
+  border: solid 1.5px #FFF;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+#date:focus {
+  outline: none;
+  outline-offset: 0;
+  background-color: rgba(0, 162, 109, 0.58);
+}
+
+/**/
+.create-patient-btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.create-patient-btn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.create-patient-btn:hover span {
+  padding-right: 15px;
+}
+
+.create-patient-btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 </style>
