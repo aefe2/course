@@ -8,12 +8,12 @@
     <my-select name="diagnosis" id="diagnos">
       <option value="13">DS5</option>
     </my-select>
-    <my-button class="diagnos-add"><span>Добавить диагноз</span></my-button>
+    <my-button @click="$router.push('/diagnosis-add')" class="diagnos-add"><span>Добавить диагноз</span></my-button>
     <my-label for="heal">Лечение</my-label>
     <my-select name="heal" id="heal">
       <option value="123">pipi</option>
     </my-select>
-    <my-button class="heal-add"><span>Добавить лечение</span></my-button>
+    <my-button @click="$router.push('/heal-add')" class="heal-add"><span>Добавить лечение</span></my-button>
     <my-label for="doctor">Врач</my-label>
     <my-select name="doctor" id="doctor">
       <option value="123">dadaya</option>

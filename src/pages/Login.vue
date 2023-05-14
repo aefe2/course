@@ -25,7 +25,20 @@ export default {
 .login-form {
   font-size: 18px;
   display: grid;
+  grid-gap: 15px;
   justify-content: center;
   grid-template-columns: .2fr;
+}
+.btn {
+  background-color: #00A26D;
+  border: none;
+  font-size: 18px;
+  width: 170px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgba(0, 162, 109, 0.49);
+  transition-duration: .3s;
 }
 </style>

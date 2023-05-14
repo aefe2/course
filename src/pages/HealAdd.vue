@@ -60,16 +60,4 @@ export default {
   background-color: rgba(0, 162, 109, 0.49);
   transition-duration: .3s;
 }
-
-
-.btn {
-  background-color: #00A26D;
-  border: none;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: rgba(0, 162, 109, 0.49);
-  transition-duration: .3s;
-}
 </style>
