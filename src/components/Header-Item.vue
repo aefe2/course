@@ -3,13 +3,21 @@
     <div class="header">
       <h3 class="title">{{ $route.name }}</h3>
       <div class="switch-container">
-        <svg width="27" height="27" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg v-show="isToggle" width="27" height="27" viewBox="0 0 36 37" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
           <ellipse cx="18" cy="18.5" rx="18" ry="18.5" fill="#F9F9F9"/>
           <path fill-rule="evenodd" clip-rule="evenodd"
                 d="M32.625 21.4377C30.6048 23.5717 27.7802 24.8973 24.6544 24.8973C18.5132 24.8973 13.5348 19.7805 13.5348 13.4687C13.5348 9.17245 15.8414 5.42987 19.2512 3.47775C19.0839 3.47177 18.9158 3.46875 18.7471 3.46875C10.8786 3.46875 4.5 10.0246 4.5 18.1116C4.5 26.1986 10.8786 32.7544 18.7471 32.7544C25.5023 32.7544 31.1595 27.9223 32.625 21.4377Z"
                 fill="#2D2D2D"/>
         </svg>
-        <div class="switch-btn switch-on"></div>
+        <svg v-show="!isToggle" width="27" height="27" viewBox="0 0 36 37" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="18" cy="18.5" rx="18" ry="18.5" fill="#2D2D2D"/>
+          <path
+              d="M17.5 7L19.0477 12.7238L23.25 8.54071L21.7285 14.2715L27.4593 12.75L23.2762 16.9523L29 18.5L23.2762 20.0477L27.4593 24.25L21.7285 22.7285L23.25 28.4593L19.0477 24.2762L17.5 30L15.9523 24.2762L11.75 28.4593L13.2715 22.7285L7.54071 24.25L11.7238 20.0477L6 18.5L11.7238 16.9523L7.54071 12.75L13.2715 14.2715L11.75 8.54071L15.9523 12.7238L17.5 7Z"
+              fill="white"/>
+        </svg>
+        <div @click="themeToggle" class="switch-btn" :class="{'switch-on': isToggle}"></div>
       </div>
     </div>
   </div>
@@ -18,6 +26,16 @@
 <script>
 export default {
   name: "Header-Item",
+  data() {
+    return {
+      isToggle: false
+    }
+  },
+  methods: {
+    themeToggle() {
+      this.isToggle = !this.isToggle
+    }
+  }
 
 }
 </script>
@@ -42,6 +60,7 @@ export default {
 .switch-container {
   position: absolute;
   right: 20px;
+
 }
 
 .switch-btn {
@@ -56,6 +75,7 @@ export default {
   cursor: pointer;
   position: relative;
   transition-duration: 300ms; /* анимация */
+  box-shadow: inset #2D2D2D 0 0 2px;
 }
 
 .switch-btn::after {
@@ -65,10 +85,11 @@ export default {
   border-radius: 17px;
   background: #fff; /* цвет кнопки */
   top: 4px; /* положение кнопки по вертикали относительно основы */
-  right: 4px; /* положение кнопки по горизонтали относительно основы */
+  right: 32px; /* положение кнопки по горизонтали относительно основы */
   transition-duration: 300ms; /* анимация */
   position: absolute;
   z-index: 1;
+
 }
 
 .switch-on {
@@ -76,6 +97,10 @@ export default {
 }
 
 .switch-on::after {
-  left: 32px;
+  transform: translateX(27px);
+}
+
+svg {
+  margin-bottom: 1px;
 }
 </style>
