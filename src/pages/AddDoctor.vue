@@ -37,11 +37,10 @@ import MyInputText from "@/components/UI/MyInputText.vue";
 import MySelect from "@/components/UI/MySelect.vue";
 import MyInputPass from "@/components/UI/MyInputPass.vue";
 import MyButton from "@/components/UI/MyButton.vue";
-import HeaderItem from "@/App.vue";
 
 export default {
   name: "AddDoctor",
-  components: {HeaderItem, MyButton, MyInputPass, MySelect, MyInputText, MyLabel, FormItem},
+  components: {MyButton, MyInputPass, MySelect, MyInputText, MyLabel, FormItem},
 
 }
 </script>
