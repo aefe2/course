@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="footer" style="user-select: none">
     <img src="@/assets/img/umbrella.png" alt="Umbrella logo">
     <span>Umbrella Corporation</span>
   </div>
