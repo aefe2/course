@@ -60,16 +60,18 @@ export default {
 </script>
 
 <style scoped>
-.nav-leave-to /* .list-leave-active до версии 2.1.8 */
-{
-  transform: translateX(-100px);
-  transition: .9s;
-  opacity: 0;
+.nav-enter-active {
+    transition: all 0.3s ease-out;
 }
 
-.nav-enter-to {
-  opacity: 1;
-  transition: .4s;
+.nav-leave-active {
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.nav-enter-from,
+.nav-leave-to {
+    transform: translateX(-20px);
+    opacity: 0;
 }
 
 .sidenav {
