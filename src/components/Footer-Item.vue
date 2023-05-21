@@ -1,13 +1,20 @@
 <template>
-  <div class="footer" style="user-select: none">
+  <div :class="theme" class="footer" style="user-select: none">
     <img src="@/assets/img/umbrella.png" alt="Umbrella logo">
     <span>Umbrella Corporation</span>
   </div>
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
-  name: "Footer-Item"
+  name: "Footer-Item",
+  computed: {
+    ...mapState({
+      theme: state => state.themeModule.theme
+    })
+  }
 }
 </script>
 
@@ -24,9 +31,16 @@ export default {
   }
 }
 
+.dark {
+  background-color: rgba(52, 52, 52, 1);
+}
+
+.light {
+  background-color: #ECECECFF;
+}
+
 .footer {
   display: flex;
-  background-color: rgba(52, 52, 52, 1);
   margin-top: 40px;
   height: 45px;
   justify-content: center;
