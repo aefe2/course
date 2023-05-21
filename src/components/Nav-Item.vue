@@ -1,8 +1,8 @@
 <template>
-  <button @click="toggle" class="menu-toggle">&#9776;</button>
+  <button @click="navModule" class="menu-toggle">&#9776;</button>
   <transition-group name="nav">
-    <div key="2" v-show="isActive" id="sidenav" class="sidebar sidenav">
-      <a key="4" class="closebtn" @click="toggle">&times;</a>
+    <div key="2" v-show="isNavOpen" :class="theme" id="sidenav" class="sidebar sidenav">
+      <a key="4" class="closebtn" @click="navModule">&times;</a>
       <ul key="5" class="other-links">
         <li key="7" class="link-item">
           <router-link to="/control">Контроль</router-link>
@@ -42,36 +42,46 @@
 </template>
 
 <script>
-import {store, mutations} from "@/store/navModule";
+
+import {mapMutations, mapState} from "vuex";
 
 export default {
   name: "Nav-Item",
   computed: {
-    isActive() {
-      return store.isNavOpen
-    }
+    ...mapState({
+      isNavOpen: state => state.navModule.isNavOpen,
+      theme: state => state.themeModule.theme
+    })
   },
   methods: {
-    toggle() {
-      mutations.toggleNav()
-    }
+    ...mapMutations({
+      navModule: "toggleNav"
+    })
   }
 }
 </script>
 
 <style scoped>
 .nav-enter-active {
-    transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 .nav-leave-active {
-    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .nav-enter-from,
 .nav-leave-to {
-    transform: translateX(-20px);
-    opacity: 0;
+  transform: translateX(-20px);
+  opacity: 0;
+}
+
+.light {
+  background-color: whitesmoke;
+}
+
+.dark {
+  background-color: #2D2D2D;
 }
 
 .sidenav {
@@ -81,8 +91,8 @@ export default {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #262626;
   padding-top: 60px;
+  box-shadow: #00A26D 0.5px 0 2px;
 }
 
 .nav-bg {

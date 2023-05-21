@@ -1,11 +1,12 @@
 import {reactive} from "vue";
 
-export const store = reactive({
-    isNavOpen: false
-});
-
-export const mutations = {
-    toggleNav() {
-        store.isNavOpen = !store.isNavOpen;
+export const navModule = {
+    state: () => ({
+        isNavOpen: false
+    }),
+    mutations: {
+        toggleNav(state) {
+            state.isNavOpen = !state.isNavOpen
+        }
     }
 }

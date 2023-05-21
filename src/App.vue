@@ -55,6 +55,7 @@ export default defineComponent({
 /*  font-weight: normal;*/
 /*  font-style: normal;*/
 /*}*/
+
 .content {
   scroll-behavior: smooth;
   min-height: 100vh;
