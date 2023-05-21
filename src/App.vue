@@ -1,10 +1,12 @@
 <template>
-  <header-item></header-item>
-  <nav-item></nav-item>
-  <div class="main">
-    <router-view></router-view>
+  <div :class="theme" class="content">
+    <header-item></header-item>
+    <nav-item></nav-item>
+    <div class="main">
+      <router-view></router-view>
+    </div>
+    <footer-item></footer-item>
   </div>
-  <footer-item></footer-item>
 </template>
 
 <script>
@@ -13,14 +15,19 @@ import {defineComponent} from "vue";
 import FooterItem from "@/components/Footer-Item.vue";
 import HeaderItem from "@/components/Header-Item.vue";
 import NavItem from "@/components/Nav-Item.vue";
+import {mapActions, mapMutations, mapState} from "vuex";
 
 export default defineComponent({
-  components: {NavItem, HeaderItem, FooterItem}
+  components: {NavItem, HeaderItem, FooterItem},
+  computed: {
+    ...mapState({
+      theme: state => state.themeModule.theme,
+    })
+  },
 })
 </script>
 
 <style>
-/*base styles*/
 * {
   padding: 0;
   margin: 0;
@@ -29,19 +36,30 @@ export default defineComponent({
   text-decoration: none;
 }
 
+.light {
+  background-color: whitesmoke;
+}
+
+.dark {
+  background-color: #2D2D2D;
+}
+
+/*:root {*/
+/*  --dark-background-c: #2D2D2D;*/
+/*  --light-background-c: whitesmoke;*/
+/*}*/
+
 /*@font-face {*/
 /*  font-family: 'Avalon';*/
 /*  src: url("~@/assets/fonts/motorola.ttf") format('woff2');*/
 /*  font-weight: normal;*/
 /*  font-style: normal;*/
 /*}*/
-
-#app {
+.content {
   scroll-behavior: smooth;
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  background-color: #2D2D2D;
 }
 
 .main {

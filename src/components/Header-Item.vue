@@ -31,7 +31,8 @@ export default {
   name: "Header-Item",
   computed: {
     ...mapState({
-      isSwitch: state => state.themeModule.isSwitch
+      isSwitch: state => state.themeModule.isSwitch,
+      theme: state => state.themeModule.theme
     })
   },
   methods: {
