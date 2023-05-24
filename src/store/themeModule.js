@@ -2,7 +2,7 @@ import {reactive} from "vue";
 
 export const themeModule = {
     state: () => ({
-        nightMode: localStorage.getItem('nightMode') || false,
+        nightMode: JSON.parse(localStorage.getItem('nightMode')) || false,
         theme: localStorage.getItem('theme'),
     }),
     mutations: {
@@ -10,7 +10,7 @@ export const themeModule = {
             state.nightMode = !state.nightMode
             state.theme = state.theme === 'dark' ? 'light' : 'dark'
             localStorage.setItem('theme', state.theme)
-            localStorage.setItem('nightMode', JSON.stringify(state.nightMode))
+            localStorage.setItem('nightMode', state.nightMode)
         },
         // themeVal(state) {
         //     if (state.theme === 'dark') {

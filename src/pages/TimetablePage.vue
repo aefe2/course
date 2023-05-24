@@ -1,101 +1,101 @@
 <template>
-    <div class="table-wrapper">
-        <table class="table">
-            <thead>
-            <tr class="head-row">
-                <th>Фамилия</th>
-                <th>Имя</th>
-                <th>Отчество</th>
-                <th>Кабинет</th>
-                <th>Время</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="doctor in timetable" :key="timetable.id">
-                <td>{{ doctor.lastName }}</td>
-                <td>{{ doctor.firstName }}</td>
-                <td>{{ doctor.patronymic }}</td>
-                <td>{{ doctor.cabinet }}</td>
-                <td>{{ doctor.time }}</td>
-                <td @click="removeElement">X</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="table-wrapper">
+    <table class="table">
+      <thead>
+      <tr class="head-row">
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Кабинет</th>
+        <th>Время</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="doctor in timetable" :key="timetable.id">
+        <td>{{ doctor.lastName }}</td>
+        <td>{{ doctor.firstName }}</td>
+        <td>{{ doctor.patronymic }}</td>
+        <td>{{ doctor.cabinet }}</td>
+        <td>{{ doctor.time }}</td>
+        <td @click="removeElement">X</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "TimetablePage",
-    data() {
-        return {
-            timetable: [
-                {id: 1, lastName: 'Aaa', firstName: 'jfjd', patronymic: 'hjja', cabinet: 2, time: '20:30'},
-                {id: 2, lastName: 'cvb', firstName: 'dfg', patronymic: 'hjja', cabinet: 2, time: '10:30'},
-                {id: 3, lastName: 'zxc', firstName: 'gdf', patronymic: 'hjja', cabinet: 2, time: '12:30'},
-                {id: 4, lastName: 'fdsfs', firstName: 'asdf', patronymic: 'hjja', cabinet: 2, time: '13:30'},
-                {id: 5, lastName: 'gfdg', firstName: 'asdaa', patronymic: 'hjja', cabinet: 2, time: '14:30'},
-            ],
-        }
-    },
-    methods: {
-        removeElement(index) {
-            this.timetable.splice(index, 1)
-        }
+  name: "TimetablePage",
+  data() {
+    return {
+      timetable: [
+        {id: 1, lastName: 'Aaa', firstName: 'jfjd', patronymic: 'hjja', cabinet: 2, time: '20:30'},
+        {id: 2, lastName: 'cvb', firstName: 'dfg', patronymic: 'hjja', cabinet: 2, time: '10:30'},
+        {id: 3, lastName: 'zxc', firstName: 'gdf', patronymic: 'hjja', cabinet: 2, time: '12:30'},
+        {id: 4, lastName: 'fdsfs', firstName: 'asdf', patronymic: 'hjja', cabinet: 2, time: '13:30'},
+        {id: 5, lastName: 'gfdg', firstName: 'asdaa', patronymic: 'hjja', cabinet: 2, time: '14:30'},
+      ],
     }
+  },
+  methods: {
+    removeElement(index) {
+      this.timetable.splice(index, 1)
+    }
+  }
 }
 </script>
 
 <style scoped>
 .table {
-    width: 100%;
-    border: none;
-    margin-bottom: 20px;
+  width: 100%;
+  border: none;
+  margin-bottom: 20px;
 }
 
 .table-wrapper {
-    display: grid;
-    grid-template-columns: .5fr;
-    justify-content: center;
-    margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: .5fr;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .table thead th {
-    font-weight: bold;
-    text-align: center;
-    border: none;
-    padding: 10px 15px;
-    background-color: rgba(0, 162, 109, 1);
-    font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  padding: 10px 15px;
+  background-color: rgba(0, 162, 109, 1);
+  font-size: 14px;
 }
 
 .table thead tr th:first-child {
-    border-radius: 8px 0 0 8px;
+  border-radius: 8px 0 0 8px;
 }
 
 .table thead tr th:last-child {
-    border-radius: 0 8px 8px 0;
+  border-radius: 0 8px 8px 0;
 }
 
 .table tbody td {
-    text-align: center;
-    border: none;
-    padding: 10px 15px;
-    font-size: 14px;
-    vertical-align: top;
+  text-align: center;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  vertical-align: top;
 }
 
 .table tbody tr {
-    background-color: #86cbb6;
+  background-color: #86cbb6;
 }
 
 .table tbody tr:hover {
-    cursor: pointer;
-    background-color: #79b7a3;
+  cursor: pointer;
+  background-color: #79b7a3;
 }
 
 .table tbody tr:hover td {
-    transition-duration: .2s;
+  transition-duration: .2s;
 }
 
 /*.table tbody tr:nth-child(odd) {*/
@@ -103,38 +103,39 @@ export default {
 /*}*/
 
 .table tbody tr td:first-child {
-    border-radius: 8px 0 0 8px;
+  border-radius: 8px 0 0 8px;
 }
 
 .table tbody tr td:last-child {
-    border-radius: 0 8px 8px 0;
+  border-radius: 0 8px 8px 0;
 }
 
 .table tbody tr td:last-child {
-    width: 5px;
-    background-color: #2D2D2D;
-    border-radius: 0 0 0 0;
-    color: #b65e5e;
+  width: 5px;
+  background-color: #2D2D2D;
+  border-radius: 0 0 0 0;
+  color: #b65e5e;
+  user-select: none;
 }
 
-.table tbody tr td:nth-child(3) {
-    border-radius: 0 8px 8px 0;
+.table tbody tr td:nth-child(5) {
+  border-radius: 0 8px 8px 0;
 }
 
 .btn-link-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .create-patient {
-    color: #FFFFFF;
-    text-decoration: none;
-    background-color: #00A26D;
-    font-size: 18px;
-    padding: 8px;
-    border-radius: 5px;
-    cursor: pointer;
+  color: #FFFFFF;
+  text-decoration: none;
+  background-color: #00A26D;
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /*.link:hover {*/
@@ -149,45 +150,45 @@ export default {
 /*    -webkit-text-fill-color: transparent;*/
 /*}*/
 .create-patient:hover {
-    background-color: rgba(0, 162, 109, 0.49);
-    transition-duration: .3s;
+  background-color: rgba(0, 162, 109, 0.49);
+  transition-duration: .3s;
 }
 
 .create-patient {
-    width: 200px;
-    color: #FFFFFF;
-    font-size: 16px;
-    padding: 8px;
-    border-radius: 5px;
-    margin: 10px 0 10px 0;
-    cursor: pointer;
-    background-color: #00A26D;
-    border: none;
+  width: 200px;
+  color: #FFFFFF;
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 5px;
+  margin: 10px 0 10px 0;
+  cursor: pointer;
+  background-color: #00A26D;
+  border: none;
 }
 
 .create-patient span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
 }
 
 .create-patient span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
 }
 
 .create-patient:hover span {
-    padding-right: 15px;
+  padding-right: 15px;
 }
 
 .create-patient:hover span:after {
-    opacity: 1;
-    right: 0;
+  opacity: 1;
+  right: 0;
 }
 
 </style>
