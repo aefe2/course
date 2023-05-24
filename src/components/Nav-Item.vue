@@ -3,7 +3,10 @@
   <transition-group name="nav">
     <div key="2" v-show="isNavOpen" :class="theme" id="sidenav" class="sidebar sidenav">
       <a key="4" class="closebtn" @click="navModule">&times;</a>
-      <ul key="5" class="other-links">
+      <ul key="5" :class="theme" class="other-links">
+        <li key="11" class="link-item">
+          <router-link to="/">Расписание</router-link>
+        </li>
         <li key="7" class="link-item">
           <router-link to="/control">Контроль</router-link>
         </li>
@@ -13,11 +16,8 @@
         <li key="9" class="link-item">
           <router-link to="/patients">Пациенты</router-link>
         </li>
-        <li key="11" class="link-item">
-          <router-link to="/">Расписание</router-link>
-        </li>
       </ul>
-      <p key="12">Добавления</p>
+      <p :class="theme" key="12">Добавления</p>
       <ul key="13" class="add-links">
         <li key="10" class="link-item">
           <router-link to="/record-patient">Записать пациента</router-link>
@@ -67,6 +67,7 @@ export default {
 }
 
 .nav-leave-active {
+  /*1, 0, 0.8, 1*/
   transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
@@ -74,6 +75,18 @@ export default {
 .nav-leave-to {
   transform: translateX(-20px);
   opacity: 0;
+}
+
+.light a:hover {
+  color: #000;
+}
+
+.light p {
+  color: #2D2D2D;
+}
+
+.dark p {
+  color: #b4b0b0;
 }
 
 .light {
@@ -114,6 +127,7 @@ a:hover {
   color: #f1f1f1;
 }
 
+
 .sidenav .closebtn {
   position: absolute;
   cursor: pointer;
@@ -126,7 +140,6 @@ a:hover {
 .sidebar p {
   padding: 8px 8px 8px 32px;
   font-weight: bold;
-  color: #b4b0b0;
 }
 
 .sidebar p:before {

@@ -12,16 +12,6 @@ export const themeModule = {
             localStorage.setItem('theme', state.theme)
             localStorage.setItem('nightMode', state.nightMode)
         },
-        // themeVal(state) {
-        //     if (state.theme === 'dark') {
-        //         return '#2D2D2D';
-        //     } else return 'whitesmoke'
-        // }
     },
-    // actions: {
-    //     themeValue(state) {
-    //         return state.theme ? 'light' : 'dark'
-    //     }
-    // },
     namespaced: true
 }
