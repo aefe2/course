@@ -1,5 +1,5 @@
 <template>
-  <button @click="navModule" class="menu-toggle">&#9776;</button>
+  <button @click="navModule" :class="theme" class="menu-toggle">&#9776;</button>
   <transition-group name="nav">
     <div key="2" v-show="isNavOpen" :class="theme" id="sidenav" class="sidebar sidenav">
       <a key="4" class="closebtn" @click="navModule">&times;</a>
@@ -81,6 +81,7 @@ export default {
 }
 
 .dark {
+  color: #00A26D;
   background-color: #2D2D2D;
 }
 
@@ -138,8 +139,6 @@ a:hover {
   position: absolute;
   cursor: pointer;
   font-size: 25px;
-  background-color: #2D2D2D;
-  color: white;
   padding: 10px 15px;
   border: none;
 }

@@ -2,14 +2,15 @@ import {reactive} from "vue";
 
 export const themeModule = {
     state: () => ({
-        isSwitch: true,
+        nightMode: localStorage.getItem('nightMode') || false,
         theme: localStorage.getItem('theme'),
     }),
     mutations: {
         toggleSwitch(state) {
-            state.isSwitch = !state.isSwitch
-            state.theme = state.theme === 'light' ? 'dark' : 'light'
+            state.nightMode = !state.nightMode
+            state.theme = state.theme === 'dark' ? 'light' : 'dark'
             localStorage.setItem('theme', state.theme)
+            localStorage.setItem('nightMode', JSON.stringify(state.nightMode))
         },
         // themeVal(state) {
         //     if (state.theme === 'dark') {
