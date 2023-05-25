@@ -25,24 +25,34 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "TimetablePage",
   data() {
     return {
-      timetable: [
-        {id: 1, lastName: 'Aaa', firstName: 'jfjd', patronymic: 'hjja', cabinet: 2, time: '20:30'},
-        {id: 2, lastName: 'cvb', firstName: 'dfg', patronymic: 'hjja', cabinet: 2, time: '10:30'},
-        {id: 3, lastName: 'zxc', firstName: 'gdf', patronymic: 'hjja', cabinet: 2, time: '12:30'},
-        {id: 4, lastName: 'fdsfs', firstName: 'asdf', patronymic: 'hjja', cabinet: 2, time: '13:30'},
-        {id: 5, lastName: 'gfdg', firstName: 'asdaa', patronymic: 'hjja', cabinet: 2, time: '14:30'},
-      ],
+      timetable: null
     }
   },
   methods: {
     removeElement(index) {
       this.timetable.splice(index, 1)
-    }
-  }
+    },
+    // async fetchTimetable() {
+    //   try {
+    //     const response = await axios.get('https://192.168.13.72/CodingOnSideOfServer/api/')
+    //     this.timetable = response.data
+    //     console.log(response.data)
+    //   } catch (e) {
+    //     alert('error')
+    //   }
+    // }
+  },
+  mounted() {
+    // this.fetchTimetable()
+    axios.get('http://localhost:8080/CodingOnSideOfServer/api/')
+        .then(response => (this.timetable = response))
+  },
 }
 </script>
 

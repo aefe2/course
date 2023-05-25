@@ -15,7 +15,7 @@ import {defineComponent} from "vue";
 import FooterItem from "@/components/Footer-Item.vue";
 import HeaderItem from "@/components/Header-Item.vue";
 import NavItem from "@/components/Nav-Item.vue";
-import {mapActions, mapMutations, mapState} from "vuex";
+import {mapState} from "vuex";
 
 export default defineComponent({
   components: {NavItem, HeaderItem, FooterItem},

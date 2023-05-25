@@ -4,14 +4,14 @@
       <h3 class="title">{{ $route.name }}</h3>
       <div class="switch-container">
         <transition-group name="icon">
-          <svg v-show="nightMode" :key="1" width="27" height="27" viewBox="0 0 36 37" fill="none"
+          <svg v-if="nightMode" :key="1" width="27" height="27" viewBox="0 0 36 37" fill="none"
                xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="18" cy="18.5" rx="18" ry="18.5" fill="#F9F9F9"/>
             <path fill-rule="evenodd" clip-rule="evenodd"
                   d="M32.625 21.4377C30.6048 23.5717 27.7802 24.8973 24.6544 24.8973C18.5132 24.8973 13.5348 19.7805 13.5348 13.4687C13.5348 9.17245 15.8414 5.42987 19.2512 3.47775C19.0839 3.47177 18.9158 3.46875 18.7471 3.46875C10.8786 3.46875 4.5 10.0246 4.5 18.1116C4.5 26.1986 10.8786 32.7544 18.7471 32.7544C25.5023 32.7544 31.1595 27.9223 32.625 21.4377Z"
                   fill="#2D2D2D"/>
           </svg>
-          <svg v-show="!nightMode" :key="2" width="27" height="27" viewBox="0 0 36 37" fill="none"
+          <svg v-if="!nightMode" :key="2" width="27" height="27" viewBox="0 0 36 37" fill="none"
                xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="18" cy="18.5" rx="18" ry="18.5" fill="#2D2D2D"/>
             <path
@@ -27,7 +27,7 @@
 
 <script>
 
-import {mapActions, mapMutations, mapState} from "vuex";
+import {mapMutations, mapState} from "vuex";
 
 export default {
   name: "Header-Item",
