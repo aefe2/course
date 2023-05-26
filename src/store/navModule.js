@@ -1,5 +1,3 @@
-import {reactive} from "vue";
-
 export const navModule = {
     state: () => ({
         isNavOpen: false

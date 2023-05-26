@@ -1,5 +1,3 @@
-import {reactive} from "vue";
-
 export const themeModule = {
     state: () => ({
         nightMode: JSON.parse(localStorage.getItem('nightMode')) || false,

@@ -7,6 +7,7 @@
         <th>Имя</th>
         <th>Отчество</th>
         <th>Кабинет</th>
+        <th>Дата</th>
         <th>Время</th>
       </tr>
       </thead>
@@ -15,7 +16,8 @@
         <td>{{ doctor.lastName }}</td>
         <td>{{ doctor.firstName }}</td>
         <td>{{ doctor.patronymic }}</td>
-        <td>{{ doctor.cabinet }}</td>
+        <td>{{ doctor.room_id }}</td>
+        <td>{{ doctor.date }}</td>
         <td>{{ doctor.time }}</td>
         <td @click="removeElement">X</td>
       </tr>
@@ -31,27 +33,25 @@ export default {
   name: "TimetablePage",
   data() {
     return {
-      timetable: null
+      timetable: []
     }
   },
   methods: {
     removeElement(index) {
       this.timetable.splice(index, 1)
     },
-    // async fetchTimetable() {
-    //   try {
-    //     const response = await axios.get('https://192.168.13.72/CodingOnSideOfServer/api/')
-    //     this.timetable = response.data
-    //     console.log(response.data)
-    //   } catch (e) {
-    //     alert('error')
-    //   }
-    // }
+    async fetchTimetable() {
+      try {
+        const response = await axios.get('/api/')
+        this.timetable = response.data
+        console.log(response.data)
+      } catch (e) {
+        alert('error')
+      }
+    }
   },
   mounted() {
-    // this.fetchTimetable()
-    axios.get('http://localhost:8080/CodingOnSideOfServer/api/')
-        .then(response => (this.timetable = response))
+    this.fetchTimetable()
   },
 }
 </script>
@@ -128,7 +128,7 @@ export default {
   user-select: none;
 }
 
-.table tbody tr td:nth-child(5) {
+.table tbody tr td:nth-child(6) {
   border-radius: 0 8px 8px 0;
 }
 

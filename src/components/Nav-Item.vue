@@ -34,6 +34,9 @@
         <li key="17" class="link-item">
           <router-link to="/appointment">Добававить прием</router-link>
         </li>
+        <li key="18" class="link-item">
+          <router-link to="/login">Вход</router-link>
+        </li>
       </ul>
       <img @click="$router.push('/')" style="cursor:pointer;" key="18" class="nav-bg" src="@/assets/img/diavolo.svg"
            alt="diavolo">
