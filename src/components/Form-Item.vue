@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent method="post" class="add-doctor-form">
+  <form @submit.prevent method="post">
     <slot></slot>
   </form>
 </template>

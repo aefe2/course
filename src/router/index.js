@@ -1,5 +1,4 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import AddDoctor from "@/pages/AddDoctor.vue";
 import TimetablePage from "@/pages/TimetablePage.vue";
 import Appointment from "@/pages/Appointment.vue";
 import Control from "@/pages/Control.vue";
@@ -9,6 +8,7 @@ import Login from "@/pages/Login.vue";
 import PatientHistory from "@/pages/PatientHistory.vue";
 import Patients from "@/pages/Patients.vue";
 import RecordPatient from "@/pages/RecordPatient.vue";
+import PatientAdd from "@/pages/PatientAdd.vue"
 
 const routes = [
     {
@@ -17,12 +17,12 @@ const routes = [
         name: 'Расписание',
         // meta: {requiresAuth: true}
     },
-    {
-        path: '/add-doctor',
-        component: AddDoctor,
-        name: 'Добавить врача',
-        meta: {requiresAuth: true}
-    },
+    // {
+    //     path: '/add-doctor',
+    //     component: AddDoctor,
+    //     name: 'Добавить врача',
+    //     meta: {requiresAuth: true}
+    // },
     {
         path: '/appointment',
         component: Appointment,
@@ -57,6 +57,11 @@ const routes = [
         path: '/patients',
         component: Patients,
         name: 'Пациенты',
+    },
+    {
+        path: '/patient-add',
+        component: PatientAdd,
+        name: 'Добавить пациента',
     },
     {
         path: '/record-patient',

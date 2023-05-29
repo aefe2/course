@@ -1,9 +1,9 @@
 <template>
   <form-item @submit.prevent="signIn" class="login-form">
     <my-label>Логин</my-label>
-    <my-input-text v-model="email" required></my-input-text>
+    <my-input-text v-model="login" name="login" required></my-input-text>
     <my-label>Пароль</my-label>
-    <my-input-pass v-model="password" required></my-input-pass>
+    <my-input-pass v-model="password" name="password" required></my-input-pass>
     <my-button type="submit">Войти</my-button>
   </form-item>
 </template>
@@ -21,19 +21,20 @@ export default {
   components: {MyButton, MyInputPass, MyInputText, MyLabel, FormItem},
   data() {
     return {
-      email: '',
+      login: '',
       password: ''
     }
   },
   methods: {
     signIn() {
       const userData = {
-        email: this.email,
+        login: this.login,
         password: this.password
-      }
+      };
+
       axios({
         method: 'post',
-        url: 'https://reqres.in/api/login',
+        url: '/api/login',
         headers: {
           "Content-type": "application/json; charset=UTF-8"
         },
@@ -41,11 +42,13 @@ export default {
       })
           .then((response) => {
             localStorage.setItem('token', response.data.token);
-            this.$router.push('/')
+            // this.$router.push('/')
           })
           .catch((err) => {
             console.log(err);
           })
+      this.login = '';
+      this.password = '';
     }
   }
 }

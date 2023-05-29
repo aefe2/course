@@ -11,122 +11,16 @@
         <th>Имя</th>
         <th>Отчество</th>
         <th>Дата рождения</th>
+        <th>Снилс</th>
       </tr>
       </thead>
       <tbody>
-      <tr data-tooltip="Всплывающая подсказка">
-        <td>143</td>
-        <td>А.Б.В.ы.</td>
-        <td>Укол в jop9</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>8:00</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>8:00</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>143</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>8:00</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>А.Б.В.ы.</td>
-        <td>8:00</td>
-        <td>8:00</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>А.Б.В.ы.</td>
-        <td>А.Б.В.ы.</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>143</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>143</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>143</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>143</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>143</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>143</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>143</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>143</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>143</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>143</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>143</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>143</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
+      <tr v-for="patient in patients" :key="patient.id">
+        <td>{{ patient.first_name }}</td>
+        <td>{{ patient.last_name }}</td>
+        <td>{{ patient.patronymic }}</td>
+        <td>{{ patient.birthday }}</td>
+        <td>{{ patient.snils_code }}</td>
       </tr>
       </tbody>
     </table>
@@ -136,10 +30,31 @@
 <script>
 import ButtonToTop from "@/components/UI/ButtonToTop.vue";
 import MyButton from "@/components/UI/MyButton.vue";
+import axios from "axios";
 
 export default {
   name: "Patients",
-  components: {MyButton, ButtonToTop}
+  components: {MyButton, ButtonToTop},
+  data() {
+    return {
+      patients: []
+    }
+  },
+  methods: {
+    async fetchPatientsTable() {
+      try {
+        const response = await axios.get('/api/patients')
+        this.patients = response.data
+        console.log(response.data);
+      } catch (e) {
+        console.log(e);
+        alert('Error')
+      }
+    }
+  },
+  mounted() {
+    this.fetchPatientsTable()
+  }
 }
 </script>
 

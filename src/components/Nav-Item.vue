@@ -28,13 +28,16 @@
         <li key="15" class="link-item">
           <router-link to="/heal-add">Добавить лечение</router-link>
         </li>
-        <li key="16" class="link-item">
-          <router-link to="/add-doctor">Добавить врача</router-link>
-        </li>
+<!--        <li key="16" class="link-item">-->
+<!--          <router-link to="/add-doctor">Добавить врача</router-link>-->
+<!--        </li>-->
         <li key="17" class="link-item">
           <router-link to="/appointment">Добававить прием</router-link>
         </li>
         <li key="18" class="link-item">
+          <router-link to="/patient-add">Добававить пациента</router-link>
+        </li>
+        <li key="19" class="link-item">
           <router-link to="/login">Вход</router-link>
         </li>
       </ul>
