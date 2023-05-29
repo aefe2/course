@@ -42,7 +42,7 @@ export default {
     },
     async fetchTimetable() {
       try {
-        const response = await axios.get('/api/')
+        const response = await axios.get('api/')
         this.timetable = response.data
         console.log(response.data)
       } catch (e) {
