@@ -15,11 +15,13 @@ const routes = [
         path: '/',
         component: TimetablePage,
         name: 'Расписание',
+        // meta: {requiresAuth: true}
     },
     {
         path: '/add-doctor',
         component: AddDoctor,
         name: 'Добавить врача',
+        meta: {requiresAuth: true}
     },
     {
         path: '/appointment',
@@ -61,15 +63,20 @@ const routes = [
         component: RecordPatient,
         name: 'Записать пациента',
     },
-    // {
-    //     path: '*',
-    //     redirect: NotFoundPage
-    // }
 ]
 
 const router = createRouter({
     history: createWebHistory(),
     routes
+})
+
+router.beforeEach((to, from, next) => {
+    const token = localStorage.getItem('token')
+    if (to.meta.requiresAuth && !token) {
+        next('/login')
+    } else {
+        next()
+    }
 })
 
 // router.beforeEach((to, from, next) => {

@@ -1,10 +1,20 @@
 <template>
-  <input type="password" class="input-pass">
+  <input :value="modelValue" @input="updateInput" type="password" class="input-pass">
 </template>
 
 <script>
 export default {
-  name: "MyInputPass"
+  name: "MyInputPass",
+  props: {
+    modelValue: {
+      modelValue: [String, Number]
+    }
+  },
+  methods: {
+    updateInput(event) {
+      this.$emit('update:modelValue', event.target.value)
+    }
+  }
 }
 </script>
 

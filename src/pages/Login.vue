@@ -1,9 +1,9 @@
 <template>
-  <form-item @submit.prevent="login" class="login-form">
-    <my-label for="login">Логин</my-label>
-    <my-input-text v-model="username" id="login"></my-input-text>
-    <my-label for="password">Пароль</my-label>
-    <my-input-pass v-model="password" id="password"></my-input-pass>
+  <form-item @submit.prevent="signIn" class="login-form">
+    <my-label>Логин</my-label>
+    <my-input-text v-model="email" required></my-input-text>
+    <my-label>Пароль</my-label>
+    <my-input-pass v-model="password" required></my-input-pass>
     <my-button type="submit">Войти</my-button>
   </form-item>
 </template>
@@ -14,41 +14,38 @@ import MyLabel from "@/components/UI/MyLabel.vue";
 import MyInputText from "@/components/UI/MyInputText.vue";
 import MyInputPass from "@/components/UI/MyInputPass.vue";
 import MyButton from "@/components/UI/MyButton.vue";
+import axios from "axios";
 
 export default {
   name: "Login",
   components: {MyButton, MyInputPass, MyInputText, MyLabel, FormItem},
   data() {
     return {
-      username: '',
+      email: '',
       password: ''
     }
   },
   methods: {
-    // login() {
-    //   const userData = {
-    //     username: this.username,
-    //     password: this.password
-    //   }
-    //   this.$store.dispatch(AUTH_REQUEST, userData)
-    //       .then(this.$router.push('/'))
-    //       .catch(err => console.log(err))
-    // }
-    async login() {
-      const response = await fetch('api/login', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: {login: this.username, password: this.password}
-      })
-      const data = await response.json()
-      if (data.success) {
-        // Store user session data
-        localStorage.setItem('user', JSON.stringify(data.user))
-        // Redirect to home page
-        this.$router.push('/')
-      } else {
-        alert('Invalid username or password')
+    signIn() {
+      const userData = {
+        email: this.email,
+        password: this.password
       }
+      axios({
+        method: 'post',
+        url: 'https://reqres.in/api/login',
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        },
+        data: userData
+      })
+          .then((response) => {
+            localStorage.setItem('token', response.data.token);
+            this.$router.push('/')
+          })
+          .catch((err) => {
+            console.log(err);
+          })
     }
   }
 }

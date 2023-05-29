@@ -11,9 +11,9 @@ module.exports = defineConfig({
     //     }
     // }
 })
-module.exports = {
-    lintOnSave: false,
-    devServer: {
-        proxy: 'http://localhost/CodingOnSideOfServer/',
-    }
-}
+// module.exports = {
+//     lintOnSave: false,
+//     devServer: {
+//         proxy: 'http://localhost/CodingOnSideOfServer',
+//     }
+// }
