@@ -48,17 +48,19 @@ export default {
 <style scoped>
 .icon-enter-active,
 .icon-leave-active {
-  transition: all 0.45s ease-out;
+  transition: all .7s ease-out;
 }
 
 .icon-enter-from {
   opacity: 0;
-  transform: translateY(30px);
+  //transform: translateY(30px);
+  transform: scale(1);
 }
 
 .icon-leave-to {
   opacity: 0;
-  transform: translateY(-30px);
+  //transform: translateY(-30px);
+  transform: scale(0);
 }
 
 .title {
