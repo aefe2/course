@@ -12,14 +12,14 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="doctor in timetable" :key="timetable.id">
+      <tr v-for="doctor in timetable" :key="doctor.id">
         <td>{{ doctor.lastName }}</td>
         <td>{{ doctor.firstName }}</td>
         <td>{{ doctor.patronymic }}</td>
         <td>{{ doctor.room_id }}</td>
         <td>{{ doctor.date }}</td>
         <td>{{ doctor.time }}</td>
-        <td @click="removeElement">X</td>
+        <td :class="theme" @click="removeElement">X</td>
       </tr>
       </tbody>
     </table>
@@ -28,6 +28,7 @@
 
 <script>
 import axios from "axios";
+import {mapState} from "vuex";
 
 export default {
   name: "TimetablePage",
@@ -53,10 +54,19 @@ export default {
   mounted() {
     this.fetchTimetable()
   },
+  computed: {
+    ...mapState({
+      theme: state => state.themeModule.theme
+    })
+  }
 }
 </script>
 
 <style scoped>
+.dark {
+  background-color: #2D2D2D;
+}
+
 .table {
   width: 100%;
   border: none;
@@ -122,7 +132,6 @@ export default {
 
 .table tbody tr td:last-child {
   width: 5px;
-  background-color: #2D2D2D;
   border-radius: 0 0 0 0;
   color: #b65e5e;
   user-select: none;
