@@ -20,11 +20,8 @@ export default {
 
 <style scoped>
 #time {
-  color: #FFFFFF;
   font-size: 16px;
   padding: 8px;
-  background-color: #2D2D2D;
-  border: solid 1.5px #FFF;
   border-radius: 5px;
 }
 

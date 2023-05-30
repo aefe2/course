@@ -1,9 +1,9 @@
 <template>
   <form-item @submit.prevent="signIn" class="login-form">
     <my-label>Логин</my-label>
-    <my-input-text v-model="login" name="login"></my-input-text>
+    <my-input-text :class="theme" v-model="login" name="login"></my-input-text>
     <my-label>Пароль</my-label>
-    <my-input-pass v-model="password" name="password"></my-input-pass>
+    <my-input-pass :class="theme" v-model="password" name="password"></my-input-pass>
     <my-button type="submit">Войти</my-button>
   </form-item>
 </template>
@@ -15,6 +15,7 @@ import MyInputText from "@/components/UI/MyInputText.vue";
 import MyInputPass from "@/components/UI/MyInputPass.vue";
 import MyButton from "@/components/UI/MyButton.vue";
 import axios from "axios";
+import {mapState} from "vuex";
 
 export default {
   name: "Login",
@@ -52,11 +53,28 @@ export default {
       this.login = '';
       this.password = '';
     }
+  },
+  computed: {
+    ...mapState({
+      theme: state => state.themeModule.theme
+    })
   }
 }
 </script>
 
 <style scoped>
+.light {
+  border: 1px solid #2D2D2D;
+  background: #F9F9F9;
+  color: #2D2D2D;
+}
+
+.dark {
+  background-color: #2D2D2D;
+  border: solid 1.5px #FFF;
+  color: #e3e2e2;
+}
+
 .login-form {
   font-size: 18px;
   display: grid;

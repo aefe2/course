@@ -54,7 +54,7 @@ export default defineComponent({
 .dark {
   background-color: #2D2D2D;
   border: solid 1.5px #FFF;
-  color: #FFFFFF;
+  color: #e3e2e2;
 }
 
 .add-patient-form {
