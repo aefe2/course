@@ -28,11 +28,6 @@ export default {
   },
   methods: {
     signIn() {
-      const userData = {
-        login: this.login,
-        password: this.password
-      };
-
       axios({
         method: 'post',
         url: '/login',
@@ -40,7 +35,11 @@ export default {
           "Content-type": "application/json; charset=UTF-8"
         },
         withCredentials: true,
-        data: userData
+        body: {
+          login: this.login,
+          password: this.password
+        }
+
       })
           .then((response) => {
             console.log(response);

@@ -33,7 +33,6 @@ export default {
   name: "PatientHistory"
 }
 </script>
-
 <style scoped>
 .table {
   width: 100%;

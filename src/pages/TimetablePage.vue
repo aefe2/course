@@ -13,10 +13,10 @@
       </thead>
       <tbody>
       <tr v-for="doctor in timetable" :key="doctor.id">
-        <td>{{ doctor.lastName }}</td>
-        <td>{{ doctor.firstName }}</td>
+        <td>{{ doctor.last_name }}</td>
+        <td>{{ doctor.first_name }}</td>
         <td>{{ doctor.patronymic }}</td>
-        <td>{{ doctor.room_id }}</td>
+        <td>{{ doctor.number }}</td>
         <td>{{ doctor.date }}</td>
         <td>{{ doctor.time }}</td>
         <td :class="theme" @click="removeElement">X</td>
