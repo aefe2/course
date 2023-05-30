@@ -1,9 +1,9 @@
 <template>
   <form-item @submit.prevent="signIn" class="login-form">
     <my-label>Логин</my-label>
-    <my-input-text v-model="login" name="login" required></my-input-text>
+    <my-input-text v-model="login" name="login"></my-input-text>
     <my-label>Пароль</my-label>
-    <my-input-pass v-model="password" name="password" required></my-input-pass>
+    <my-input-pass v-model="password" name="password"></my-input-pass>
     <my-button type="submit">Войти</my-button>
   </form-item>
 </template>
@@ -34,14 +34,16 @@ export default {
 
       axios({
         method: 'post',
-        url: '/api/login',
+        url: '/login',
         headers: {
           "Content-type": "application/json; charset=UTF-8"
         },
+        withCredentials: true,
         data: userData
       })
           .then((response) => {
-            localStorage.setItem('token', response.data.token);
+            console.log(response);
+            // localStorage.setItem('token', response.data.token);
             // this.$router.push('/')
           })
           .catch((err) => {

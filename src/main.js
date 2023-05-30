@@ -6,7 +6,7 @@ import axios from "axios";
 
 const app = createApp(App)
 app.provide('$axios', axios)
-const token = localStorage.getItem('token')
+// const token = localStorage.getItem('token')
 // if (token) {
 //
 // }

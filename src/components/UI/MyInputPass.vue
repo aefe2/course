@@ -7,7 +7,7 @@ export default {
   name: "MyInputPass",
   props: {
     modelValue: {
-      modelValue: [String]
+      modelValue: [String, Number]
     }
   },
   methods: {

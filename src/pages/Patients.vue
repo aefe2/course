@@ -43,7 +43,7 @@ export default {
   methods: {
     async fetchPatientsTable() {
       try {
-        const response = await axios.get('/api/patients')
+        const response = await axios.get('http://192.168.13.72/CodingOnSideOfServer/api/patients')
         this.patients = response.data
         console.log(response.data);
       } catch (e) {
