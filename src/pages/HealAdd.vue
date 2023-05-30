@@ -2,7 +2,7 @@
   <div class="form-container">
     <form-item class="heal-form">
       <my-label for="heal-name">Лечение</my-label>
-      <my-input-text type="text" name="heal-name" id="heal-name"></my-input-text>
+      <my-input-text :class="theme" type="text" name="heal-name" id="heal-name"></my-input-text>
       <my-button type="submit">Добавить</my-button>
     </form-item>
   </div>
@@ -13,14 +13,32 @@ import FormItem from "@/components/Form-Item.vue";
 import MyLabel from "@/components/UI/MyLabel.vue";
 import MyInputText from "@/components/UI/MyInputText.vue";
 import MyButton from "@/components/UI/MyButton.vue";
+import {mapState} from "vuex";
 
 export default {
   name: "HealAdd",
-  components: {MyButton, MyInputText, MyLabel, FormItem}
+  components: {MyButton, MyInputText, MyLabel, FormItem},
+  computed: {
+    ...mapState({
+      theme: state => state.themeModule.theme
+    })
+  }
 }
 </script>
 
 <style scoped>
+.light {
+  border: 1px solid #2D2D2D;
+  background: #F9F9F9;
+  color: #2D2D2D;
+}
+
+.dark {
+  background-color: #2D2D2D;
+  border: solid 1.5px #FFF;
+  color: #e3e2e2;
+}
+
 .heal-form {
   font-size: 18px;
   display: grid;
@@ -34,11 +52,8 @@ export default {
 }
 
 .heal-form > input {
-  color: #FFFFFF;
   font-size: 16px;
   padding: 7px;
-  background-color: #2D2D2D;
-  border: solid 1.5px #FFF;
   border-radius: 5px;
 }
 
