@@ -6,7 +6,7 @@
       <option value="2">sadasd</option>
       <option value="3">ghjk</option>
     </my-select>
-    <my-button class="create-patient-btn"><span>Создать пациента</span></my-button>
+    <my-button @click="$router.push('/patient-add')" class="create-patient-btn"><span>Создать пациента</span></my-button>
     <my-label for="chooce-cab">Выбрать кабинет</my-label>
     <my-select :class="theme" name="cab" id="chooce-cab">
       <option value="1">asd</option>

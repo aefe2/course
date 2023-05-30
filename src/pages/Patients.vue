@@ -1,7 +1,7 @@
 <template>
   <button-to-top></button-to-top>
   <div class="btn-link-container">
-    <my-button class="create-patient"><span>Создать пациента</span></my-button>
+    <my-button @click="$router.push('/patient-add')" class="create-patient"><span>Создать пациента</span></my-button>
   </div>
   <div class="table-wrapper">
     <table class="table">
