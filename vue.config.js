@@ -6,6 +6,9 @@ module.exports = defineConfig({
 module.exports = {
     lintOnSave: false,
     devServer: {
-        proxy: 'http://localhost:8080/CodingOnSideOfServer/api',
+        // В цоппе
+        // proxy: 'http://localhost:8080/CodingOnSideOfServer/api',
+        // Дома
+        proxy: 'http://localhost/CodingOnSideOfServer/api',
     }
 };

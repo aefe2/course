@@ -32,14 +32,12 @@ export default {
         method: 'post',
         url: '/login',
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
+          "Content-Type": "multipart/form-data"
         },
-        withCredentials: true,
         body: {
           login: this.login,
           password: this.password
         }
-
       })
           .then((response) => {
             console.log(response);
