@@ -111,10 +111,6 @@ export default {
   transition-duration: .3s;
 }
 
-::-webkit-calendar-picker-indicator {
-  filter: invert(1);
-}
-
 /**/
 .create-patient-btn span {
   cursor: pointer;

@@ -30,4 +30,7 @@ export default {
   outline-offset: 0;
   background-color: rgba(0, 162, 109, 0.58);
 }
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
 </style>
