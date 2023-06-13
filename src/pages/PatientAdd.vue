@@ -22,6 +22,7 @@ import MyLabel from "@/components/UI/MyLabel.vue";
 import MyButton from "@/components/UI/MyButton.vue";
 import MyInputDate from "@/components/UI/MyInputDate.vue";
 import {mapState} from "vuex";
+import axios from "axios";
 
 export default defineComponent({
   components: {MyInputDate, MyButton, MyLabel, MyInputText, FormItem},
@@ -34,7 +35,30 @@ export default defineComponent({
       snils_code: ''
     }
   },
-  methods: {},
+  methods: {
+    patientAdd() {
+      axios({
+        method: 'post',
+        url: '/add_patient',
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+        data: {
+          first_name: this.first_name,
+          last_name: this.last_name,
+          patronymic: this.patronymic,
+          birthday: this.birthday,
+          snils_code: this.snils_code,
+        }
+      })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+    }
+  },
   computed: {
     ...mapState({
       theme: state => state.themeModule.theme

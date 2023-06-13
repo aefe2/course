@@ -30,19 +30,19 @@ export default {
     signIn() {
       axios({
         method: 'post',
-        url: '/login',
+        url: 'http://localhost/CodingOnSideOfServer/api/login',
         headers: {
           "Content-Type": "multipart/form-data"
         },
-        body: {
+        data: {
           login: this.login,
           password: this.password
         }
       })
           .then((response) => {
             console.log(response);
-            // localStorage.setItem('token', response.data.token);
-            // this.$router.push('/')
+            localStorage.setItem('token', response.data.token);
+            this.$router.push('/')
           })
           .catch((err) => {
             console.log(err);

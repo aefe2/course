@@ -43,7 +43,7 @@ export default {
     },
     async fetchTimetable() {
       try {
-        const response = await axios.get('http://192.168.13.72/CodingOnSideOfServer/api/')
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/')
         this.timetable = response.data
         console.log(response.data)
       } catch (e) {

@@ -28,17 +28,17 @@
         <li key="15" class="link-item">
           <router-link to="/heal-add">Добавить лечение</router-link>
         </li>
-<!--        <li key="16" class="link-item">-->
-<!--          <router-link to="/add-doctor">Добавить врача</router-link>-->
-<!--        </li>-->
         <li key="17" class="link-item">
           <router-link to="/appointment">Добававить прием</router-link>
         </li>
         <li key="18" class="link-item">
           <router-link to="/patient-add">Добававить пациента</router-link>
         </li>
-        <li key="19" class="link-item">
+        <li v-if="!token" key="19" class="link-item">
           <router-link to="/login">Вход</router-link>
+        </li>
+        <li v-if="token" @click="logout" key="20" class="link-item">
+          <router-link to="/login">Выход</router-link>
         </li>
       </ul>
       <img @click="$router.push('/')" style="cursor:pointer;" key="18" class="nav-bg" src="@/assets/img/diavolo.svg"
@@ -50,16 +50,23 @@
 <script>
 
 import {mapMutations, mapState} from "vuex";
+import axios from "axios";
 
 export default {
   name: "Nav-Item",
   computed: {
     ...mapState({
+      token: state => state.tokenModule.token,
       isNavOpen: state => state.navModule.isNavOpen,
       theme: state => state.themeModule.theme
     })
   },
   methods: {
+    async logout() {
+      const response = await axios.get('http://localhost/CodingOnSideOfServer/api/logout')
+      console.log(response)
+      localStorage.removeItem('token')
+    },
     ...mapMutations({
       navModule: "toggleNav"
     })
