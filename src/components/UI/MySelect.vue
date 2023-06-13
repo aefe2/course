@@ -1,22 +1,27 @@
 <template>
-    <select>
-        <option v-for="option in options" :key="option.value" :value="option.value">{{ option.name }}</option>
-        <slot></slot>
-    </select>
+  <select :value="modelValue" @change="changeOption">
+    <option v-for="option in options" :key="option.value" :value="option.value">{{ option.value }}</option>
+    <slot></slot>
+  </select>
 </template>
 
 <script>
 export default {
-    name: "MySelect",
-    props: {
-        modelValue: {
-            type: String
-        },
-        options: {
-            type: Array,
-            default: () => []
-        }
+  name: "MySelect",
+  props: {
+    modelValue: {
+      type: String
+    },
+    options: {
+      type: Array,
+      default: () => []
     }
+  },
+  methods: {
+    changeOption(event) {
+      this.$emit('update:modelValue', event.target.value)
+    }
+  }
 }
 </script>
 

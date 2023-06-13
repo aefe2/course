@@ -9,6 +9,8 @@ import PatientHistory from "@/pages/PatientHistory.vue";
 import Patients from "@/pages/Patients.vue";
 import RecordPatient from "@/pages/RecordPatient.vue";
 import PatientAdd from "@/pages/PatientAdd.vue"
+import Logout from "@/pages/Logout.vue";
+import AddTimesheet from "@/pages/AddTimesheet.vue";
 
 const routes = [
     {
@@ -49,6 +51,11 @@ const routes = [
         name: 'Авторизация',
     },
     {
+        path: '/logout',
+        component: Logout,
+        name: 'Выход'
+    },
+    {
         path: '/patient-history',
         component: PatientHistory,
         name: 'История пациента',
@@ -68,6 +75,11 @@ const routes = [
         component: RecordPatient,
         name: 'Записать пациента',
     },
+    {
+        path: '/add_timesheet',
+        component: AddTimesheet,
+        name: 'Добавить запись в расписание'
+    }
 ]
 
 const router = createRouter({

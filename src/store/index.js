@@ -7,6 +7,6 @@ export default createStore({
     modules: {
         themeModule,
         navModule,
-        tokenModule
+        tokenModule,
     }
 })
