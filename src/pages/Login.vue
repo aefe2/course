@@ -1,5 +1,5 @@
 <template>
-  <form-item @submit.prevent="signIn" class="login-form">
+  <form-item @submit.stop="signIn" class="login-form">
     <my-label>Логин</my-label>
     <my-input-text :class="theme" v-model="login" name="login"></my-input-text>
     <my-label>Пароль</my-label>

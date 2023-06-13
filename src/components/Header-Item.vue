@@ -1,6 +1,10 @@
 <template>
   <div class="header-container">
     <div class="header">
+<!--      <div class="container">-->
+<!--        <span class="notif" v-show="!token">Вы не вошли в систему</span>-->
+<!--        <my-button class="a" @click="$router.push('/login')">Войти</my-button>-->
+<!--      </div>-->
       <h3 class="title">{{ $route.name }}</h3>
       <div class="switch-container">
         <transition-group name="icon" mode="in-out">
@@ -28,11 +32,14 @@
 <script>
 
 import {mapMutations, mapState} from "vuex";
+import MyButton from "@/components/UI/MyButton.vue";
 
 export default {
   name: "Header-Item",
+  components: {MyButton},
   computed: {
     ...mapState({
+      token: state => state.tokenModule.token,
       nightMode: state => state.themeModule.nightMode,
       theme: state => state.themeModule.theme
     })
@@ -53,14 +60,25 @@ export default {
 
 .icon-enter-from {
   opacity: 0;
-  //transform: translateY(30px);
   transform: scale(1);
 }
 
 .icon-leave-to {
   opacity: 0;
-  //transform: translateY(-30px);
   transform: scale(0);
+}
+
+.container {
+  display: flex;
+  position: absolute;
+  left: 40px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.notif {
+  margin-bottom: 10px;
+  color: #b65e5e;
 }
 
 .title {

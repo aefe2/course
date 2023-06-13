@@ -1,7 +1,7 @@
 <template>
-  <button @click="navModule" :class="theme" class="menu-toggle">&#9776;</button>
+  <button v-show="token" @click="navModule" :class="theme" class="menu-toggle">&#9776;</button>
   <transition-group name="nav">
-    <div key="2" v-show="isNavOpen" :class="theme" id="sidenav" class="sidebar sidenav">
+    <div  key="2" v-show="isNavOpen" :class="theme" id="sidenav" class="sidebar sidenav">
       <a key="4" class="closebtn" @click="navModule">&times;</a>
       <ul key="5" :class="theme" class="other-links">
         <li key="11" class="link-item">

@@ -1,5 +1,5 @@
 <template>
-  <form-item @submit.prevent="logout" class="login-form">
+  <form-item @submit="logout" class="login-form">
     <my-button type="submit">Выйти</my-button>
   </form-item>
 </template>
