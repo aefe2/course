@@ -11,6 +11,7 @@ import RecordPatient from "@/pages/RecordPatient.vue";
 import PatientAdd from "@/pages/PatientAdd.vue"
 import Logout from "@/pages/Logout.vue";
 import AddTimesheet from "@/pages/AddTimesheet.vue";
+import Register from "@/pages/Register.vue";
 
 const routes = [
     {
@@ -79,6 +80,11 @@ const routes = [
         path: '/add_timesheet',
         component: AddTimesheet,
         name: 'Добавить запись в расписание'
+    },
+    {
+        path: '/register',
+        component: Register,
+        name: 'Регистрация'
     }
 ]
 

@@ -1,7 +1,7 @@
 <template>
   <button v-show="token" @click="navModule" :class="theme" class="menu-toggle">&#9776;</button>
   <transition-group name="nav">
-    <div  key="2" v-show="isNavOpen" :class="theme" id="sidenav" class="sidebar sidenav">
+    <div key="2" v-show="isNavOpen" :class="theme" id="sidenav" class="sidebar sidenav">
       <a key="4" class="closebtn" @click="navModule">&times;</a>
       <ul key="5" :class="theme" class="other-links">
         <li key="11" class="link-item">
@@ -40,7 +40,10 @@
         <li v-show="!token" key="19" class="link-item">
           <router-link to="/login">Вход</router-link>
         </li>
-        <li v-show="token"  key="20" class="link-item">
+        <li v-show="token" key="23" class="link-item">
+          <router-link to="/register">Зарегестрировать пользователя</router-link>
+        </li>
+        <li v-show="token" key="20" class="link-item">
           <router-link to="/logout">Выйти</router-link>
         </li>
       </ul>

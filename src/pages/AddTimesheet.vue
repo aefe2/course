@@ -2,10 +2,12 @@
   <form-item class="add-patient-form" @submit.prevent="addTimesheet">
     <my-label>Кабинет</my-label>
     <select :class="theme" v-model="room_id">
+      <option value="" disabled selected>Выберите...</option>
       <option v-for="room in rooms" v-bind:value="room.id">{{ room.number }}</option>
     </select>
     <my-label>Доктор</my-label>
     <select :class="theme" v-model="user_id">
+      <option value="" disabled selected>Выберите...</option>
       <option v-for="doctor in doctors" v-bind:value="doctor.id">{{
           doctor.first_name[0] + '.' + doctor.last_name[0] + '.' + doctor.patronymic[0]
         }}
