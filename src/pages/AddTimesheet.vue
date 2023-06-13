@@ -7,8 +7,9 @@
     <my-label>Доктор</my-label>
     <select v-model="user_id">
       <option v-for="doctor in doctors" v-bind:value="doctor.id">{{
-          doctor.first_name[0] + '.' + doctor.last_name[0] + '.' +doctor.patronymic[0]
-        }}</option>
+          doctor.first_name[0] + '.' + doctor.last_name[0] + '.' + doctor.patronymic[0]
+        }}
+      </option>
     </select>
     <my-label>Дата</my-label>
     <my-input-date :class="theme" v-model="date"></my-input-date>
@@ -52,15 +53,37 @@ export default {
       } catch (e) {
         alert('error')
       }
+    },
+    addTimesheet() {
+      axios({
+        method: 'post',
+        url: 'http://localhost/CodingOnSideOfServer/api/add_timesheet',
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+        data: {
+          room_id: this.room_id,
+          user_id: this.user_id,
+          date: this.date,
+          time: this.time,
+        }
+      })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
     }
   },
   mounted() {
     this.getItems()
   },
   computed: {
-    ...mapState({
-      theme: state => state.themeModule.theme,
-    }),
+    ...
+        mapState({
+          theme: state => state.themeModule.theme,
+        }),
   }
 }
 </script>
