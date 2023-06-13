@@ -15,7 +15,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="patient in patients" :key="patient.id">
+      <tr @click="toHistory(patient)" v-for="patient in patients" :key="patient.id">
         <td>{{ patient.first_name }}</td>
         <td>{{ patient.last_name }}</td>
         <td>{{ patient.patronymic }}</td>
@@ -31,6 +31,7 @@
 import ButtonToTop from "@/components/UI/ButtonToTop.vue";
 import MyButton from "@/components/UI/MyButton.vue";
 import axios from "axios";
+import {mapActions} from "vuex";
 
 export default {
   name: "Patients",
@@ -41,9 +42,16 @@ export default {
     }
   },
   methods: {
+    toHistory(patient) {
+      this.$router.push('/patient-history')
+      this.updateMyArray(patient)
+    },
+    ...mapActions({
+      updateMyArray: "patientModule/updateMyArray"
+    }),
     async fetchPatientsTable() {
       try {
-        const response = await axios.get('http://192.168.13.72/CodingOnSideOfServer/api/patients')
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/patients')
         this.patients = response.data
         console.log(response.data);
       } catch (e) {

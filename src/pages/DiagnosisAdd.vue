@@ -1,8 +1,10 @@
 <template>
   <div class="form-container">
-    <form-item class="diagnos-form">
+    <form-item @submit.prevent="addDiagnosis" class="diagnos-form">
       <my-label for="diagnos-name">Название диагноза</my-label>
-      <my-input-text :class="theme" type="text" name="diagnos-name" id="diagnos-name"></my-input-text>
+      <my-input-text :class="theme" v-model="name"></my-input-text>
+      <my-label for="diagnos-name">Описание</my-label>
+      <my-input-text :class="theme" v-model="description"></my-input-text>
       <my-button type="submit">Добавить</my-button>
     </form-item>
   </div>
@@ -14,10 +16,40 @@ import MyInputText from "@/components/UI/MyInputText.vue";
 import MyButton from "@/components/UI/MyButton.vue";
 import FormItem from "@/components/Form-Item.vue";
 import {mapState} from "vuex";
+import axios from "axios";
 
 export default {
   name: "DiagnosisAdd",
   components: {FormItem, MyButton, MyInputText, MyLabel},
+  data() {
+    return {
+      name: '',
+      description: ''
+    }
+  },
+  methods: {
+    addDiagnosis() {
+      axios({
+        method: 'post',
+        url: 'http://localhost/CodingOnSideOfServer/api/add_diagnose',
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+        data: {
+          name: this.name,
+          description: this.description
+        }
+      })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      this.name = '';
+      this.description = ''
+    }
+  },
   computed: {
     ...mapState({
       theme: state => state.themeModule.theme

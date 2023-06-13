@@ -1,8 +1,8 @@
 <template>
   <div class="form-container">
-    <form-item class="heal-form">
+    <form-item @submit.prevent="addHeal" class="heal-form">
       <my-label for="heal-name">Лечение</my-label>
-      <my-input-text :class="theme" type="text" name="heal-name" id="heal-name"></my-input-text>
+      <my-input-text :class="theme" v-model="description"></my-input-text>
       <my-button type="submit">Добавить</my-button>
     </form-item>
   </div>
@@ -14,10 +14,37 @@ import MyLabel from "@/components/UI/MyLabel.vue";
 import MyInputText from "@/components/UI/MyInputText.vue";
 import MyButton from "@/components/UI/MyButton.vue";
 import {mapState} from "vuex";
+import axios from "axios";
 
 export default {
   name: "HealAdd",
   components: {MyButton, MyInputText, MyLabel, FormItem},
+  data() {
+    return {
+      description: ''
+    }
+  },
+  methods: {
+    addHeal() {
+      axios({
+        method: 'post',
+        url: 'http://localhost/CodingOnSideOfServer/api/add_cure',
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+        data: {
+          description: this.description
+        }
+      })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      this.description = ''
+    }
+  },
   computed: {
     ...mapState({
       theme: state => state.themeModule.theme

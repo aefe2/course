@@ -11,17 +11,14 @@
       </tr>
       </thead>
       <tbody>
-      <tr data-tooltip="Всплывающая подсказка">
-        <td>143</td>
-        <td>А.Б.В.ы.</td>
-        <td>Укол в jop9</td>
-        <td>Укол в jop9</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>143</td>
-        <td>8:00</td>
-        <td>Укол в jop9</td>
+      <tr v-for="param in patient" :key="param.id">
+        <td>{{ param.palaceNum }}</td>
+        <td>{{ param.lastName }}</td>
+        <td>{{ param.firstName }}</td>
+        <td>{{ param.patronymic }}</td>
+        <td>{{ param.time }}</td>
+        <td>{{ param.procedure }}</td>
+        <td><input type="checkbox" name="status"></td>
       </tr>
       </tbody>
     </table>
@@ -29,8 +26,28 @@
 </template>
 
 <script>
+import axios from "axios";
+import {mapState} from "vuex";
+
 export default {
-  name: "PatientHistory"
+  name: "PatientHistory",
+  computed: {
+    ...mapState({
+      patient: state => state.patientModule.patient
+    })
+  },
+  methods: {
+    // async fetchPatientsTable() {
+    //   try {
+    //     const response = await axios.get('http://localhost/CodingOnSideOfServer/api/patients')
+    //     this.patient = response.data
+    //     console.log(response.data);
+    //   } catch (e) {
+    //     console.log(e);
+    //     alert('Error')
+    //   }
+    // }
+  }
 }
 </script>
 <style scoped>

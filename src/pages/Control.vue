@@ -1,7 +1,5 @@
 <template>
   <div class="table-wrapper">
-    <!--        <my-select>-->
-    <!--        </my-select>-->
     <table class="table">
       <thead>
       <tr class="head-row">
@@ -46,7 +44,7 @@ export default {
   methods: {
     async fetchControlTable() {
       try {
-        const response = await axios.get('/control')
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/control')
         this.patients = response.data
         console.log(response)
       } catch (e) {

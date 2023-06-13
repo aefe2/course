@@ -19,7 +19,7 @@
         <td>{{ doctor.number }}</td>
         <td>{{ doctor.date }}</td>
         <td>{{ doctor.time }}</td>
-        <td :class="theme" @click="removeElement">X</td>
+        <td :class="theme" @click="deleteTimesheet()">X</td>
       </tr>
       </tbody>
     </table>
@@ -38,8 +38,15 @@ export default {
     }
   },
   methods: {
-    removeElement(index) {
-      this.timetable.splice(index, 1)
+    deleteTimesheet(index) {
+      try {
+        const response = axios.get('http://localhost/CodingOnSideOfServer/api/delete_timesheet')
+        console.log(index)
+        console.log(response)
+      } catch (e) {
+        alert('error')
+      }
+      // this.timetable.splice(index, 1)
     },
     async fetchTimetable() {
       try {

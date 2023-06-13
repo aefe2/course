@@ -9,7 +9,7 @@
     <my-label>Дата рождения</my-label>
     <my-input-date :class="theme" v-model="birthday"></my-input-date>
     <my-label>Снилс</my-label>
-    <my-input-text :class="theme" v-model.number="snils_code"></my-input-text>
+    <my-input-text :class="theme" :maxlength="limit" v-model.number="snils_code"></my-input-text>
     <my-button type="submit">Создать</my-button>
   </form-item>
 </template>
@@ -28,6 +28,7 @@ export default defineComponent({
   components: {MyInputDate, MyButton, MyLabel, MyInputText, FormItem},
   data() {
     return {
+      limit: 6,
       first_name: '',
       last_name: '',
       patronymic: '',
@@ -39,7 +40,7 @@ export default defineComponent({
     patientAdd() {
       axios({
         method: 'post',
-        url: '/add_patient',
+        url: 'http://localhost/CodingOnSideOfServer/api/add_patient',
         headers: {
           "Content-Type": "multipart/form-data"
         },
