@@ -36,6 +36,9 @@
           <a :class="theme" @click="$router.push('/add-specialization')" class="create-patient"><span>Добавить специальность</span></a>
         </div>
         <div class="btn-link-container">
+          <a :class="theme" @click="$router.push('/add-room')" class="create-patient"><span>Добавить палату</span></a>
+        </div>
+        <div class="btn-link-container">
           <a :class="theme" @click="$router.push('/add_timesheet')" class="create-patient">
             <span>Добавить запись в расписание</span>
           </a>
@@ -66,6 +69,9 @@
         </div>
         <div class="btn-link-container">
           <a :class="theme" @click="$router.push('/specializations')" class="create-patient"><span>Просмотр специальностей</span></a>
+        </div>
+        <div class="btn-link-container">
+          <a :class="theme" @click="$router.push('/rooms')" class="create-patient"><span>Просмотр палат</span></a>
         </div>
       </div>
     </div>

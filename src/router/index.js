@@ -25,6 +25,8 @@ import AddProfession from "@/pages/AddProfession.vue";
 import Professions from "@/pages/Professions.vue";
 import Specializations from "@/pages/Specializations.vue";
 import AddSpecialization from "@/pages/AddSpecialization.vue";
+import Rooms from "@/pages/Rooms.vue";
+import AddRoom from "@/pages/AddRoom.vue";
 
 const routes = [
     {
@@ -164,6 +166,16 @@ const routes = [
         path: '/add-specialization',
         component: AddSpecialization,
         name: 'Добавить специальность'
+    },
+    {
+        path: '/rooms',
+        component: Rooms,
+        name: 'Палаты'
+    },
+    {
+        path: '/add-room',
+        component: AddRoom,
+        name: 'Добавить палату'
     }
 ]
 
