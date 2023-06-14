@@ -31,6 +31,7 @@ import {mapState} from "vuex";
 import MySelect from "@/components/UI/MySelect.vue";
 import MyInputTime from "@/components/UI/MyInputTime.vue";
 import axios from "axios";
+import {useToast} from "vue-toastification";
 
 export default {
   name: "AddTimesheet",
@@ -44,6 +45,10 @@ export default {
       doctors: [],
       rooms: []
     }
+  },
+  setup() {
+    const toast = useToast()
+    return {toast}
   },
   methods: {
     async getItems() {
@@ -71,21 +76,52 @@ export default {
         }
       })
           .then((response) => {
+            this.toast.success('Успех!', {
+              position: "top-right",
+              timeout: 1500,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 0.62,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            })
             console.log(response);
           })
           .catch((err) => {
+            this.toast.error('Ошибка!', {
+              position: "top-right",
+              timeout: 1500,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 0.62,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            })
             console.log(err);
           })
+      this.room_id = '';
+      this.user_id = '';
+      this.date = '';
+      this.time = '';
     }
   },
   mounted() {
     this.getItems()
   },
   computed: {
-    ...
-        mapState({
-          theme: state => state.themeModule.theme,
-        }),
+    ...mapState({
+      theme: state => state.themeModule.theme,
+    }),
   }
 }
 </script>

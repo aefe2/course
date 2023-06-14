@@ -16,6 +16,7 @@ import Heals from "@/pages/Heals.vue";
 import Diagnoses from "@/pages/Diagnoses.vue";
 import Departments from "@/pages/Departments.vue";
 import AddDepartment from "@/pages/AddDepartment.vue";
+import AdminPanel from "@/pages/AdminPanel.vue";
 
 const routes = [
     {
@@ -33,7 +34,7 @@ const routes = [
     {
         path: '/appointment',
         component: Appointment,
-        name: 'Добавить прием',
+        name: 'Добавить запись в медкарту',
     },
     {
         path: '/control',
@@ -109,6 +110,11 @@ const routes = [
         path: '/departments',
         component: Departments,
         name: 'Отделы'
+    },
+    {
+        path: '/admin',
+        component: AdminPanel,
+        name: 'Админ панель'
     }
 ]
 

@@ -4,6 +4,9 @@
     <div key="2" v-show="isNavOpen" :class="theme" id="sidenav" class="sidebar sidenav">
       <a key="4" class="closebtn" @click="navModule">&times;</a>
       <ul key="5" :class="theme" class="other-links">
+        <li key="26" class="link-item">
+          <router-link to="/admin">Админ панель</router-link>
+        </li>
         <li key="11" class="link-item">
           <router-link to="/">Расписание</router-link>
         </li>
@@ -16,44 +19,20 @@
         <li key="9" class="link-item">
           <router-link to="/patients">Пациенты</router-link>
         </li>
-        <li key="22" class="link-item">
-          <router-link to="/heals">Просмотр лечений</router-link>
-        </li>
-        <li key="11" class="link-item">
-          <router-link to="/diagnoses">Просмотр диагнозов</router-link>
-        </li>
-        <li key="25" class="link-item">
-          <router-link to="/departments">Просмотр отделов</router-link>
-        </li>
       </ul>
       <p :class="theme" key="12">Добавления</p>
       <ul key="13" class="add-links">
         <li key="10" class="link-item">
           <router-link to="/record-patient">Записать пациента</router-link>
         </li>
-        <li key="14" class="link-item">
-          <router-link to="/diagnosis-add">Добавить диагноз</router-link>
-        </li>
-        <li key="15" class="link-item">
-          <router-link to="/heal-add">Добавить лечение</router-link>
-        </li>
         <li key="17" class="link-item">
-          <router-link to="/appointment">Добавить прием</router-link>
-        </li>
-        <li key="24" class="link-item">
-          <router-link to="/add-department">Добавить отдел</router-link>
-        </li>
-        <li key="21" class="link-item">
-          <router-link to="/patient-add">Добавить пациента</router-link>
+          <router-link to="/appointment">Добавить запись в медкарту</router-link>
         </li>
         <li key="22" @click="getItems" class="link-item">
           <router-link to="/add_timesheet">Добавить запись в расписание</router-link>
         </li>
         <li v-show="!token" key="19" class="link-item">
           <router-link to="/login">Вход</router-link>
-        </li>
-        <li v-show="token" key="23" class="link-item">
-          <router-link to="/register">Зарегестрировать пользователя</router-link>
         </li>
         <li v-show="token" key="20" class="link-item">
           <router-link to="/logout">Выйти</router-link>
@@ -67,7 +46,7 @@
 
 <script>
 
-import {mapActions, mapMutations, mapState} from "vuex";
+import {mapMutations, mapState} from "vuex";
 
 export default {
   name: "Nav-Item",
@@ -136,7 +115,7 @@ export default {
 
 .nav-bg {
   filter: opacity(50%);
-  padding: 40px;
+  padding: 30px;
 }
 
 .sidenav a {
