@@ -22,6 +22,9 @@
         <li key="11" class="link-item">
           <router-link to="/diagnoses">Просмотр диагнозов</router-link>
         </li>
+        <li key="25" class="link-item">
+          <router-link to="/departments">Просмотр отделов</router-link>
+        </li>
       </ul>
       <p :class="theme" key="12">Добавления</p>
       <ul key="13" class="add-links">
@@ -36,6 +39,9 @@
         </li>
         <li key="17" class="link-item">
           <router-link to="/appointment">Добавить прием</router-link>
+        </li>
+        <li key="24" class="link-item">
+          <router-link to="/add-department">Добавить отдел</router-link>
         </li>
         <li key="21" class="link-item">
           <router-link to="/patient-add">Добававить пациента</router-link>

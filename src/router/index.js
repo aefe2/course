@@ -14,6 +14,8 @@ import AddTimesheet from "@/pages/AddTimesheet.vue";
 import Register from "@/pages/Register.vue";
 import Heals from "@/pages/Heals.vue";
 import Diagnoses from "@/pages/Diagnoses.vue";
+import Departments from "@/pages/Departments.vue";
+import AddDepartment from "@/pages/AddDepartment.vue";
 
 const routes = [
     {
@@ -97,6 +99,16 @@ const routes = [
         path: '/diagnoses',
         component: Diagnoses,
         name: 'Диагнозы'
+    },
+    {
+        path: '/add-department',
+        component: AddDepartment,
+        name: 'Добавление отдела'
+    },
+    {
+        path: '/departments',
+        component: Departments,
+        name: 'Отделы'
     }
 ]
 
