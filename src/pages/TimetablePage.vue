@@ -29,6 +29,7 @@
 <script>
 import axios from "axios";
 import {mapState} from "vuex";
+import {useToast} from "vue-toastification";
 
 export default {
   name: "TimetablePage",
@@ -36,6 +37,10 @@ export default {
     return {
       timetable: []
     }
+  },
+  setup() {
+    const toast = useToast()
+    return {toast}
   },
   methods: {
     async deleteTimesheet(index) {
@@ -48,12 +53,39 @@ export default {
             id: index
           },
         })
+        this.toast.success('Успех!', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
         console.log(index)
         console.log(response)
       } catch (e) {
-        alert('error')
+        this.toast.error('Ошибка', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
       }
-      location.reload();
+      await this.fetchTimetable()
     },
     async fetchTimetable() {
       try {
