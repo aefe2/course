@@ -23,6 +23,8 @@ import Binding from "@/pages/Binding.vue";
 import AddBinding from "@/pages/AddBinding.vue";
 import AddProfession from "@/pages/AddProfession.vue";
 import Professions from "@/pages/Professions.vue";
+import Specializations from "@/pages/Specializations.vue";
+import AddSpecialization from "@/pages/AddSpecialization.vue";
 
 const routes = [
     {
@@ -152,6 +154,16 @@ const routes = [
         path: '/professions',
         component: Professions,
         name: 'Профессии'
+    },
+    {
+        path: '/specializations',
+        component: Specializations,
+        name: 'Специальности'
+    },
+    {
+        path: '/add-specialization',
+        component: AddSpecialization,
+        name: 'Добавить специальность'
     }
 ]
 
