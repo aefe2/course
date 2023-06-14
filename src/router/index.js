@@ -27,6 +27,8 @@ import Specializations from "@/pages/Specializations.vue";
 import AddSpecialization from "@/pages/AddSpecialization.vue";
 import Rooms from "@/pages/Rooms.vue";
 import AddRoom from "@/pages/AddRoom.vue";
+import Chambers from "@/pages/Chambers.vue";
+import AddChamber from "@/pages/AddChamber.vue";
 
 const routes = [
     {
@@ -170,11 +172,21 @@ const routes = [
     {
         path: '/rooms',
         component: Rooms,
-        name: 'Палаты'
+        name: 'Кабинеты'
     },
     {
         path: '/add-room',
         component: AddRoom,
+        name: 'Добавить кабинет'
+    },
+    {
+        path: '/chambers',
+        component: Chambers,
+        name: 'Палаты'
+    },
+    {
+        path: '/add-chamber',
+        component: AddChamber,
         name: 'Добавить палату'
     }
 ]

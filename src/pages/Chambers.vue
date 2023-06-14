@@ -1,7 +1,7 @@
 <template>
   <button-to-top></button-to-top>
   <div class="btn-link-container">
-    <my-button @click="$router.push('/add-room')" class="create-patient"><span>Добавить кабинет</span>
+    <my-button @click="$router.push('/add-chamber')" class="create-patient"><span>Добавить палату</span>
     </my-button>
   </div>
   <div class="table-wrapper">
@@ -13,9 +13,9 @@
       </thead>
       <tbody>
       <!--      @click="toHistory(patient)"-->
-      <tr v-for="room in rooms" :key="room.id">
-        <td>{{ room.number }}</td>
-        <td :class="theme"><a @click="deleteRoom(room.id)">X</a></td>
+      <tr v-for="chamber in chambers" :key="chamber.id">
+        <td>{{ chamber.number }}</td>
+        <td :class="theme"><a @click="deleteChamber(chamber.id)">X</a></td>
       </tr>
       </tbody>
     </table>
@@ -34,7 +34,7 @@ export default {
   components: {MyButton, ButtonToTop},
   data() {
     return {
-      rooms: []
+      chambers: []
     }
   },
   setup() {
@@ -42,9 +42,9 @@ export default {
     return {toast}
   },
   methods: {
-    async deleteRoom(index) {
+    async deleteChamber(index) {
       try {
-        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/delete_room', {
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/delete_chamber', {
           headers: {
             "Content-Type": "multipart/form-data"
           },
@@ -84,12 +84,12 @@ export default {
           rtl: false
         })
       }
-      await this.fetchRooms()
+      await this.fetchChambers()
     },
-    async fetchRooms() {
+    async fetchChambers() {
       try {
-        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/rooms')
-        this.rooms = response.data
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/chambers')
+        this.chambers = response.data
         console.log(response.data);
       } catch (e) {
         console.log(e);
@@ -98,7 +98,7 @@ export default {
     }
   },
   mounted() {
-    this.fetchRooms()
+    this.fetchChambers()
   },
   computed: {
     ...mapState({

@@ -1,8 +1,13 @@
 <template>
   <div class="form-container">
-    <form-item @submit.prevent="addRoom" class="heal-form">
-      <my-label for="heal-name">Номер кабинета</my-label>
+    <form-item @submit.prevent="addChamber" class="heal-form">
+      <my-label for="heal-name">Номер палаты</my-label>
       <my-input-text :class="theme" v-model.number.trim="number"></my-input-text>
+      <my-label>Отделение</my-label>
+      <select :class="theme" v-model="department_id">
+        <option value="" disabled selected>Выберите...</option>
+        <option v-for="department in departments" v-bind:value="department.id">{{ department.name }}</option>
+      </select>
       <my-button type="submit">Добавить</my-button>
     </form-item>
   </div>
@@ -22,7 +27,9 @@ export default {
   components: {MyButton, MyInputText, MyLabel, FormItem},
   data() {
     return {
-      number: ''
+      number: '',
+      department_id: '',
+      departments: []
     }
   },
   setup() {
@@ -30,15 +37,25 @@ export default {
     return {toast}
   },
   methods: {
-    addRoom() {
+    async getItems() {
+      try {
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/departments')
+        this.departments = response.data
+        console.log(response.data)
+      } catch (e) {
+        alert('error')
+      }
+    },
+    addChamber() {
       axios({
         method: 'post',
-        url: 'http://localhost/CodingOnSideOfServer/api/add_room',
+        url: 'http://localhost/CodingOnSideOfServer/api/add_chamber',
         headers: {
           "Content-Type": "multipart/form-data"
         },
         data: {
-          number: this.number
+          number: this.number,
+          department_id: this.department_id
         }
       })
           .then((response) => {
@@ -76,7 +93,11 @@ export default {
             console.log(err);
           })
       this.number = ''
+      this.department_id = ''
     }
+  },
+  mounted() {
+    this.getItems()
   },
   computed: {
     ...mapState({
@@ -87,6 +108,12 @@ export default {
 </script>
 
 <style scoped>
+.heal-form > select {
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
 .light {
   border: 1px solid #2D2D2D;
   background: #F9F9F9;
