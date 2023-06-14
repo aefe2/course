@@ -17,6 +17,12 @@ import Diagnoses from "@/pages/Diagnoses.vue";
 import Departments from "@/pages/Departments.vue";
 import AddDepartment from "@/pages/AddDepartment.vue";
 import AdminPanel from "@/pages/AdminPanel.vue";
+import Reseptiones from "@/pages/Reseptiones.vue";
+import AddReseptione from "@/pages/AddReseptione.vue";
+import Binding from "@/pages/Binding.vue";
+import AddBinding from "@/pages/AddBinding.vue";
+import AddProfession from "@/pages/AddProfession.vue";
+import Professions from "@/pages/Professions.vue";
 
 const routes = [
     {
@@ -37,9 +43,10 @@ const routes = [
         name: 'Добавить запись в медкарту',
     },
     {
-        path: '/control',
+        path: '/control/:id',
         component: Control,
         name: 'Контроль',
+        props: true
     },
     {
         path: '/diagnosis-add',
@@ -115,6 +122,36 @@ const routes = [
         path: '/admin',
         component: AdminPanel,
         name: 'Админ панель'
+    },
+    {
+        path: '/reseptiones',
+        component: Reseptiones,
+        name: 'Приемы'
+    },
+    {
+        path: '/add_reseptione',
+        component: AddReseptione,
+        name: 'Добавить прием'
+    },
+    {
+        path: '/bindings',
+        component: Binding,
+        name: 'Прикрепления'
+    },
+    {
+        path: '/add-binding',
+        component: AddBinding,
+        name: 'Добавить прикрепление'
+    },
+    {
+        path: '/add-profession',
+        component: AddProfession,
+        name: 'Добавить профессию'
+    },
+    {
+        path: '/professions',
+        component: Professions,
+        name: 'Профессии'
     }
 ]
 

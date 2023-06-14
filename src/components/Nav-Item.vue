@@ -10,8 +10,11 @@
         <li key="11" class="link-item">
           <router-link to="/">Расписание</router-link>
         </li>
-        <li key="7" class="link-item">
-          <router-link to="/control">Контроль</router-link>
+        <li key="27" class="link-item">
+          <router-link to="/reseptiones">Приемы</router-link>
+        </li>
+        <li key="29" class="link-item">
+          <router-link to="/bindings">Прикрепления</router-link>
         </li>
         <!--        <li key="8" class="link-item">-->
         <!--          <router-link to="/patient-history">История пациента</router-link>-->
@@ -24,6 +27,9 @@
       <ul key="13" class="add-links">
         <li key="10" class="link-item">
           <router-link to="/record-patient">Записать пациента</router-link>
+        </li>
+        <li key="30" class="link-item">
+          <router-link to="/add-binding">Добавить прикрепление</router-link>
         </li>
         <li key="17" class="link-item">
           <router-link to="/appointment">Добавить запись в медкарту</router-link>
@@ -104,7 +110,7 @@ export default {
 
 .sidenav {
   height: 100%;
-  width: 250px;
+  width: 270px;
   position: fixed;
   z-index: 1;
   top: 0;
