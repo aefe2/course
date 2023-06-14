@@ -44,7 +44,7 @@
           <router-link to="/add-department">Добавить отдел</router-link>
         </li>
         <li key="21" class="link-item">
-          <router-link to="/patient-add">Добававить пациента</router-link>
+          <router-link to="/patient-add">Добавить пациента</router-link>
         </li>
         <li key="22" @click="getItems" class="link-item">
           <router-link to="/add_timesheet">Добавить запись в расписание</router-link>
