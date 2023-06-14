@@ -27,7 +27,7 @@
     <my-input-text :class="theme" v-model.trim="login" name="login"></my-input-text>
     <my-label>Пароль</my-label>
     <my-input-pass :class="theme" v-model.trim="password" name="password"></my-input-pass>
-    <my-button type="submit">Войти</my-button>
+    <my-button type="submit">Создать</my-button>
   </form-item>
 </template>
 

@@ -12,6 +12,8 @@ import PatientAdd from "@/pages/PatientAdd.vue"
 import Logout from "@/pages/Logout.vue";
 import AddTimesheet from "@/pages/AddTimesheet.vue";
 import Register from "@/pages/Register.vue";
+import Heals from "@/pages/Heals.vue";
+import Diagnoses from "@/pages/Diagnoses.vue";
 
 const routes = [
     {
@@ -85,6 +87,16 @@ const routes = [
         path: '/register',
         component: Register,
         name: 'Регистрация'
+    },
+    {
+        path: '/heals',
+        component: Heals,
+        name: 'Лечения'
+    },
+    {
+        path: '/diagnoses',
+        component: Diagnoses,
+        name: 'Диагнозы'
     }
 ]
 

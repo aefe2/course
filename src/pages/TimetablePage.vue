@@ -19,7 +19,7 @@
         <td>{{ doctor.number }}</td>
         <td>{{ doctor.date }}</td>
         <td>{{ doctor.time }}</td>
-        <td :class="theme" @click="deleteTimesheet()">X</td>
+        <td :class="theme"><a @click="deleteTimesheet(doctor.id)">X</a></td>
       </tr>
       </tbody>
     </table>
@@ -38,15 +38,22 @@ export default {
     }
   },
   methods: {
-    deleteTimesheet(index) {
+    async deleteTimesheet(index) {
       try {
-        const response = axios.get('http://localhost/CodingOnSideOfServer/api/delete_timesheet')
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/delete_timesheet', {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          },
+          params: {
+            id: index
+          },
+        })
         console.log(index)
         console.log(response)
       } catch (e) {
         alert('error')
       }
-      // this.timetable.splice(index, 1)
+      location.reload();
     },
     async fetchTimetable() {
       try {

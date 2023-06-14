@@ -10,11 +10,17 @@
         <li key="7" class="link-item">
           <router-link to="/control">Контроль</router-link>
         </li>
-        <li key="8" class="link-item">
-          <router-link to="/patient-history">История пациента</router-link>
-        </li>
+        <!--        <li key="8" class="link-item">-->
+        <!--          <router-link to="/patient-history">История пациента</router-link>-->
+        <!--        </li>-->
         <li key="9" class="link-item">
           <router-link to="/patients">Пациенты</router-link>
+        </li>
+        <li key="22" class="link-item">
+          <router-link to="/heals">Просмотр лечений</router-link>
+        </li>
+        <li key="11" class="link-item">
+          <router-link to="/diagnoses">Просмотр диагнозов</router-link>
         </li>
       </ul>
       <p :class="theme" key="12">Добавления</p>
@@ -29,7 +35,7 @@
           <router-link to="/heal-add">Добавить лечение</router-link>
         </li>
         <li key="17" class="link-item">
-          <router-link to="/appointment">Добававить прием</router-link>
+          <router-link to="/appointment">Добавить прием</router-link>
         </li>
         <li key="21" class="link-item">
           <router-link to="/patient-add">Добававить пациента</router-link>
@@ -124,8 +130,7 @@ export default {
 
 .nav-bg {
   filter: opacity(50%);
-  margin-top: 40px;
-  padding: 20px;
+  padding: 40px;
 }
 
 .sidenav a {

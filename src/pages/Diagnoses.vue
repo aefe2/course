@@ -1,28 +1,22 @@
 <template>
   <button-to-top></button-to-top>
   <div class="btn-link-container">
-    <my-button @click="$router.push('/patient-add')" class="create-patient"><span>Создать пациента</span></my-button>
+    <my-button @click="$router.push('/diagnosis-add')" class="create-patient"><span>Добавить диагноз</span></my-button>
   </div>
   <div class="table-wrapper">
     <table class="table">
       <thead>
       <tr class="head-row">
-        <th>Фамилия</th>
-        <th>Имя</th>
-        <th>Отчество</th>
-        <th>Дата рождения</th>
-        <th>Снилс</th>
+        <th>Название</th>
+        <th>Описание</th>
       </tr>
       </thead>
       <tbody>
-<!--      @click="toHistory(patient)"-->
-      <tr v-for="patient in patients" :key="patient.id">
-        <td>{{ patient.first_name }}</td>
-        <td>{{ patient.last_name }}</td>
-        <td>{{ patient.patronymic }}</td>
-        <td>{{ patient.birthday }}</td>
-        <td>{{ patient.snils_code }}</td>
-        <td :class="theme"><a @click="deletePatient(patient.id)">X</a></td>
+      <!--      @click="toHistory(patient)"-->
+      <tr v-for="diagnosis in diagnoses" :key="diagnosis.id">
+        <td>{{ diagnosis.name }}</td>
+        <td>{{ diagnosis.description }}</td>
+        <td :class="theme"><a @click="deleteDiagnoses(diagnosis.id)">X</a></td>
       </tr>
       </tbody>
     </table>
@@ -40,13 +34,13 @@ export default {
   components: {MyButton, ButtonToTop},
   data() {
     return {
-      patients: []
+      diagnoses: []
     }
   },
   methods: {
-    async deletePatient(index) {
+    async deleteDiagnoses(index) {
       try {
-        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/delete_patient', {
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/delete_diagnose', {
           headers: {
             "Content-Type": "multipart/form-data"
           },
@@ -61,17 +55,10 @@ export default {
       }
       location.reload();
     },
-    toHistory(patient) {
-      this.$router.push('/patient-history')
-      this.updateMyArray(patient)
-    },
-    ...mapActions({
-      updateMyArray: "patientModule/updateMyArray"
-    }),
-    async fetchPatientsTable() {
+    async fetchDiagnoses() {
       try {
-        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/patients')
-        this.patients = response.data
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/diagnoses')
+        this.diagnoses = response.data
         console.log(response.data);
       } catch (e) {
         console.log(e);
@@ -80,7 +67,7 @@ export default {
     }
   },
   mounted() {
-    this.fetchPatientsTable()
+    this.fetchDiagnoses()
   },
   computed: {
     ...mapState({
@@ -126,7 +113,7 @@ export default {
   border-radius: 0 8px 8px 0;
 }
 
-.table tbody tr td:nth-child(5) {
+.table tbody tr td:nth-child(2) {
   border-radius: 0 8px 8px 0;
 }
 
@@ -169,6 +156,7 @@ export default {
 .table tbody tr:hover td {
   transition-duration: .2s;
 }
+
 
 .create-patient {
   width: 200px;

@@ -1,28 +1,20 @@
 <template>
   <button-to-top></button-to-top>
   <div class="btn-link-container">
-    <my-button @click="$router.push('/patient-add')" class="create-patient"><span>Создать пациента</span></my-button>
+    <my-button @click="$router.push('/heal-add')" class="create-patient"><span>Добавить лечение</span></my-button>
   </div>
   <div class="table-wrapper">
     <table class="table">
       <thead>
       <tr class="head-row">
-        <th>Фамилия</th>
-        <th>Имя</th>
-        <th>Отчество</th>
-        <th>Дата рождения</th>
-        <th>Снилс</th>
+        <th>Описание</th>
       </tr>
       </thead>
       <tbody>
-<!--      @click="toHistory(patient)"-->
-      <tr v-for="patient in patients" :key="patient.id">
-        <td>{{ patient.first_name }}</td>
-        <td>{{ patient.last_name }}</td>
-        <td>{{ patient.patronymic }}</td>
-        <td>{{ patient.birthday }}</td>
-        <td>{{ patient.snils_code }}</td>
-        <td :class="theme"><a @click="deletePatient(patient.id)">X</a></td>
+      <!--      @click="toHistory(patient)"-->
+      <tr v-for="cure in curies" :key="cure.id">
+        <td>{{ cure.description }}</td>
+        <td :class="theme"><a @click="deleteHeal(cure.id)">X</a></td>
       </tr>
       </tbody>
     </table>
@@ -40,13 +32,13 @@ export default {
   components: {MyButton, ButtonToTop},
   data() {
     return {
-      patients: []
+      curies: []
     }
   },
   methods: {
-    async deletePatient(index) {
+    async deleteHeal(index) {
       try {
-        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/delete_patient', {
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/delete_cure', {
           headers: {
             "Content-Type": "multipart/form-data"
           },
@@ -61,17 +53,10 @@ export default {
       }
       location.reload();
     },
-    toHistory(patient) {
-      this.$router.push('/patient-history')
-      this.updateMyArray(patient)
-    },
-    ...mapActions({
-      updateMyArray: "patientModule/updateMyArray"
-    }),
-    async fetchPatientsTable() {
+    async fetchHeals() {
       try {
-        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/patients')
-        this.patients = response.data
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/curies')
+        this.curies = response.data
         console.log(response.data);
       } catch (e) {
         console.log(e);
@@ -80,7 +65,7 @@ export default {
     }
   },
   mounted() {
-    this.fetchPatientsTable()
+    this.fetchHeals()
   },
   computed: {
     ...mapState({
@@ -118,22 +103,17 @@ export default {
   font-size: 14px;
 }
 
-.table thead tr th:first-child {
-  border-radius: 8px 0 0 8px;
+.table thead tr th {
+  border-radius: 8px 8px 8px 8px;
 }
 
-.table thead tr th:last-child {
-  border-radius: 0 8px 8px 0;
+.table tbody tr td:nth-child(1) {
+  border-radius: 8px 8px 8px 8px;
 }
 
-.table tbody tr td:nth-child(5) {
-  border-radius: 0 8px 8px 0;
-}
-
-.table tbody tr td:nth-child(6) {
+.table tbody tr td:nth-child(2) {
   border-radius: 0 0 0 0;
 }
-
 
 .table tbody td {
   text-align: center;
@@ -150,7 +130,7 @@ export default {
 /*    background-color: rgb(229, 224, 224);*/
 /*}*/
 
-.table tbody tr td:first-child {
+.table tbody tr td {
   border-radius: 8px 0 0 8px;
 }
 
