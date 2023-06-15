@@ -45,7 +45,7 @@ export default {
   methods: {
     async deleteTimesheet(index) {
       try {
-        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/delete_timesheet', {
+        const response = await axios.get('http://192.168.13.72/CodingOnSideOfServer/api/delete_timesheet', {
           headers: {
             "Content-Type": "multipart/form-data"
           },
@@ -53,43 +53,44 @@ export default {
             id: index
           },
         })
-        this.toast.success('Успех!', {
-          position: "top-right",
-          timeout: 1500,
-          closeOnClick: true,
-          pauseOnFocusLoss: true,
-          pauseOnHover: true,
-          draggable: true,
-          draggablePercent: 0.62,
-          showCloseButtonOnHover: false,
-          hideProgressBar: true,
-          closeButton: "button",
-          icon: true,
-          rtl: false
-        })
+        // this.toast.success('Успех!', {
+        //   position: "top-right",
+        //   timeout: 1500,
+        //   closeOnClick: true,
+        //   pauseOnFocusLoss: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   draggablePercent: 0.62,
+        //   showCloseButtonOnHover: false,
+        //   hideProgressBar: true,
+        //   closeButton: "button",
+        //   icon: true,
+        //   rtl: false
+        // })
         console.log(index)
         console.log(response)
       } catch (e) {
-        this.toast.error('Ошибка', {
-          position: "top-right",
-          timeout: 1500,
-          closeOnClick: true,
-          pauseOnFocusLoss: true,
-          pauseOnHover: true,
-          draggable: true,
-          draggablePercent: 0.62,
-          showCloseButtonOnHover: false,
-          hideProgressBar: true,
-          closeButton: "button",
-          icon: true,
-          rtl: false
-        })
+        console.log(e)
+        // this.toast.error('Ошибка', {
+        //   position: "top-right",
+        //   timeout: 1500,
+        //   closeOnClick: true,
+        //   pauseOnFocusLoss: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   draggablePercent: 0.62,
+        //   showCloseButtonOnHover: false,
+        //   hideProgressBar: true,
+        //   closeButton: "button",
+        //   icon: true,
+        //   rtl: false
+        // })
       }
       await this.fetchTimetable()
     },
     async fetchTimetable() {
       try {
-        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/')
+        const response = await axios.get('http://192.168.13.72/CodingOnSideOfServer/api/')
         this.timetable = response.data
         console.log(response.data)
       } catch (e) {

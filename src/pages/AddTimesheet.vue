@@ -53,7 +53,7 @@ export default {
   methods: {
     async getItems() {
       try {
-        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/add_timesheet')
+        const response = await axios.get('http://192.168.13.72/CodingOnSideOfServer/api/add_timesheet')
         this.doctors = response.data.doctors
         this.rooms = response.data.rooms
         console.log(response.data)
@@ -64,7 +64,7 @@ export default {
     addTimesheet() {
       axios({
         method: 'post',
-        url: 'http://localhost/CodingOnSideOfServer/api/add_timesheet',
+        url: 'http://192.168.13.72/CodingOnSideOfServer/api/add_timesheet',
         headers: {
           "Content-Type": "multipart/form-data"
         },
