@@ -18,7 +18,7 @@
         <td>{{ binding.number }}</td>
         <td>{{ binding.date }}</td>
         <td :class="theme"><a @click="deleteBinding(binding.id)">X</a></td>
-        <router-link :to="{name: 'Контроль', params: {id: binding.id}}">a</router-link>
+<!--        <router-link :to="{name: 'Контроль', params: {id: binding.id}}">a</router-link>-->
       </tr>
       </tbody>
     </table>

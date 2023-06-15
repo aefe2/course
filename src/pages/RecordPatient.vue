@@ -2,6 +2,7 @@
   <form-item class="record-patient-form">
     <my-label for="choose-patient">Выбрать пациента</my-label>
     <my-select :class="theme" name="choose" id="choose-patient">
+      <option value="" disabled selected>Выберите...</option>
       <option value="1">aposdpo</option>
       <option value="2">sadasd</option>
       <option value="3">ghjk</option>
@@ -9,6 +10,7 @@
     <my-button @click="$router.push('/patient-add')" class="create-patient-btn"><span>Создать пациента</span></my-button>
     <my-label for="chooce-cab">Выбрать кабинет</my-label>
     <my-select :class="theme" name="cab" id="chooce-cab">
+      <option value="" disabled selected>Выберите...</option>
       <option value="1">asd</option>
       <option value="12">sadas</option>
       <option value="13">asdas</option>

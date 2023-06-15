@@ -2,20 +2,24 @@
   <form-item class="appointment-form">
     <my-label for="patient">Пациент</my-label>
     <my-select :class="theme" name="patient-select" id="patient">
+      <option value="" disabled selected>Выберите...</option>
       <option value="1">AaAaA</option>
     </my-select>
     <my-label for="diagnos">Диагноз</my-label>
     <my-select :class="theme" name="diagnosis" id="diagnos">
+      <option value="" disabled selected>Выберите...</option>
       <option value="13">DS5</option>
     </my-select>
     <my-button @click="$router.push('/diagnosis-add')" class="diagnos-add"><span>Добавить диагноз</span></my-button>
     <my-label for="heal">Лечение</my-label>
     <my-select :class="theme" name="heal" id="heal">
+      <option value="" disabled selected>Выберите...</option>
       <option value="123">pipi</option>
     </my-select>
     <my-button @click="$router.push('/heal-add')" class="heal-add"><span>Добавить лечение</span></my-button>
     <my-label for="doctor">Врач</my-label>
     <my-select :class="theme" name="doctor" id="doctor">
+      <option value="" disabled selected>Выберите...</option>
       <option value="123">dadaya</option>
     </my-select>
     <my-button type="submit">Отправить</my-button>
