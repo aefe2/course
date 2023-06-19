@@ -21,7 +21,7 @@ export default {
       const response = await axios.get('http://localhost/CodingOnSideOfServer/api/logout')
       console.log(response)
       localStorage.removeItem('token')
-      this.$router.push('/login')
+      // this.$router.push('/login')
     },
   },
   computed: {

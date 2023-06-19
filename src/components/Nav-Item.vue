@@ -16,9 +16,6 @@
         <li key="29" class="link-item">
           <router-link to="/bindings">Прикрепления</router-link>
         </li>
-        <!--        <li key="8" class="link-item">-->
-        <!--          <router-link to="/patient-history">История пациента</router-link>-->
-        <!--        </li>-->
         <li key="9" class="link-item">
           <router-link to="/patients">Пациенты</router-link>
         </li>
