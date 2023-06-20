@@ -108,6 +108,20 @@ export default {
         this.timetable = response.data
         console.log(response.data)
       } catch (e) {
+        this.toast.error('Ошибка', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
       }
     }
   },
@@ -175,9 +189,11 @@ export default {
   background-color: rgba(0, 162, 109, 1);
   font-size: 14px;
 }
+
 th {
   cursor: pointer;
 }
+
 .table thead tr th:first-child {
   border-radius: 8px 0 0 8px;
 }

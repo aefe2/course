@@ -37,10 +37,12 @@ export default defineComponent({
 }
 
 .light {
+  transition-duration: .3s;
   background-color: whitesmoke;
 }
 
 .dark {
+  transition-duration: .3s;
   background-color: #2D2D2D;
 }
 
