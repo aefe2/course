@@ -1,26 +1,29 @@
 <template>
-  <div class="table-wrapper">
+  <preloader></preloader>
+  <div v-show="timetable.length > 0" class="table-wrapper">
     <table class="table">
       <thead>
       <tr class="head-row">
-        <th>Фамилия</th>
-        <th>Имя</th>
-        <th>Отчество</th>
-        <th>Кабинет</th>
-        <th>Дата</th>
-        <th>Время</th>
+        <th @click="sort('lastName')">Фамилия</th>
+        <th @click="sort('firstName')">Имя</th>
+        <th @click="sort('patronymic')">Отчество</th>
+        <th @click="sort('cabinet')">Кабинет</th>
+        <th @click="sort('date')">Дата</th>
+        <th @click="sort('time')">Время</th>
       </tr>
       </thead>
       <tbody>
-      <tr v-for="doctor in timetable" :key="doctor.id">
-        <td>{{ doctor.last_name }}</td>
-        <td>{{ doctor.first_name }}</td>
-        <td>{{ doctor.patronymic }}</td>
-        <td>{{ doctor.number }}</td>
-        <td>{{ doctor.date }}</td>
-        <td>{{ doctor.time }}</td>
-        <td :class="theme"><a @click="deleteTimesheet(doctor.id)">X</a></td>
-      </tr>
+      <transition-group name="timetable-list">
+        <tr v-for="doctor in sortedTimetable" :key="doctor.id">
+          <td>{{ doctor.user.last_name }}</td>
+          <td>{{ doctor.user.first_name }}</td>
+          <td>{{ doctor.user.patronymic }}</td>
+          <td>{{ doctor.room.number }}</td>
+          <td>{{ doctor.date }}</td>
+          <td>{{ doctor.time }}</td>
+          <td :class="theme"><a @click="deleteTimesheet(doctor.id)">X</a></td>
+        </tr>
+      </transition-group>
       </tbody>
     </table>
   </div>
@@ -30,12 +33,17 @@
 import axios from "axios";
 import {mapState} from "vuex";
 import {useToast} from "vue-toastification";
+import {data} from "autoprefixer";
+import Preloader from "@/components/Preloader.vue";
 
 export default {
   name: "TimetablePage",
+  components: {Preloader},
   data() {
     return {
-      timetable: []
+      timetable: [],
+      currentSort: 'name',
+      sortParam: 'asc'
     }
   },
   setup() {
@@ -45,7 +53,7 @@ export default {
   methods: {
     async deleteTimesheet(index) {
       try {
-        const response = await axios.get('http://192.168.13.72/CodingOnSideOfServer/api/delete_timesheet', {
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/delete_timesheet', {
           headers: {
             "Content-Type": "multipart/form-data"
           },
@@ -53,48 +61,53 @@ export default {
             id: index
           },
         })
-        // this.toast.success('Успех!', {
-        //   position: "top-right",
-        //   timeout: 1500,
-        //   closeOnClick: true,
-        //   pauseOnFocusLoss: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   draggablePercent: 0.62,
-        //   showCloseButtonOnHover: false,
-        //   hideProgressBar: true,
-        //   closeButton: "button",
-        //   icon: true,
-        //   rtl: false
-        // })
+        this.toast.success('Успех!', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
         console.log(index)
         console.log(response)
       } catch (e) {
         console.log(e)
-        // this.toast.error('Ошибка', {
-        //   position: "top-right",
-        //   timeout: 1500,
-        //   closeOnClick: true,
-        //   pauseOnFocusLoss: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   draggablePercent: 0.62,
-        //   showCloseButtonOnHover: false,
-        //   hideProgressBar: true,
-        //   closeButton: "button",
-        //   icon: true,
-        //   rtl: false
-        // })
+        this.toast.error('Ошибка', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
       }
       await this.fetchTimetable()
     },
+    sort: function (s) {
+      if (s === this.currentSort) {
+        this.sortParam = this.sortParam === 'asc' ? 'desc' : 'asc'
+      }
+      this.currentSort = s
+    },
     async fetchTimetable() {
       try {
-        const response = await axios.get('http://192.168.13.72/CodingOnSideOfServer/api/')
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/')
         this.timetable = response.data
         console.log(response.data)
       } catch (e) {
-        alert('error')
       }
     }
   },
@@ -102,6 +115,15 @@ export default {
     this.fetchTimetable()
   },
   computed: {
+    sortedTimetable() {
+      return this.timetable.sort((a, b) => {
+        let modifier = 1
+        if (this.sortParam === 'desc') modifier = -1;
+        if (a[this.currentSort] < b[this.currentSort]) return -1 * modifier
+        if (a[this.currentSort] > b[this.currentSort]) return 1 * modifier
+        return 0
+      })
+    },
     ...mapState({
       theme: state => state.themeModule.theme
     })
@@ -110,6 +132,24 @@ export default {
 </script>
 
 <style scoped>
+.timetable-list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.timetable-list-enter-active, .timetable-list-leave-active {
+  transition: all .4s;
+}
+
+.timetable-list-enter, .timetable-list-leave-to {
+  opacity: 0;
+  transform: translateX(130px);
+}
+
+.timetable-list-move {
+  transition: transform .5s ease;
+}
+
 .dark {
   background-color: #2D2D2D;
 }
@@ -135,7 +175,9 @@ export default {
   background-color: rgba(0, 162, 109, 1);
   font-size: 14px;
 }
-
+th {
+  cursor: pointer;
+}
 .table thead tr th:first-child {
   border-radius: 8px 0 0 8px;
 }

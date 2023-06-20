@@ -30,7 +30,7 @@ export default {
     signIn() {
       axios({
         method: 'post',
-        url: 'http://192.168.13.72/CodingOnSideOfServer/api/login',
+        url: 'http://localhost/CodingOnSideOfServer/api/login',
         headers: {
           "Content-Type": "multipart/form-data"
         },
@@ -42,13 +42,14 @@ export default {
           .then((response) => {
             console.log(response);
             localStorage.setItem('token', response.data.token);
-            // this.$router.push('/')
+            localStorage.setItem('user', response.data.user.role)
+            this.$router.push('/')
           })
           .catch((err) => {
             console.log(err);
           })
-      this.login = '';
-      this.password = '';
+      // this.login = '';
+      // this.password = '';
     }
   },
   computed: {
