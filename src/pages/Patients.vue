@@ -1,29 +1,31 @@
 <template>
+  <preloader></preloader>
   <button-to-top></button-to-top>
   <div class="btn-link-container">
     <my-button @click="$router.push('/patient-add')" class="create-patient"><span>Создать пациента</span></my-button>
   </div>
-  <div class="table-wrapper">
+  <div v-show="patients.length > 0" class="table-wrapper">
     <table class="table">
       <thead>
       <tr class="head-row">
-        <th>Фамилия</th>
-        <th>Имя</th>
-        <th>Отчество</th>
-        <th>Дата рождения</th>
-        <th>Снилс</th>
+        <th @click="sort('lastName')">Фамилия</th>
+        <th @click="sort('firstName')">Имя</th>
+        <th @click="sort('patronymic')">Отчество</th>
+        <th @click="sort('date')">Дата рождения</th>
+        <th @click="sort('snils')">Снилс</th>
       </tr>
       </thead>
       <tbody>
-<!--      @click="toHistory(patient)"-->
-      <tr v-for="patient in patients" :key="patient.id">
-        <td>{{ patient.first_name }}</td>
-        <td>{{ patient.last_name }}</td>
-        <td>{{ patient.patronymic }}</td>
-        <td>{{ patient.birthday }}</td>
-        <td>{{ patient.snils_code }}</td>
-        <td :class="theme"><a @click="deletePatient(patient.id)">X</a></td>
-      </tr>
+      <transition-group name="patients-list">
+        <tr v-for="patient in sortedPatients" :key="patient.id">
+          <td>{{ patient.first_name }}</td>
+          <td>{{ patient.last_name }}</td>
+          <td>{{ patient.patronymic }}</td>
+          <td>{{ patient.birthday }}</td>
+          <td>{{ patient.snils_code }}</td>
+          <td :class="theme"><a @click="deletePatient(patient.id)">X</a></td>
+        </tr>
+      </transition-group>
       </tbody>
     </table>
   </div>
@@ -35,13 +37,16 @@ import MyButton from "@/components/UI/MyButton.vue";
 import axios from "axios";
 import {mapActions, mapState} from "vuex";
 import {useToast} from "vue-toastification";
+import Preloader from "@/components/Preloader.vue";
 
 export default {
   name: "Patients",
-  components: {MyButton, ButtonToTop},
+  components: {Preloader, MyButton, ButtonToTop},
   data() {
     return {
-      patients: []
+      patients: [],
+      currentSort: 'name',
+      sortParam: 'asc'
     }
   },
   setup() {
@@ -93,6 +98,12 @@ export default {
       }
       await this.fetchPatientsTable()
     },
+    sort: function (s) {
+      if (s === this.currentSort) {
+        this.sortParam = this.sortParam === 'asc' ? 'desc' : 'asc'
+      }
+      this.currentSort = s
+    },
     toHistory(patient) {
       this.$router.push('/patient-history')
       this.updateMyArray(patient)
@@ -107,7 +118,20 @@ export default {
         console.log(response.data);
       } catch (e) {
         console.log(e);
-        alert('Error')
+        this.toast.error('Ошибка', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
       }
     }
   },
@@ -115,6 +139,15 @@ export default {
     this.fetchPatientsTable()
   },
   computed: {
+    sortedPatients() {
+      return this.patients.sort((a, b) => {
+        let modifier = 1
+        if (this.sortParam === 'desc') modifier = -1;
+        if (a[this.currentSort] < b[this.currentSort]) return -1 * modifier
+        if (a[this.currentSort] > b[this.currentSort]) return 1 * modifier
+        return 0
+      })
+    },
     ...mapState({
       theme: state => state.themeModule.theme
     })
@@ -123,6 +156,24 @@ export default {
 </script>
 
 <style scoped>
+.patients-list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.patients-list-enter-active, .patients-list-leave-active {
+  transition: all .4s;
+}
+
+.patients-list-enter, .patients-list-leave-to {
+  opacity: 0;
+  transform: translateX(130px);
+}
+
+.patients-list-move {
+  transition: transform .5s ease;
+}
+
 .table {
   width: 100%;
   margin-bottom: 20px;

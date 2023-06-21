@@ -1,5 +1,6 @@
 <template>
   <preloader></preloader>
+  <button-to-top></button-to-top>
   <div v-show="timetable.length > 0" class="table-wrapper">
     <table class="table">
       <thead>
@@ -35,10 +36,11 @@ import {mapState} from "vuex";
 import {useToast} from "vue-toastification";
 import {data} from "autoprefixer";
 import Preloader from "@/components/Preloader.vue";
+import ButtonToTop from "@/components/UI/ButtonToTop.vue";
 
 export default {
   name: "TimetablePage",
-  components: {Preloader},
+  components: {ButtonToTop, Preloader},
   data() {
     return {
       timetable: [],

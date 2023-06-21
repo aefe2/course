@@ -1,25 +1,29 @@
 <template>
-  <div class="table-wrapper">
+  <preloader></preloader>
+  <button-to-top></button-to-top>
+  <div v-show="bindings.length > 0" class="table-wrapper">
     <table class="table">
       <thead>
       <tr class="head-row">
-        <th>Фамилия</th>
-        <th>Имя</th>
-        <th>Отчество</th>
-        <th>Палата</th>
-        <th>Дата</th>
+        <th @click="sort('lastName')">Фамилия</th>
+        <th @click="sort('firstName')">Имя</th>
+        <th @click="sort('patronymic')">Отчество</th>
+        <th @click="sort('cabinet')">Палата</th>
+        <th @click="sort('date')">Дата</th>
       </tr>
       </thead>
       <tbody>
-      <tr v-for="binding in bindings" :key="binding.id">
-        <td>{{ binding.last_name }}</td>
-        <td>{{ binding.first_name }}</td>
-        <td>{{ binding.patronymic }}</td>
-        <td>{{ binding.number }}</td>
-        <td>{{ binding.date }}</td>
-        <td :class="theme"><a @click="deleteBinding(binding.id)">X</a></td>
-<!--        <router-link :to="{name: 'Контроль', params: {id: binding.id}}">a</router-link>-->
-      </tr>
+      <transition-group name="bindings-list">
+        <tr v-for="binding in sortedBindings" :key="binding.id">
+          <td>{{ binding.patient.last_name }}</td>
+          <td>{{ binding.patient.first_name }}</td>
+          <td>{{ binding.patient.patronymic }}</td>
+          <td>{{ binding.chamber.number }}</td>
+          <td>{{ binding.date }}</td>
+          <td :class="theme"><a @click="deleteBinding(binding.id)">X</a></td>
+          <!--        <router-link :to="{name: 'Контроль', params: {id: binding.id}}">a</router-link>-->
+        </tr>
+      </transition-group>
       </tbody>
     </table>
   </div>
@@ -29,12 +33,17 @@
 import axios from "axios";
 import {mapState} from "vuex";
 import {useToast} from "vue-toastification";
+import Preloader from "@/components/Preloader.vue";
+import ButtonToTop from "@/components/UI/ButtonToTop.vue";
 
 export default {
   name: "Binding",
+  components: {ButtonToTop, Preloader},
   data() {
     return {
-      bindings: []
+      bindings: [],
+      currentSort: 'name',
+      sortParam: 'asc'
     }
   },
   setup() {
@@ -86,13 +95,32 @@ export default {
       }
       await this.fetchBindings()
     },
+    sort: function (s) {
+      if (s === this.currentSort) {
+        this.sortParam = this.sortParam === 'asc' ? 'desc' : 'asc'
+      }
+      this.currentSort = s
+    },
     async fetchBindings() {
       try {
         const response = await axios.get('http://localhost/CodingOnSideOfServer/api/bindings')
         this.bindings = response.data
         console.log(response.data)
       } catch (e) {
-        alert('error')
+        this.toast.error('Ошибка', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
       }
     }
   },
@@ -100,6 +128,15 @@ export default {
     this.fetchBindings()
   },
   computed: {
+    sortedBindings() {
+      return this.bindings.sort((a, b) => {
+        let modifier = 1
+        if (this.sortParam === 'desc') modifier = -1;
+        if (a[this.currentSort] < b[this.currentSort]) return -1 * modifier
+        if (a[this.currentSort] > b[this.currentSort]) return 1 * modifier
+        return 0
+      })
+    },
     ...mapState({
       theme: state => state.themeModule.theme
     })
@@ -108,6 +145,24 @@ export default {
 </script>
 
 <style scoped>
+.bindings-list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.bindings-list-enter-active, .bindings-list-leave-active {
+  transition: all .4s;
+}
+
+.bindings-list-enter, .bindings-list-leave-to {
+  opacity: 0;
+  transform: translateX(130px);
+}
+
+.bindings-list-move {
+  transition: transform .5s ease;
+}
+
 .dark {
   background-color: #2D2D2D;
 }
