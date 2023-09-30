@@ -1,5 +1,5 @@
 <template>
-  <button v-show="token" @click="navModule" :class="theme" class="menu-toggle">&#9776;</button>
+  <button v-show="myCookies" @click="navModule" :class="theme" class="menu-toggle">&#9776;</button>
   <transition-group name="nav">
     <div key="2" v-show="isNavOpen" :class="theme" id="sidenav" class="sidebar sidenav">
       <a key="4" class="closebtn" @click="navModule">&times;</a>
@@ -34,10 +34,10 @@
         <li key="22" @click="getItems" class="link-item">
           <router-link to="/add_timesheet">Добавить запись в расписание</router-link>
         </li>
-        <li v-show="!token" key="19" class="link-item">
+        <li v-show="!myCookies" key="19" class="link-item">
           <router-link to="/login">Вход</router-link>
         </li>
-        <li v-show="token" key="20" class="link-item">
+        <li v-show="myCookies" key="20" class="link-item">
           <router-link to="/logout">Выйти</router-link>
         </li>
       </ul>
@@ -55,14 +55,15 @@ export default {
   name: "Nav-Item",
   computed: {
     ...mapState({
-      token: state => state.tokenModule.token,
+      myCookies: state => state.tokenModule.myCookies,
       isNavOpen: state => state.navModule.isNavOpen,
       theme: state => state.themeModule.theme
     })
   },
   methods: {
     ...mapMutations({
-      navModule: "toggleNav"
+      navModule: "toggleNav",
+      tokenModule: "tokenModule/getCookie"
     }),
   }
 }

@@ -23,6 +23,7 @@ import MyButton from "@/components/UI/MyButton.vue";
 import MyInputDate from "@/components/UI/MyInputDate.vue";
 import {mapState} from "vuex";
 import axios from "axios";
+import {useToast} from "vue-toastification";
 
 export default defineComponent({
   components: {MyInputDate, MyButton, MyLabel, MyInputText, FormItem},
@@ -35,6 +36,10 @@ export default defineComponent({
       birthday: '',
       snils_code: ''
     }
+  },
+  setup() {
+    const toast = useToast()
+    return {toast}
   },
   methods: {
     patientAdd() {
@@ -53,11 +58,42 @@ export default defineComponent({
         }
       })
           .then((response) => {
-            console.log(response);
+            this.toast.success(`Успех`, {
+              position: "top-right",
+              timeout: 1500,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 0.62,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            })
           })
           .catch((err) => {
-            console.log(err);
+            this.toast.error('Ошибка', {
+              position: "top-right",
+              timeout: 1500,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 0.62,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            })
           })
+      this.first_name = '';
+      this.last_name = '';
+      this.patronymic = '';
+      this.birthday = '';
+      this.snils_code = '';
     }
   },
   computed: {

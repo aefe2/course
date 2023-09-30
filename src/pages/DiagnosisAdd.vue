@@ -17,6 +17,7 @@ import MyButton from "@/components/UI/MyButton.vue";
 import FormItem from "@/components/Form-Item.vue";
 import {mapState} from "vuex";
 import axios from "axios";
+import {useToast} from "vue-toastification";
 
 export default {
   name: "DiagnosisAdd",
@@ -26,6 +27,10 @@ export default {
       name: '',
       description: ''
     }
+  },
+  setup() {
+    const toast = useToast()
+    return {toast}
   },
   methods: {
     addDiagnosis() {
@@ -40,11 +45,37 @@ export default {
           description: this.description
         }
       })
-          .then((response) => {
-            console.log(response);
+          .then(() => {
+            this.toast.success('Успех!', {
+              position: "top-right",
+              timeout: 1500,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 0.62,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            })
           })
-          .catch((err) => {
-            console.log(err);
+          .catch(() => {
+            this.toast.error('Ошибка', {
+              position: "top-right",
+              timeout: 1500,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 0.62,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            })
           })
       this.name = '';
       this.description = ''

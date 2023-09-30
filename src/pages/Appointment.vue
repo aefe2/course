@@ -3,24 +3,28 @@
     <my-label for="patient">Пациент</my-label>
     <my-select :class="theme" name="patient-select" id="patient">
       <option value="" disabled selected>Выберите...</option>
-      <option value="1">AaAaA</option>
+      <option v-for="patient in patients" v-bind:value="patient.id">
+        {{ patient.first_name + ' ' + patient.last_name + ' ' + patient.patronymic }}
+      </option>
     </my-select>
     <my-label for="diagnos">Диагноз</my-label>
     <my-select :class="theme" name="diagnosis" id="diagnos">
       <option value="" disabled selected>Выберите...</option>
-      <option value="13">DS5</option>
+      <option v-for="diagnosis in diagnoses" v-bind:value="diagnosis.id">{{ diagnosis.name }}</option>
     </my-select>
     <my-button @click="$router.push('/diagnosis-add')" class="diagnos-add"><span>Добавить диагноз</span></my-button>
     <my-label for="heal">Лечение</my-label>
     <my-select :class="theme" name="heal" id="heal">
       <option value="" disabled selected>Выберите...</option>
-      <option value="123">pipi</option>
+      <option v-for="heal in heals" v-bind:value="heal.id">{{ heal.description }}</option>
     </my-select>
     <my-button @click="$router.push('/heal-add')" class="heal-add"><span>Добавить лечение</span></my-button>
     <my-label for="doctor">Врач</my-label>
     <my-select :class="theme" name="doctor" id="doctor">
       <option value="" disabled selected>Выберите...</option>
-      <option value="123">dadaya</option>
+      <option v-for="doctor in doctors" v-bind:value="doctor.id">
+        {{ doctor.first_name + ' ' + doctor.last_name + ' ' + doctor.patronymic }}
+      </option>
     </my-select>
     <my-button type="submit">Отправить</my-button>
   </form-item>
@@ -32,10 +36,119 @@ import MyLabel from "@/components/UI/MyLabel.vue";
 import MySelect from "@/components/UI/MySelect.vue";
 import MyButton from "@/components/UI/MyButton.vue";
 import {mapState} from "vuex";
+import {useToast} from "vue-toastification";
+import axios from "axios";
 
 export default {
   name: "Appointment",
   components: {MyButton, MySelect, MyLabel, FormItem},
+  data() {
+    return {
+      patients: [],
+      diagnoses: [],
+      heals: [],
+      doctors: []
+    }
+  },
+  setup() {
+    const toast = useToast()
+    return {toast}
+  },
+  methods: {
+    async getPatients() {
+      try {
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/patients')
+        this.patients = response.data
+      } catch (e) {
+        this.toast.error('Ошибка!', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
+        console.log(e);
+      }
+    },
+    async getDiagnoses() {
+      try {
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/diagnoses')
+        this.diagnoses = response.data
+      } catch (e) {
+        this.toast.error('Ошибка!', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
+      }
+    },
+    async getHeals() {
+      try {
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/curies')
+        this.heals = response.data
+      } catch (e) {
+        console.log(e);
+        this.toast.error('Ошибка!', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
+      }
+    },
+    async getDoctors() {
+      try {
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/users')
+        this.doctors = response.data
+      } catch (e) {
+        console.log(e);
+        this.toast.error('Ошибка!', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
+      }
+    }
+  },
+  mounted() {
+    this.getPatients()
+    this.getDiagnoses()
+    this.getHeals()
+    this.getDoctors()
+  },
   computed: {
     ...mapState({
       theme: state => state.themeModule.theme

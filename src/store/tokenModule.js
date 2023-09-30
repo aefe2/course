@@ -3,7 +3,7 @@ import axios from "axios";
 export const tokenModule = {
     state: () => ({
         // token: localStorage.getItem('token') || '',
-        myCookies: ''
+        myCookies: localStorage.getItem('token') || ''
     }),
     mutations: {
         getCookie(state) {
