@@ -76,21 +76,37 @@ export default {
         }
       })
           .then((response) => {
-            this.toast.success('Успех!', {
-              position: "top-right",
-              timeout: 1500,
-              closeOnClick: true,
-              pauseOnFocusLoss: true,
-              pauseOnHover: true,
-              draggable: true,
-              draggablePercent: 0.62,
-              showCloseButtonOnHover: false,
-              hideProgressBar: true,
-              closeButton: "button",
-              icon: true,
-              rtl: false
-            })
-            console.log(response);
+            if (response.data.message.indexOf('пусто')) {
+              this.toast.error('Заполните все поля', {
+                position: "top-right",
+                timeout: 3500,
+                closeOnClick: true,
+                pauseOnFocusLoss: true,
+                pauseOnHover: true,
+                draggable: true,
+                draggablePercent: 0.62,
+                showCloseButtonOnHover: false,
+                hideProgressBar: true,
+                closeButton: "button",
+                icon: true,
+                rtl: false
+              })
+            } else {
+              this.toast.success('Успех!', {
+                position: "top-right",
+                timeout: 1500,
+                closeOnClick: true,
+                pauseOnFocusLoss: true,
+                pauseOnHover: true,
+                draggable: true,
+                draggablePercent: 0.62,
+                showCloseButtonOnHover: false,
+                hideProgressBar: true,
+                closeButton: "button",
+                icon: true,
+                rtl: false
+              })
+            }
           })
           .catch((err) => {
             this.toast.error('Ошибка!', {
