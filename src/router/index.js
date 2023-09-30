@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import TimetablePage from "@/pages/TimetablePage.vue";
-import Appointment from "@/pages/Appointment.vue";
+import PatientCards from "@/pages/PatientCards.vue";
 import Control from "@/pages/Control.vue";
 import DiagnosisAdd from "@/pages/DiagnosisAdd.vue";
 import HealAdd from "@/pages/HealAdd.vue";
@@ -44,8 +44,8 @@ const routes = [
     //     meta: {requiresAuth: true}
     // },
     {
-        path: '/appointment',
-        component: Appointment,
+        path: '/patient-cards',
+        component: PatientCards,
         name: 'Добавить запись в медкарту',
     },
     {

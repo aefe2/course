@@ -1,31 +1,31 @@
 <template>
-  <form-item class="appointment-form">
+  <form-item @submit.prevent="addAppointment" class="appointment-form">
     <my-label for="patient">Пациент</my-label>
-    <my-select :class="theme" name="patient-select" id="patient">
+    <select v-model="patient_id" :class="theme" name="patient-select" id="patient">
       <option value="" disabled selected>Выберите...</option>
       <option v-for="patient in patients" v-bind:value="patient.id">
         {{ patient.first_name + ' ' + patient.last_name + ' ' + patient.patronymic }}
       </option>
-    </my-select>
+    </select>
     <my-label for="diagnos">Диагноз</my-label>
-    <my-select :class="theme" name="diagnosis" id="diagnos">
+    <select v-model="diagnoses_id" :class="theme" name="diagnosis" id="diagnos">
       <option value="" disabled selected>Выберите...</option>
       <option v-for="diagnosis in diagnoses" v-bind:value="diagnosis.id">{{ diagnosis.name }}</option>
-    </my-select>
+    </select>
     <my-button @click="$router.push('/diagnosis-add')" class="diagnos-add"><span>Добавить диагноз</span></my-button>
     <my-label for="heal">Лечение</my-label>
-    <my-select :class="theme" name="heal" id="heal">
+    <select v-model="curie_id" :class="theme" name="heal" id="heal">
       <option value="" disabled selected>Выберите...</option>
       <option v-for="heal in heals" v-bind:value="heal.id">{{ heal.description }}</option>
-    </my-select>
+    </select>
     <my-button @click="$router.push('/heal-add')" class="heal-add"><span>Добавить лечение</span></my-button>
     <my-label for="doctor">Врач</my-label>
-    <my-select :class="theme" name="doctor" id="doctor">
+    <select v-model="user_id" :class="theme" name="doctor" id="doctor">
       <option value="" disabled selected>Выберите...</option>
       <option v-for="doctor in doctors" v-bind:value="doctor.id">
         {{ doctor.first_name + ' ' + doctor.last_name + ' ' + doctor.patronymic }}
       </option>
-    </my-select>
+    </select>
     <my-button type="submit">Отправить</my-button>
   </form-item>
 </template>
@@ -40,14 +40,19 @@ import {useToast} from "vue-toastification";
 import axios from "axios";
 
 export default {
-  name: "Appointment",
+  name: "PatientCards",
   components: {MyButton, MySelect, MyLabel, FormItem},
   data() {
     return {
       patients: [],
       diagnoses: [],
       heals: [],
-      doctors: []
+      doctors: [],
+      patient_id: '',
+      diagnoses_id: '',
+      curie_id: '',
+      user_id: '',
+      currentDateFormatted: ''
     }
   },
   setup() {
@@ -55,6 +60,60 @@ export default {
     return {toast}
   },
   methods: {
+    addAppointment() {
+      axios({
+        method: 'post',
+        url: 'http://localhost/CodingOnSideOfServer/api/add_patient_card',
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+        data: {
+          patient_id: this.patient_id,
+          cure_id: this.curie_id,
+          diagnose_id: this.diagnoses_id,
+          user_id: this.user_id,
+          date: this.currentDateFormatted
+        }
+      })
+          .then((response) => {
+            this.toast.success('Успех!', {
+              position: "top-right",
+              timeout: 1500,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 0.62,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            })
+            console.log(response);
+          })
+          .catch((err) => {
+            this.toast.error('Ошибка!', {
+              position: "top-right",
+              timeout: 1500,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 0.62,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            })
+            console.log(err);
+          })
+      this.patient_id = ''
+      this.diagnoses_id = ''
+      this.curie_id = ''
+      this.user_id = ''
+    },
     async getPatients() {
       try {
         const response = await axios.get('http://localhost/CodingOnSideOfServer/api/patients')
@@ -144,6 +203,14 @@ export default {
     }
   },
   mounted() {
+    let currentDate = new Date();
+
+    let year = currentDate.getFullYear();
+    let month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    let day = String(currentDate.getDate()).padStart(2, '0');
+
+    this.currentDateFormatted = `${year}-${month}-${day}`;
+
     this.getPatients()
     this.getDiagnoses()
     this.getHeals()

@@ -29,7 +29,7 @@
           <router-link to="/add-binding">Добавить прикрепление</router-link>
         </li>
         <li key="17" class="link-item">
-          <router-link to="/appointment">Добавить запись в медкарту</router-link>
+          <router-link to="/patient-cards">Добавить запись в медкарту</router-link>
         </li>
         <li key="22" @click="getItems" class="link-item">
           <router-link to="/add_timesheet">Добавить запись в расписание</router-link>
