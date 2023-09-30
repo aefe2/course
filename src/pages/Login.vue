@@ -15,7 +15,7 @@ import MyInputText from "@/components/UI/MyInputText.vue";
 import MyInputPass from "@/components/UI/MyInputPass.vue";
 import MyButton from "@/components/UI/MyButton.vue";
 import axios from "axios";
-import {mapState} from "vuex";
+import {mapMutations, mapState} from "vuex";
 
 export default {
   name: "Login",
@@ -23,10 +23,23 @@ export default {
   data() {
     return {
       login: '',
-      password: ''
+      password: '',
+      token: ''
     }
   },
+  mounted() {
+    this.tokenModule()
+  },
+  computed: {
+    ...mapState({
+      myCookies: state => state.tokenModule.myCookies,
+      theme: state => state.themeModule.theme
+    })
+  },
   methods: {
+    ...mapMutations({
+      tokenModule: "tokenModule/getCookie"
+    }),
     signIn() {
       axios({
         method: 'post',
@@ -36,7 +49,8 @@ export default {
         },
         data: {
           login: this.login,
-          password: this.password
+          password: this.password,
+          token: this.myCookies
         }
       })
           .then((response) => {
@@ -50,13 +64,8 @@ export default {
           })
       // this.login = '';
       // this.password = '';
-    }
+    },
   },
-  computed: {
-    ...mapState({
-      theme: state => state.themeModule.theme
-    })
-  }
 }
 </script>
 
