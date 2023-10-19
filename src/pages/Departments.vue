@@ -19,6 +19,7 @@
       </tbody>
     </table>
   </div>
+<!--  палаты отделы-->
 </template>
 
 <script>
@@ -53,7 +54,7 @@ export default {
       }
       location.reload();
     },
-    async fetchHeals() {
+    async fetchDepartments() {
       try {
         const response = await axios.get('http://localhost/CodingOnSideOfServer/api/departments')
         this.departments = response.data
@@ -65,7 +66,7 @@ export default {
     }
   },
   mounted() {
-    this.fetchHeals()
+    this.fetchDepartments()
   },
   computed: {
     ...mapState({

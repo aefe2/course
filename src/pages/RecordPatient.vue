@@ -1,24 +1,24 @@
 <template>
-  <form-item class="record-patient-form">
+  <form-item class="record-patient-form" @submit.prevent="addRecord">
     <my-label for="choose-patient">Выбрать пациента</my-label>
-    <my-select :class="theme" name="choose" id="choose-patient">
+    <select :class="theme" v-model="patient_id">
       <option value="" disabled selected>Выберите...</option>
-      <option value="1">aposdpo</option>
-      <option value="2">sadasd</option>
-      <option value="3">ghjk</option>
-    </my-select>
-    <my-button @click="$router.push('/patient-add')" class="create-patient-btn"><span>Создать пациента</span></my-button>
+      <option v-for="patient in patients" v-bind:value="patient.id">{{
+          patient.first_name[0] + '.' + patient.last_name[0] + '.' + patient.patronymic[0]
+        }}
+      </option>
+    </select>
+    <my-button @click="$router.push('/patient-add')" class="create-patient-btn"><span>Создать пациента</span>
+    </my-button>
     <my-label for="chooce-cab">Выбрать кабинет</my-label>
-    <my-select :class="theme" name="cab" id="chooce-cab">
+    <select :class="theme" v-model="room_id">
       <option value="" disabled selected>Выберите...</option>
-      <option value="1">asd</option>
-      <option value="12">sadas</option>
-      <option value="13">asdas</option>
-    </my-select>
-    <my-label for="date">Дата</my-label>
-    <my-input-date :class="theme" type="date" name="date" id="date"></my-input-date>
-    <my-label for="time">Время</my-label>
-    <my-input-time :class="theme" type="time" name="time" id="time"></my-input-time>
+      <option v-for="room in rooms" v-bind:value="room.id">{{ room.number }}</option>
+    </select>
+    <my-label>Дата</my-label>
+    <my-input-date :class="theme" v-model="date"></my-input-date>
+    <my-label>Время</my-label>
+    <my-input-time :class="theme" v-model="time"></my-input-time>
     <my-button type="submit">Записать</my-button>
   </form-item>
 </template>
@@ -31,10 +31,103 @@ import MyButton from "@/components/UI/MyButton.vue";
 import MyInputDate from "@/components/UI/MyInputDate.vue";
 import MyInputTime from "@/components/UI/MyInputTime.vue";
 import {mapState} from "vuex";
+import {useToast} from "vue-toastification";
+import axios from "axios";
 
 export default {
   name: "RecordPatient",
   components: {MyInputTime, MyInputDate, MyButton, MySelect, MyLabel, FormItem},
+  data() {
+    return {
+      patients: [],
+      rooms: [],
+      date: '',
+      time: '',
+      patient_id: '',
+      room_id: ''
+    }
+  },
+  setup() {
+    const toast = useToast()
+    return {toast}
+  },
+  methods: {
+    addBinding() {
+      axios({
+        method: 'post',
+        url: 'http://localhost/CodingOnSideOfServer/api/add_reseptione',
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+        data: {
+          date: this.date,
+          time: this.time,
+          patient_id: this.patient_id,
+          room_id: this.room_id,
+        }
+      })
+          .then((response) => {
+            this.toast.success('Успех!', {
+              position: "top-right",
+              timeout: 1500,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 0.62,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            })
+            console.log(response);
+          })
+          .catch((err) => {
+            this.toast.error('Ошибка!', {
+              position: "top-right",
+              timeout: 1500,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 0.62,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            })
+            console.log(err);
+          })
+      this.date = ''
+      this.time = ''
+      this.patient_id = ''
+      this.room_id = ''
+    },
+    async getPatients() {
+      try {
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/patients')
+        this.patients = response.data
+        console.log(response.data)
+      } catch (e) {
+        alert('error')
+      }
+    },
+    async getRooms() {
+      try {
+        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/rooms')
+        this.rooms = response.data
+        console.log(response.data)
+      } catch (e) {
+        alert('error')
+      }
+    }
+  },
+  mounted() {
+    this.getPatients()
+    this.getRooms()
+  },
   computed: {
     ...mapState({
       theme: state => state.themeModule.theme

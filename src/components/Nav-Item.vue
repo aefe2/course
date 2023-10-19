@@ -37,7 +37,7 @@
         <li v-show="!myCookies" key="19" class="link-item">
           <router-link to="/login">Вход</router-link>
         </li>
-        <li v-show="myCookies" key="20" class="link-item">
+        <li v-show="myCookies !== ''" key="20" class="link-item">
           <router-link to="/logout">Выйти</router-link>
         </li>
       </ul>

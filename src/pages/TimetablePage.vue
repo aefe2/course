@@ -63,22 +63,6 @@ export default {
             id: index
           },
         })
-        this.toast.success('Успех!', {
-          position: "top-right",
-          timeout: 1500,
-          closeOnClick: true,
-          pauseOnFocusLoss: true,
-          pauseOnHover: true,
-          draggable: true,
-          draggablePercent: 0.62,
-          showCloseButtonOnHover: false,
-          hideProgressBar: true,
-          closeButton: "button",
-          icon: true,
-          rtl: false
-        })
-        console.log(index)
-        console.log(response)
       } catch (e) {
         console.log(e)
         this.toast.error('Ошибка', {
