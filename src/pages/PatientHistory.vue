@@ -1,6 +1,6 @@
 <template>
   <div class="table-wrapper">
-    <h3 class="patient-abcs">Somebody</h3>
+    <h3 class="patient-abcs">{{patientObj.first_name}}</h3>
     <table class="table">
       <thead>
       <tr class="head-row">
@@ -11,14 +11,12 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="param in patient" :key="param.id">
-        <td>{{ param.palaceNum }}</td>
-        <td>{{ param.lastName }}</td>
-        <td>{{ param.firstName }}</td>
-        <td>{{ param.patronymic }}</td>
-        <td>{{ param.time }}</td>
-        <td>{{ param.procedure }}</td>
-        <td><input type="checkbox" name="status"></td>
+      <tr v-for="item in patient_cards" :key="item.id">
+        <td>{{ item.diagnose.name }}</td>
+        <td>{{ item.diagnose.description }}</td>
+        <td>{{ item.cure.description }}</td>
+        <td>{{ item.date }}</td>
+        <!--        <td><input type="checkbox" name="status"></td>-->
       </tr>
       </tbody>
     </table>
@@ -33,23 +31,29 @@ export default {
   name: "PatientHistory",
   data() {
     return {
-      patient_id: this.$route.params.id
+      patient_id: this.$route.params.id,
+      patients: [],
+      patient_cards: [],
+      patientObj: {}
     }
   },
   computed: {
-    ...mapState({
-      patient: state => state.patientModule.patient
-    })
+    arrToObj() {
+      this.patientObj = Object.assign({}, this.patients)
+      console.log(this.patientObj)
+    }
   },
   methods: {
     async fetchPatientsTable() {
       try {
         const response = await axios.get(`http://localhost/CodingOnSideOfServer/api/patient_card?id=${this.patient_id}`)
-        console.log(response.data);
+        this.patients = response.data.patients
+        this.patient_cards = response.data.patient_cards
       } catch (e) {
         console.log(e);
         alert('Error')
       }
+      this.arrToObj
     }
   },
   mounted() {
