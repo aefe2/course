@@ -68,6 +68,7 @@ const routes = [
         path: '/login',
         component: Login,
         name: 'Авторизация',
+
     },
     {
         path: '/logout',
@@ -75,9 +76,10 @@ const routes = [
         name: 'Выход'
     },
     {
-        path: '/patient-history',
+        path: '/patient_history/:id',
         component: PatientHistory,
         name: 'История пациента',
+        props: {name: 'id'}
     },
     {
         path: '/patients',

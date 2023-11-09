@@ -120,7 +120,7 @@ export default {
         let modifier = 1
         if (this.sortParam === 'desc') modifier = -1;
         if (a[this.currentSort] < b[this.currentSort]) return -1 * modifier
-        if (a[this.currentSort] > b[this.currentSort]) return 1 * modifier
+        if (a[this.currentSort] > b[this.currentSort]) return modifier
         return 0
       })
     },

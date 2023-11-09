@@ -1,5 +1,5 @@
 <template>
-  <form-item @submit.stop="signIn" class="login-form">
+  <form-item @submit="signIn" class="login-form">
     <my-label>Логин</my-label>
     <my-input-text :class="theme" v-model="login" name="login"></my-input-text>
     <my-label>Пароль</my-label>
@@ -27,9 +27,6 @@ export default {
       token: ''
     }
   },
-  mounted() {
-    this.tokenModule()
-  },
   computed: {
     ...mapState({
       myCookies: state => state.tokenModule.myCookies,
@@ -38,6 +35,7 @@ export default {
   },
   methods: {
     ...mapMutations({
+      navModule: "toggleNav",
       tokenModule: "tokenModule/getCookie"
     }),
     signIn() {
@@ -54,16 +52,15 @@ export default {
         }
       })
           .then((response) => {
+            this.tokenModule()
             console.log(response);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('user', response.data.user.role)
-            this.$router.push('/')
+            this.$router.push({name: 'Расписание'})
           })
           .catch((err) => {
             console.log(err);
           })
-      // this.login = '';
-      // this.password = '';
     },
   },
 }

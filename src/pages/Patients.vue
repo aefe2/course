@@ -17,7 +17,7 @@
       </thead>
       <tbody>
       <transition-group name="patients-list">
-        <tr v-for="patient in sortedPatients" :key="patient.id">
+        <tr v-for="patient in sortedPatients" :key="patient.id" @click="toHistory(patient.id)">
           <td>{{ patient.first_name }}</td>
           <td>{{ patient.last_name }}</td>
           <td>{{ patient.patronymic }}</td>
@@ -38,6 +38,7 @@ import axios from "axios";
 import {mapActions, mapState} from "vuex";
 import {useToast} from "vue-toastification";
 import Preloader from "@/components/Preloader.vue";
+import { computed } from 'vue'
 
 export default {
   name: "Patients",
@@ -46,7 +47,9 @@ export default {
     return {
       patients: [],
       currentSort: 'name',
-      sortParam: 'asc'
+      sortParam: 'asc',
+      patient_id: '',
+      message: 'hello'
     }
   },
   setup() {
@@ -105,12 +108,14 @@ export default {
       this.currentSort = s
     },
     toHistory(patient) {
-      this.$router.push('/patient-history')
-      this.updateMyArray(patient)
+      // try {
+      //   const response = await axios.get(`http://localhost/CodingOnSideOfServer/api/patient_card?id=${patient}`)
+      //   console.log(response.data)
+      // } catch (e) {
+      //   console.log()
+      // }
+      this.$router.push(`/patient_history/${patient}`)
     },
-    ...mapActions({
-      updateMyArray: "patientModule/updateMyArray"
-    }),
     async fetchPatientsTable() {
       try {
         const response = await axios.get('http://localhost/CodingOnSideOfServer/api/patients')

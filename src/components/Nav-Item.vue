@@ -1,37 +1,37 @@
 <template>
-  <button v-show="myCookies" @click="navModule" :class="theme" class="menu-toggle">&#9776;</button>
+  <button @click="navModule" :class="theme" class="menu-toggle">&#9776;</button>
   <transition-group name="nav">
     <div key="2" v-show="isNavOpen" :class="theme" id="sidenav" class="sidebar sidenav">
       <a key="4" class="closebtn" @click="navModule">&times;</a>
       <ul key="5" :class="theme" class="other-links">
-        <li key="26" class="link-item">
+        <li v-show="myCookies" key="26" class="link-item">
           <router-link to="/admin">Админ панель</router-link>
         </li>
         <li key="11" class="link-item">
           <router-link to="/">Расписание</router-link>
         </li>
-        <li key="27" class="link-item">
+        <li v-show="myCookies" key="27" class="link-item">
           <router-link to="/reseptiones">Приемы</router-link>
         </li>
-        <li key="29" class="link-item">
+        <li v-show="myCookies" key="29" class="link-item">
           <router-link to="/bindings">Прикрепления</router-link>
         </li>
-        <li key="9" class="link-item">
+        <li v-show="myCookies" key="9" class="link-item">
           <router-link to="/patients">Пациенты</router-link>
         </li>
       </ul>
-      <p :class="theme" key="12">Добавления</p>
+      <p v-show="myCookies" :class="theme" key="12">Добавления</p>
       <ul key="13" class="add-links">
-        <li key="10" class="link-item">
+        <li v-show="myCookies" key="10" class="link-item">
           <router-link to="/record-patient">Записать пациента</router-link>
         </li>
-        <li key="30" class="link-item">
+        <li v-show="myCookies" key="30" class="link-item">
           <router-link to="/add-binding">Добавить прикрепление</router-link>
         </li>
-        <li key="17" class="link-item">
+        <li v-show="myCookies" key="17" class="link-item">
           <router-link to="/patient-cards">Добавить запись в медкарту</router-link>
         </li>
-        <li key="22" @click="getItems" class="link-item">
+        <li v-show="myCookies" key="22" @click="getItems" class="link-item">
           <router-link to="/add_timesheet">Добавить запись в расписание</router-link>
         </li>
         <li v-show="!myCookies" key="19" class="link-item">

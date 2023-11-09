@@ -66,8 +66,6 @@ export default {
           icon: true,
           rtl: false
         })
-        console.log(index)
-        console.log(response)
       } catch (e) {
         this.toast.error('Ошибка', {
           position: "top-right",

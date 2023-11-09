@@ -7,7 +7,7 @@ export const tokenModule = {
     }),
     mutations: {
         getCookie(state) {
-            return state.myCookies = document.cookie.slice(10)
+            return state.myCookies = document.cookie.slice(10) || ''
         }
     },
     namespaced: true

@@ -12,12 +12,14 @@
       </tr>
       </thead>
       <tbody>
-      <!--      @click="toHistory(patient)"-->
-      <tr v-for="diagnosis in diagnoses" :key="diagnosis.id">
-        <td>{{ diagnosis.name }}</td>
-        <td>{{ diagnosis.description }}</td>
-        <td :class="theme"><a @click="deleteDiagnoses(diagnosis.id)">X</a></td>
-      </tr>
+      <transition-group name="list">
+        <!--      @click="toHistory(patient)"-->
+        <tr v-for="diagnosis in diagnoses" :key="diagnosis.id">
+          <td>{{ diagnosis.name }}</td>
+          <td>{{ diagnosis.description }}</td>
+          <td :class="theme"><a @click="deleteDiagnoses(diagnosis.id)">X</a></td>
+        </tr>
+      </transition-group>
       </tbody>
     </table>
   </div>
@@ -28,6 +30,7 @@ import ButtonToTop from "@/components/UI/ButtonToTop.vue";
 import MyButton from "@/components/UI/MyButton.vue";
 import axios from "axios";
 import {mapActions, mapState} from "vuex";
+import {useToast} from "vue-toastification";
 
 export default {
   name: "Patients",
@@ -36,6 +39,10 @@ export default {
     return {
       diagnoses: []
     }
+  },
+  setup() {
+    const toast = useToast()
+    return {toast}
   },
   methods: {
     async deleteDiagnoses(index) {
@@ -48,12 +55,37 @@ export default {
             id: index
           },
         })
-        console.log(index)
-        console.log(response)
+        this.toast.success('Успех!', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
       } catch (e) {
-        alert('error')
+        this.toast.error('Ошибка', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
       }
-      location.reload();
+      await this.fetchDiagnoses()
     },
     async fetchDiagnoses() {
       try {
@@ -78,6 +110,23 @@ export default {
 </script>
 
 <style scoped>
+.list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.list-enter-active, .list-leave-active {
+  transition: all .4s;
+}
+
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: translateX(130px);
+}
+
+.list-move {
+  transition: transform .5s ease;
+}
 .table {
   width: 100%;
   margin-bottom: 20px;

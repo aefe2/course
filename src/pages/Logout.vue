@@ -11,25 +11,31 @@ import MyInputText from "@/components/UI/MyInputText.vue";
 import MyInputPass from "@/components/UI/MyInputPass.vue";
 import MyButton from "@/components/UI/MyButton.vue";
 import axios from "axios";
-import {mapState} from "vuex";
+import {mapMutations, mapState} from "vuex";
 
 export default {
   name: "Login",
   components: {MyButton, MyInputPass, MyInputText, MyLabel, FormItem},
+  computed: {
+    ...mapState({
+      theme: state => state.themeModule.theme,
+      myCookies: state => state.tokenModule.myCookies,
+    })
+  },
   methods: {
+    ...mapMutations({
+      navModule: "toggleNav",
+      tokenModule: "tokenModule/getCookie"
+    }),
     async logout() {
       const response = await axios.get('http://localhost/CodingOnSideOfServer/api/logout')
+      this.tokenModule()
       console.log(response)
       localStorage.removeItem('token')
       localStorage.removeItem('user')
-      this.$router.push('/login')
+      this.$router.push({name: 'Расписание'})
     },
   },
-  computed: {
-    ...mapState({
-      theme: state => state.themeModule.theme
-    })
-  }
 }
 </script>
 
@@ -51,7 +57,6 @@ export default {
   display: grid;
   grid-gap: 15px;
   justify-content: center;
-  grid-template-columns: .2fr;
 }
 
 .btn {

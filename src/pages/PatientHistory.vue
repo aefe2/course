@@ -31,22 +31,29 @@ import {mapState} from "vuex";
 
 export default {
   name: "PatientHistory",
+  data() {
+    return {
+      patient_id: this.$route.params.id
+    }
+  },
   computed: {
     ...mapState({
       patient: state => state.patientModule.patient
     })
   },
   methods: {
-    // async fetchPatientsTable() {
-    //   try {
-    //     const response = await axios.get('http://localhost/CodingOnSideOfServer/api/patients')
-    //     this.patient = response.data
-    //     console.log(response.data);
-    //   } catch (e) {
-    //     console.log(e);
-    //     alert('Error')
-    //   }
-    // }
+    async fetchPatientsTable() {
+      try {
+        const response = await axios.get(`http://localhost/CodingOnSideOfServer/api/patient_card?id=${this.patient_id}`)
+        console.log(response.data);
+      } catch (e) {
+        console.log(e);
+        alert('Error')
+      }
+    }
+  },
+  mounted() {
+    this.fetchPatientsTable()
   }
 }
 </script>
