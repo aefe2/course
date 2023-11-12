@@ -1,6 +1,6 @@
 <template>
   <form>
-    <my-input-text :class="theme" type="search" class="search" placeholder="Поиск.."></my-input-text>
+    <my-input-text :class="theme" :value="modelValue" @input="updateInput" type="search" class="search" placeholder="Поиск по имени.."></my-input-text>
     <my-button type="submit" name="submit" class="submit"><img class="img-search" src="@/assets/img/search-ico.png"
                                                                alt="Поиск"></my-button>
   </form>
@@ -14,6 +14,16 @@ import {mapState} from "vuex";
 export default {
   name: "Search-item",
   components: {MyInputText, MyButton},
+  props: {
+    modelValue: {
+      modelValue: [String]
+    }
+  },
+  methods: {
+    updateInput(event) {
+      this.$emit('update:modelValue', event.target.value)
+    }
+  },
   computed: {
     ...mapState({
       theme: state => state.themeModule.theme
@@ -49,7 +59,7 @@ form {
 }
 
 .search {
-  width: 150px;
+  width: 170px;
   padding: 4px 4px 4px 5px;
   border: #00A26D 1px solid;
   border-radius: 10px 0 0 10px;

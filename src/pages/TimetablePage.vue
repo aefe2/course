@@ -2,7 +2,7 @@
   <preloader></preloader>
   <button-to-top></button-to-top>
   <div v-show="timetable.length > 0" class="table-wrapper">
-    <search-item></search-item>
+    <search-item v-model="search"></search-item>
     <table class="table">
       <thead>
       <tr class="head-row">
@@ -16,7 +16,7 @@
       </thead>
       <tbody>
       <transition-group name="timetable-list">
-        <tr v-for="doctor in sortedTimetable" :key="doctor.id">
+        <tr v-for="doctor in filteredItems" :key="doctor.id">
           <td>{{ doctor.user.last_name }}</td>
           <td>{{ doctor.user.first_name }}</td>
           <td>{{ doctor.user.patronymic }}</td>
@@ -46,6 +46,7 @@ export default {
   data() {
     return {
       timetable: [],
+      search: '',
       currentSort: 'name',
       sortParam: 'asc'
     }
@@ -117,6 +118,9 @@ export default {
     this.fetchTimetable()
   },
   computed: {
+    filteredItems() {
+      return this.sortedTimetable.filter(doctor => doctor.user.first_name.toLowerCase().includes(this.search.toLowerCase()));
+    },
     sortedTimetable() {
       return this.timetable.sort((a, b) => {
         let modifier = 1
