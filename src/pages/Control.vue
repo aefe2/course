@@ -13,14 +13,13 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="patient in sortedPatients" :key="patient.id">
-        <td>{{ patient.palaceNum }}</td>
-        <td>{{ patient.lastName }}</td>
-        <td>{{ patient.firstName }}</td>
-        <td>{{ patient.patronymic }}</td>
-        <td>{{ patient.time }}</td>
-        <td>{{ patient.procedure }}</td>
-        <td><input type="checkbox" name="status"></td>
+      <tr v-for="(controlData, index) in combinedArray" :key="index">
+        <td>{{}}</td>
+        <td>{{}}</td>
+        <td>{{}}</td>
+        <td>{{}}</td>
+        <td>{{}}</td>
+        <td>{{}}</td>
       </tr>
       </tbody>
     </table>
@@ -37,16 +36,25 @@ export default {
   data() {
     return {
       binding_id: this.$route.params.id,
-      patients: [],
+      controls: [],
+      bindings: [],
+      // chamber: {},
+      // first_name: '',
+      // last_name: '',
+      // patronymic: '',
+      // time: '',
+      // treatment: '',
+      // status: '',
       currentSort: 'name',
-      sortParam: 'asc'
+      sortParam: 'asc',
     }
   },
   methods: {
     async fetchControlTable() {
       try {
-        const response = await axios.get(`http://localhost/CodingOnSideOfServer/api/control/?id=${this.binding_id}`)
-        this.patients = response.data
+        const response = await axios.get(`http://localhost/CodingOnSideOfServer/api/control?id=${this.binding_id}`)
+        this.controls = response.data.controls
+        this.bindings = response.data.bindings
         console.log(response)
       } catch (e) {
         console.log(e)
@@ -60,15 +68,9 @@ export default {
     }
   },
   computed: {
-    // sortedPatients() {
-    //   return this.patients.sort((a, b) => {
-    //     let modifier = 1
-    //     if (this.sortParam === 'desc') modifier = -1;
-    //     if (a[this.currentSort] < b[this.currentSort]) return -1 * modifier
-    //     if (a[this.currentSort] > b[this.currentSort]) return 1 * modifier
-    //     return 0
-    //   })
-    // }
+    combinedArray() {
+      return this.controls.concat(this.bindings);
+    }
   },
   mounted() {
     this.fetchControlTable()
