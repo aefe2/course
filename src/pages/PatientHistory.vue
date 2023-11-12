@@ -1,18 +1,12 @@
 <template>
   <div class="table-wrapper">
-    <table class="workaround">
-      <tr v-for="item in patients" :key="item.id" class="workaround-tr">
-<!--        <td><h3 class="patient-abcs">ФИО</h3></td>-->
-        <td><h3 class="patient-abcs">{{ item.first_name }}</h3></td>
-        <td><h3 class="patient-abcs">{{ item.last_name }}</h3></td>
-        <td><h3 class="patient-abcs">{{ item.patronymic }}</h3></td>
-      </tr>
-      <tr v-for="item in patients" :key="item.id" class="workaround-tr">
-        <!--        <td><h3 class="patient-abcs">ФИО</h3></td>-->
-        <td><h3 class="patient-abcs">{{ item.birthday }}</h3></td>
-        <td><h3 class="patient-abcs">{{ item.snils_code }}</h3></td>
-      </tr>
-    </table>
+    <ul v-for="(item, index) in patients" :key="index" class="list-wrapper" :class="theme">
+      <li class="list-item"><b>Фамилия -</b> {{ item.last_name }}</li>
+      <li class="list-item"><b>Имя -</b> {{ item.first_name }}</li>
+      <li class="list-item"><b>Отчество -</b> {{ item.patronymic }}</li>
+      <li class="list-item"><b>Дата рождения -</b> {{ item.birthday }}</li>
+      <li class="list-item"><b>Снилс -</b> {{ item.snils_code }}</li>
+    </ul>
     <table class="table">
       <thead>
       <tr class="head-row">
@@ -23,7 +17,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="item in patient_cards" :key="item.id">
+      <tr v-for="(item, index) in patient_data" :key="index">
         <td>{{ item.diagnose.name }}</td>
         <td>{{ item.diagnose.description }}</td>
         <td>{{ item.cure.description }}</td>
@@ -45,22 +39,15 @@ export default {
     return {
       patient_id: this.$route.params.id,
       patients: [],
-      patient_cards: [],
-      patientObj: {}
+      patient_data: [],
     }
   },
-  // computed: {
-  //   arrToObj() {
-  //     this.patientObj = Object.assign({}, this.patients)
-  //     console.log(this.patientObj)
-  //   }
-  // },
   methods: {
     async fetchPatientsTable() {
       try {
         const response = await axios.get(`http://localhost/CodingOnSideOfServer/api/patient_card?id=${this.patient_id}`)
         this.patients = response.data.patients
-        this.patient_cards = response.data.patient_cards
+        this.patient_data = response.data.patient_cards
       } catch (e) {
         console.log(e);
         alert('Error')
@@ -69,21 +56,30 @@ export default {
   },
   mounted() {
     this.fetchPatientsTable()
-  }
+  },
+  computed: {
+    ...mapState({
+      theme: state => state.themeModule.theme
+    })
+  },
 }
 </script>
 <style scoped>
-.workaround-tr {
-  display: flex;
+.list-wrapper {
+  margin-bottom: 10px;
 }
 
-.workaround-tr > td {
-  padding: 5px;
+.list-item {
+  font-size: 16px;
+  margin: 5px;
 }
 
-.workaround {
-  display: grid;
-  justify-content: center;
+.light .list-item {
+  color: #2D2D2D;
+}
+
+.dark .list-item {
+  color: #b4b0b0;
 }
 
 .table {

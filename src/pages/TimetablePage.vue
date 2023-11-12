@@ -2,6 +2,7 @@
   <preloader></preloader>
   <button-to-top></button-to-top>
   <div v-show="timetable.length > 0" class="table-wrapper">
+    <search-item></search-item>
     <table class="table">
       <thead>
       <tr class="head-row">
@@ -37,10 +38,11 @@ import {useToast} from "vue-toastification";
 import {data} from "autoprefixer";
 import Preloader from "@/components/Preloader.vue";
 import ButtonToTop from "@/components/UI/ButtonToTop.vue";
+import SearchItem from "@/components/Search-item.vue";
 
 export default {
   name: "TimetablePage",
-  components: {ButtonToTop, Preloader},
+  components: {SearchItem, ButtonToTop, Preloader},
   data() {
     return {
       timetable: [],

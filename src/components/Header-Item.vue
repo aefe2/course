@@ -33,10 +33,11 @@
 
 import {mapMutations, mapState} from "vuex";
 import MyButton from "@/components/UI/MyButton.vue";
+import SearchItem from "@/components/Search-item.vue";
 
 export default {
   name: "Header-Item",
-  components: {MyButton},
+  components: {SearchItem, MyButton},
   computed: {
     ...mapState({
       token: state => state.tokenModule.token,
