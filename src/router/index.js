@@ -78,7 +78,7 @@ const routes = [
     {
         path: '/patient_history/:id',
         component: PatientHistory,
-        name: 'История пациента',
+        name: 'Мед. Карта    пациента',
         props: {name: 'id'}
     },
     {

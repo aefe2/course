@@ -1,6 +1,18 @@
 <template>
   <div class="table-wrapper">
-    <h3 class="patient-abcs">{{patientObj.first_name}}</h3>
+    <table class="workaround">
+      <tr v-for="item in patients" :key="item.id" class="workaround-tr">
+<!--        <td><h3 class="patient-abcs">ФИО</h3></td>-->
+        <td><h3 class="patient-abcs">{{ item.first_name }}</h3></td>
+        <td><h3 class="patient-abcs">{{ item.last_name }}</h3></td>
+        <td><h3 class="patient-abcs">{{ item.patronymic }}</h3></td>
+      </tr>
+      <tr v-for="item in patients" :key="item.id" class="workaround-tr">
+        <!--        <td><h3 class="patient-abcs">ФИО</h3></td>-->
+        <td><h3 class="patient-abcs">{{ item.birthday }}</h3></td>
+        <td><h3 class="patient-abcs">{{ item.snils_code }}</h3></td>
+      </tr>
+    </table>
     <table class="table">
       <thead>
       <tr class="head-row">
@@ -37,12 +49,12 @@ export default {
       patientObj: {}
     }
   },
-  computed: {
-    arrToObj() {
-      this.patientObj = Object.assign({}, this.patients)
-      console.log(this.patientObj)
-    }
-  },
+  // computed: {
+  //   arrToObj() {
+  //     this.patientObj = Object.assign({}, this.patients)
+  //     console.log(this.patientObj)
+  //   }
+  // },
   methods: {
     async fetchPatientsTable() {
       try {
@@ -53,7 +65,6 @@ export default {
         console.log(e);
         alert('Error')
       }
-      this.arrToObj
     }
   },
   mounted() {
@@ -62,6 +73,19 @@ export default {
 }
 </script>
 <style scoped>
+.workaround-tr {
+  display: flex;
+}
+
+.workaround-tr > td {
+  padding: 5px;
+}
+
+.workaround {
+  display: grid;
+  justify-content: center;
+}
+
 .table {
   width: 100%;
   margin-bottom: 20px;
@@ -155,7 +179,7 @@ export default {
 /*}*/
 
 .patient-abcs {
-  color: #00A26D;
+  color: #86cbb6;
   margin-bottom: 10px;
   text-align: center;
 }
