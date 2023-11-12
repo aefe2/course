@@ -29,6 +29,7 @@ import Rooms from "@/pages/Rooms.vue";
 import AddRoom from "@/pages/AddRoom.vue";
 import Chambers from "@/pages/Chambers.vue";
 import AddChamber from "@/pages/AddChamber.vue";
+import ControlAdd from "@/pages/ControlAdd.vue";
 
 const routes = [
     {
@@ -190,6 +191,11 @@ const routes = [
         path: '/add-chamber',
         component: AddChamber,
         name: 'Добавить палату'
+    },
+    {
+        path: '/add-control',
+        component: ControlAdd,
+        name: 'Добавить контроль'
     }
 ]
 

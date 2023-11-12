@@ -108,12 +108,6 @@ export default {
       this.currentSort = s
     },
     toHistory(patient) {
-      // try {
-      //   const response = await axios.get(`http://localhost/CodingOnSideOfServer/api/patient_card?id=${patient}`)
-      //   console.log(response.data)
-      // } catch (e) {
-      //   console.log()
-      // }
       this.$router.push(`/patient_history/${patient}`)
     },
     async fetchPatientsTable() {

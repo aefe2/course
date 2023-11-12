@@ -1,6 +1,9 @@
 <template>
   <preloader></preloader>
   <button-to-top></button-to-top>
+  <div class="btn-link-container">
+    <my-button @click="$router.push('/add-binding')" class="create-patient" style="width: 250px;"><span>Добавить прикрепление</span></my-button>
+  </div>
   <div v-show="bindings.length > 0" class="table-wrapper">
     <table class="table">
       <thead>
@@ -14,14 +17,13 @@
       </thead>
       <tbody>
       <transition-group name="bindings-list">
-        <tr v-for="binding in sortedBindings" :key="binding.id">
+        <tr v-for="binding in sortedBindings" :key="binding.id" @click="toControl(binding.id)">
           <td>{{ binding.patient.last_name }}</td>
           <td>{{ binding.patient.first_name }}</td>
           <td>{{ binding.patient.patronymic }}</td>
           <td>{{ binding.chamber.number }}</td>
           <td>{{ binding.date }}</td>
           <td :class="theme"><a @click="deleteBinding(binding.id)">X</a></td>
-          <!--        <router-link :to="{name: 'Контроль', params: {id: binding.id}}">a</router-link>-->
         </tr>
       </transition-group>
       </tbody>
@@ -35,10 +37,11 @@ import {mapState} from "vuex";
 import {useToast} from "vue-toastification";
 import Preloader from "@/components/Preloader.vue";
 import ButtonToTop from "@/components/UI/ButtonToTop.vue";
+import MyButton from "@/components/UI/MyButton.vue";
 
 export default {
   name: "Binding",
-  components: {ButtonToTop, Preloader},
+  components: {MyButton, ButtonToTop, Preloader},
   data() {
     return {
       bindings: [],
@@ -51,6 +54,9 @@ export default {
     return {toast}
   },
   methods: {
+    toControl(binding) {
+      this.$router.push(`/control/${binding}`)
+    },
     async deleteBinding(index) {
       try {
         const response = await axios.get('http://localhost/CodingOnSideOfServer/api/delete_binding', {

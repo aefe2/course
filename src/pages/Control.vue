@@ -36,6 +36,7 @@ export default {
   components: {MySelect},
   data() {
     return {
+      binding_id: this.$route.params.id,
       patients: [],
       currentSort: 'name',
       sortParam: 'asc'
@@ -44,7 +45,7 @@ export default {
   methods: {
     async fetchControlTable() {
       try {
-        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/control')
+        const response = await axios.get(`http://localhost/CodingOnSideOfServer/api/control/?id=${this.binding_id}`)
         this.patients = response.data
         console.log(response)
       } catch (e) {

@@ -22,7 +22,6 @@
         <td>{{ item.diagnose.description }}</td>
         <td>{{ item.cure.description }}</td>
         <td>{{ item.date }}</td>
-        <!--        <td><input type="checkbox" name="status"></td>-->
       </tr>
       </tbody>
     </table>

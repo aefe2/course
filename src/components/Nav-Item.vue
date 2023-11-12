@@ -34,6 +34,9 @@
         <li v-show="myCookies" key="22" @click="getItems" class="link-item">
           <router-link to="/add_timesheet">Добавить запись в расписание</router-link>
         </li>
+        <li v-show="myCookies" key="32" class="link-item">
+          <router-link to="/add-control">Добавить контроль</router-link>
+        </li>
         <li v-show="!myCookies" key="19" class="link-item">
           <router-link to="/login">Вход</router-link>
         </li>
