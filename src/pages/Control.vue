@@ -21,8 +21,14 @@
           <td>{{ bindingData.patient.patronymic }}</td>
           <td v-for="(controlData, index) in controls" :key="index">{{ controlData.time }}</td>
           <td v-for="(controlData, index) in controls" :key="index">{{ controlData.treatment }}</td>
-          <td v-for="(controlData, index) in controls" :key="index">{{ controlData.status }}</td>
-          <td v-for="(controlData, index) in controls" :key="index" :class="theme"><a @click="deleteControl(controlData.id)">X</a></td>
+          <td v-for="(controlData, index) in controls" @click="changeStatus(controlData.id)" :key="index">
+            <img v-show="controlData.status === 0" src="@/assets/img/status-no.png" alt="status negative"
+                 class="status-check">
+            <img v-show="controlData.status === 1" src="@/assets/img/status-yes.png" alt="status negative"
+                 class="status-check">
+          </td>
+          <td v-for="(controlData, index) in controls" :key="index" :class="theme"><a
+              @click="deleteControl(controlData.id)">X</a></td>
         </tr>
       </transition-group>
       </tbody>
@@ -53,6 +59,29 @@ export default {
     }
   },
   methods: {
+    changeStatus(id) {
+      console.log(this.controls[0].status)
+      if (this.controls[0].status === 0) {
+        const response = axios.get(`http://localhost/CodingOnSideOfServer/api/change_status_complete`, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          },
+          params: {
+            id: id
+          },
+        })
+      } else {
+        const response = axios.get(`http://localhost/CodingOnSideOfServer/api/change_status_none`, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          },
+          params: {
+            id: id
+          },
+        })
+      }
+      this.fetchControlTable()
+    },
     async deleteControl(index) {
       try {
         const response = await axios.get('http://localhost/CodingOnSideOfServer/api/delete_control', {
@@ -126,6 +155,17 @@ export default {
 </script>
 
 <style scoped>
+.status-check {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+
+.status-check:hover {
+  filter: grayscale(40%);
+  transition-duration: .2s;
+}
+
 .controls-list-item {
   display: inline-block;
   margin-right: 10px;
@@ -190,8 +230,7 @@ export default {
   background-color: #86cbb6;
 }
 
-.table tbody tr:hover {
-  cursor: pointer;
+.table tbody tr td:nth-child(7):hover {
   background-color: #79b7a3;
 }
 
