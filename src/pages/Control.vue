@@ -62,6 +62,13 @@ export default {
     changeStatus(id) {
       console.log(this.controls[0].status)
       if (this.controls[0].status === 0) {
+        this.changeStatusPositive(id)
+      } else {
+        this.changeStatusNegative(id)
+      }
+    },
+    async changeStatusPositive(id) {
+      try {
         const response = axios.get(`http://localhost/CodingOnSideOfServer/api/change_status_complete`, {
           headers: {
             "Content-Type": "multipart/form-data"
@@ -70,7 +77,40 @@ export default {
             id: id
           },
         })
-      } else {
+        this.toast.success('Статус изменен', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
+      } catch (e) {
+        this.toast.error('Не удалось изменить статус', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
+      }
+      await this.fetchControlTable()
+    },
+    async changeStatusNegative(id) {
+      try {
         const response = axios.get(`http://localhost/CodingOnSideOfServer/api/change_status_none`, {
           headers: {
             "Content-Type": "multipart/form-data"
@@ -79,8 +119,37 @@ export default {
             id: id
           },
         })
+        this.toast.success('Статус изменен', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
+      } catch (e) {
+        this.toast.error('Не удалось изменить статус', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
       }
-      this.fetchControlTable()
+      await this.fetchControlTable()
     },
     async deleteControl(index) {
       try {
@@ -106,8 +175,6 @@ export default {
           icon: true,
           rtl: false
         })
-        console.log(index)
-        console.log(response)
       } catch (e) {
         this.toast.error('Ошибка', {
           position: "top-right",
