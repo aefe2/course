@@ -1,5 +1,6 @@
 <template>
   <div class="wwrapper">
+    <search-item v-model="search"></search-item>
     <div class="wrapper">
       <div class="addings">
         <p :class="theme">Добавления</p>
@@ -88,10 +89,37 @@
 <script>
 import MyButton from "@/components/UI/MyButton.vue";
 import {mapState} from "vuex";
+import SearchItem from "@/components/Search-item.vue";
 
 export default {
   name: "AdminPanel",
-  components: {MyButton},
+  components: {SearchItem, MyButton},
+  data() {
+    return {
+      search: '',
+      links: [
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+        {route: '', name: ''},
+      ]
+    }
+  },
   computed: {
     ...mapState({
       theme: state => state.themeModule.theme
@@ -101,6 +129,9 @@ export default {
 </script>
 
 <style scoped>
+search-item {
+  margin-right: auto;
+}
 p {
   margin-left: 40px;
   margin-bottom: 10px;

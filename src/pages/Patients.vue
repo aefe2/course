@@ -17,12 +17,12 @@
       </thead>
       <tbody>
       <transition-group name="patients-list">
-        <tr v-for="patient in sortedPatients" :key="patient.id" @click="toHistory(patient.id)">
-          <td>{{ patient.first_name }}</td>
-          <td>{{ patient.last_name }}</td>
-          <td>{{ patient.patronymic }}</td>
-          <td>{{ patient.birthday }}</td>
-          <td>{{ patient.snils_code }}</td>
+        <tr v-for="patient in sortedPatients" :key="patient.id">
+          <td @click="toHistory(patient.id)">{{ patient.first_name }}</td>
+          <td @click="toHistory(patient.id)">{{ patient.last_name }}</td>
+          <td @click="toHistory(patient.id)">{{ patient.patronymic }}</td>
+          <td @click="toHistory(patient.id)">{{ patient.birthday }}</td>
+          <td @click="toHistory(patient.id)">{{ patient.snils_code }}</td>
           <td :class="theme"><a @click="deletePatient(patient.id)">X</a></td>
         </tr>
       </transition-group>
