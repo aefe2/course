@@ -69,7 +69,7 @@ export default {
     },
     async changeStatusPositive(id) {
       try {
-        const response = axios.get(`http://localhost/CodingOnSideOfServer/api/change_status_complete`, {
+        const response = await axios.get(`http://localhost/CodingOnSideOfServer/api/change_status_complete`, {
           headers: {
             "Content-Type": "multipart/form-data"
           },
@@ -111,7 +111,7 @@ export default {
     },
     async changeStatusNegative(id) {
       try {
-        const response = axios.get(`http://localhost/CodingOnSideOfServer/api/change_status_none`, {
+        const response = await axios.get(`http://localhost/CodingOnSideOfServer/api/change_status_none`, {
           headers: {
             "Content-Type": "multipart/form-data"
           },

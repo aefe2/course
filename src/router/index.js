@@ -36,14 +36,7 @@ const routes = [
         path: '/',
         component: TimetablePage,
         name: 'Расписание',
-        // meta: {requiresAuth: true}
     },
-    // {
-    //     path: '/add-doctor',
-    //     component: AddDoctor,
-    //     name: 'Добавить врача',
-    //     meta: {requiresAuth: true}
-    // },
     {
         path: '/patient-cards',
         component: PatientCards,
@@ -212,11 +205,5 @@ router.beforeEach((to, from, next) => {
         next()
     }
 })
-
-// router.beforeEach((to, from, next) => {
-//     // console.log(to)
-//     document.title = to.meta.name;
-//     next()
-// })
 
 export default router
