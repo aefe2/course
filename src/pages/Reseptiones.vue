@@ -22,7 +22,7 @@
           <td>{{ reseptione.patient.last_name }}</td>
           <td>{{ reseptione.patient.first_name }}</td>
           <td>{{ reseptione.patient.patronymic }}</td>
-          <td>{{ reseptione.number }}</td>
+          <td>{{ reseptione.timesheet.room_id }}</td>
           <td>{{ reseptione.timesheet.date }}</td>
           <td>{{ reseptione.timesheet.time }}</td>
           <td :class="theme"><a @click="deleteReseptione(reseptione.id)">X</a></td>

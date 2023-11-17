@@ -1,6 +1,6 @@
 <template>
   <div class="wwrapper">
-    <search-item v-model="search"></search-item>
+    <search-item placeholder="Поиск..." v-model="search"></search-item>
     <div class="wrapper">
       <div class="addings">
         <p :class="theme">Добавления</p>

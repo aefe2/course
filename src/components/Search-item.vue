@@ -1,6 +1,6 @@
 <template>
   <form>
-    <my-input-text :class="theme" :value="modelValue" @input="updateInput" type="search" class="search" placeholder="Поиск по имени.."></my-input-text>
+    <my-input-text :class="theme" :value="modelValue" @input="updateInput" type="search" class="search" placeholder="Поиск.."></my-input-text>
     <my-button type="submit" name="submit" class="submit"><img class="img-search" src="@/assets/img/search-ico.png"
                                                                alt="Поиск"></my-button>
   </form>
