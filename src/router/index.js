@@ -1,193 +1,162 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import TimetablePage from "@/pages/TimetablePage.vue";
-import PatientCards from "@/pages/PatientCards.vue";
-import Control from "@/pages/Control.vue";
-import DiagnosisAdd from "@/pages/DiagnosisAdd.vue";
-import HealAdd from "@/pages/HealAdd.vue";
-import Login from "@/pages/Login.vue";
-import PatientHistory from "@/pages/PatientHistory.vue";
-import Patients from "@/pages/Patients.vue";
-import RecordPatient from "@/pages/RecordPatient.vue";
-import PatientAdd from "@/pages/PatientAdd.vue"
-import Logout from "@/pages/Logout.vue";
-import AddTimesheet from "@/pages/AddTimesheet.vue";
-import Register from "@/pages/Register.vue";
-import Heals from "@/pages/Heals.vue";
-import Diagnoses from "@/pages/Diagnoses.vue";
-import Departments from "@/pages/Departments.vue";
-import AddDepartment from "@/pages/AddDepartment.vue";
-import AdminPanel from "@/pages/AdminPanel.vue";
-import Reseptiones from "@/pages/Reseptiones.vue";
-import AddReseptione from "@/pages/AddReseptione.vue";
-import Binding from "@/pages/Binding.vue";
-import AddBinding from "@/pages/AddBinding.vue";
-import AddProfession from "@/pages/AddProfession.vue";
-import Professions from "@/pages/Professions.vue";
-import Specializations from "@/pages/Specializations.vue";
-import AddSpecialization from "@/pages/AddSpecialization.vue";
-import Rooms from "@/pages/Rooms.vue";
-import AddRoom from "@/pages/AddRoom.vue";
-import Chambers from "@/pages/Chambers.vue";
-import AddChamber from "@/pages/AddChamber.vue";
-import ControlAdd from "@/pages/ControlAdd.vue";
 
 const routes = [
     {
         path: '/',
-        component: TimetablePage,
+        component: () => import('@/pages/TimetablePage.vue'),
         name: 'Расписание',
     },
     {
         path: '/patient-cards',
-        component: PatientCards,
+        component: () => import('@/pages/PatientCards.vue'),
         name: 'Добавить запись в медкарту',
     },
     {
         path: '/control/:id',
-        component: Control,
+        component: () => import('@/pages/Control.vue'),
         name: 'Контроль',
         props: true
     },
     {
         path: '/diagnosis-add',
-        component: DiagnosisAdd,
+        component: () => import('@/pages/DiagnosisAdd.vue'),
         name: 'Добавить диагноз',
     },
     {
         path: '/heal-add',
-        component: HealAdd,
+        component: () => import('@/pages/HealAdd.vue'),
         name: 'Добавить лечение',
     },
     {
         path: '/login',
-        component: Login,
+        component: () => import('@/pages/Login.vue'),
         name: 'Авторизация',
 
     },
     {
         path: '/logout',
-        component: Logout,
+        component: () => import('@/pages/Logout.vue'),
         name: 'Выход'
     },
     {
         path: '/patient_history/:id',
-        component: PatientHistory,
+        component: () => import('@/pages/PatientHistory.vue'),
         name: 'Мед. Карта    пациента',
         props: {name: 'id'}
     },
     {
         path: '/patients',
-        component: Patients,
+        component: () => import('@/pages/Patients.vue'),
         name: 'Пациенты',
     },
     {
         path: '/patient-add',
-        component: PatientAdd,
+        component: () => import('@/pages/PatientAdd.vue'),
         name: 'Добавить пациента',
     },
     {
         path: '/record-patient',
-        component: RecordPatient,
+        component: () => import('@/pages/RecordPatient.vue'),
         name: 'Записать пациента',
     },
     {
         path: '/add_timesheet',
-        component: AddTimesheet,
+        component: () => import('@/pages/AddTimesheet.vue'),
         name: 'Добавить запись в расписание'
     },
     {
         path: '/register',
-        component: Register,
+        component: () => import('@/pages/Register.vue'),
         name: 'Регистрация'
     },
     {
         path: '/heals',
-        component: Heals,
+        component: () => import('@/pages/Heals.vue'),
         name: 'Лечения'
     },
     {
         path: '/diagnoses',
-        component: Diagnoses,
+        component: () => import('@/pages/Diagnoses.vue'),
         name: 'Диагнозы'
     },
     {
         path: '/add-department',
-        component: AddDepartment,
+        component: () => import('@/pages/AddDepartment.vue'),
         name: 'Добавление отдела'
     },
     {
         path: '/departments',
-        component: Departments,
+        component: () => import('@/pages/Departments.vue'),
         name: 'Отделы'
     },
     {
         path: '/admin',
-        component: AdminPanel,
+        component: () => import('@/pages/AdminPanel.vue'),
         name: 'Админ панель'
     },
     {
         path: '/reseptiones',
-        component: Reseptiones,
+        component: () => import('@/pages/Reseptiones.vue'),
         name: 'Приемы'
     },
     {
         path: '/add_reseptione',
-        component: AddReseptione,
+        component: () => import('@/pages/AddReseptione.vue'),
         name: 'Добавить прием'
     },
     {
         path: '/bindings',
-        component: Binding,
+        component: () => import('@/pages/Binding.vue'),
         name: 'Прикрепления'
     },
     {
         path: '/add-binding',
-        component: AddBinding,
+        component: () => import('@/pages/AddBinding.vue'),
         name: 'Добавить прикрепление'
     },
     {
         path: '/add-profession',
-        component: AddProfession,
+        component: () => import('@/pages/AddProfession.vue'),
         name: 'Добавить профессию'
     },
     {
         path: '/professions',
-        component: Professions,
+        component: () => import('@/pages/Professions.vue'),
         name: 'Профессии'
     },
     {
         path: '/specializations',
-        component: Specializations,
+        component: () => import('@/pages/Specializations.vue'),
         name: 'Специальности'
     },
     {
         path: '/add-specialization',
-        component: AddSpecialization,
+        component: () => import('@/pages/AddSpecialization.vue'),
         name: 'Добавить специальность'
     },
     {
         path: '/rooms',
-        component: Rooms,
+        component: () => import('@/pages/Rooms.vue'),
         name: 'Кабинеты'
     },
     {
         path: '/add-room',
-        component: AddRoom,
+        component: () => import('@/pages/AddRoom.vue'),
         name: 'Добавить кабинет'
     },
     {
         path: '/chambers',
-        component: Chambers,
+        component: () => import('@/pages/Chambers.vue'),
         name: 'Палаты'
     },
     {
         path: '/add-chamber',
-        component: AddChamber,
+        component: () => import('@/pages/AddChamber.vue'),
         name: 'Добавить палату'
     },
     {
         path: '/add-control',
-        component: ControlAdd,
+        component: () => import('@/pages/ControlAdd.vue'),
         name: 'Добавить контроль'
     }
 ]
@@ -198,8 +167,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    let token = localStorage.getItem('token')
-    if (token === '') {
+    let token = localStorage.getItem('user')
+    if (token !== '1' && to.path !== '/login' && to.path !== '/') {
         next('/login')
     } else {
         next()
