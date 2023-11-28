@@ -48,6 +48,6 @@ export default {
   padding: 15px;
   width: 25px;
   height: 25px;
-  filter: invert(1) opacity(70%) hue-rotate(160deg);
+  //filter: invert(1) opacity(70%) hue-rotate(160deg);
 }
 </style>

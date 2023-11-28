@@ -1,6 +1,6 @@
 <template>
   <preloader></preloader>
-  <button-to-top></button-to-top>
+  <button-to-top :class="theme"></button-to-top>
   <div class="btn-link-container">
     <my-button @click="$router.push('/patient-add')" class="create-patient"><span>Создать пациента</span></my-button>
   </div>

@@ -16,6 +16,7 @@ import MyInputPass from "@/components/UI/MyInputPass.vue";
 import MyButton from "@/components/UI/MyButton.vue";
 import axios from "axios";
 import {mapMutations, mapState} from "vuex";
+import {useToast} from "vue-toastification";
 
 export default {
   name: "Login",
@@ -26,6 +27,10 @@ export default {
       password: '',
       token: ''
     }
+  },
+  setup() {
+    const toast = useToast()
+    return {toast}
   },
   computed: {
     ...mapState({
@@ -53,7 +58,6 @@ export default {
       })
           .then((response) => {
             this.tokenModule()
-            console.log(response);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('user', response.data.user.role)
             this.$router.push({name: 'Расписание'})
