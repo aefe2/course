@@ -40,7 +40,7 @@ const routes = [
         name: 'Добавить лечение',
         meta: {
             requiresAuth: true,
-            requiredRoles: 'admin'
+            requiredRoles: ['admin']
         }
     },
     {
@@ -218,7 +218,6 @@ const routes = [
         component: () => import('@/pages/AddSpecialization.vue'),
         name: 'Добавить специальность',
         meta: {
-            requiresAuth: true,
             requiredRoles: ['admin']
         }
     },
@@ -280,7 +279,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     let userRole = localStorage.getItem('userRole')
-    if (!userRole) {
+    if (userRole === '') {
         next('/login');
     } else {
         let requiredRoles = to.meta.requiredRoles;

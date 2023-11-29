@@ -1,7 +1,7 @@
 <template>
   <form-item @submit.stop="signUp" class="login-form">
     <my-label>Фамилия</my-label>
-    <my-input-text :class="theme" v-model.trim="last_name" name="login"></my-input-text>
+    <my-input-text :class="{theme, 'alert': last_name===''}" v-model.trim="last_name" name="login"></my-input-text>
     <my-label>Имя</my-label>
     <my-input-text :class="theme" v-model.trim="first_name" name="login"></my-input-text>
     <my-label>Отчество</my-label>
@@ -104,6 +104,20 @@ export default {
         }
       }).then((response) => {
         console.log(response);
+        this.toast.success('Успешно', {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.62,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
       }).catch((err) => {
         this.toast.error('Ошибка', {
           position: "top-right",
