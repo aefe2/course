@@ -32,7 +32,7 @@ export default {
       this.tokenModule()
       console.log(response)
       localStorage.removeItem('token')
-      localStorage.removeItem('user')
+      localStorage.removeItem('userRole')
       this.$router.push({name: 'Расписание'})
     },
   },

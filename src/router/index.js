@@ -10,22 +10,38 @@ const routes = [
         path: '/patient-cards',
         component: () => import('@/pages/PatientCards.vue'),
         name: 'Добавить запись в медкарту',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin', 'receptionDoctor']
+        }
     },
     {
         path: '/control/:id',
         component: () => import('@/pages/Control.vue'),
         name: 'Контроль',
-        props: true
+        props: true,
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin', 'healDoctor']
+        }
     },
     {
         path: '/diagnosis-add',
         component: () => import('@/pages/DiagnosisAdd.vue'),
         name: 'Добавить диагноз',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin']
+        }
     },
     {
         path: '/heal-add',
         component: () => import('@/pages/HealAdd.vue'),
         name: 'Добавить лечение',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: 'admin'
+        }
     },
     {
         path: '/login',
@@ -42,122 +58,218 @@ const routes = [
         path: '/patient_history/:id',
         component: () => import('@/pages/PatientHistory.vue'),
         name: 'Мед. Карта    пациента',
-        props: {name: 'id'}
+        props: {name: 'id'},
+        meta: {requiresAuth: true}
     },
     {
         path: '/patients',
         component: () => import('@/pages/Patients.vue'),
         name: 'Пациенты',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin']
+        }
     },
     {
         path: '/patient-add',
         component: () => import('@/pages/PatientAdd.vue'),
         name: 'Добавить пациента',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin']
+        }
     },
     {
         path: '/record-patient',
         component: () => import('@/pages/RecordPatient.vue'),
         name: 'Записать пациента',
+        meta: {
+            requiresAuth: true,
+            requiredRole: ['admin', 'worker']
+        }
     },
     {
         path: '/add_timesheet',
         component: () => import('@/pages/AddTimesheet.vue'),
-        name: 'Добавить запись в расписание'
+        name: 'Добавить запись в расписание',
+        meta: {
+            requiresAuth: true,
+            requiredRole: ['admin', 'worker']
+        }
     },
     {
         path: '/register',
         component: () => import('@/pages/Register.vue'),
-        name: 'Регистрация'
+        name: 'Регистрация',
+        meta: {
+            requiredRoles: ['admin']
+        }
     },
     {
         path: '/heals',
         component: () => import('@/pages/Heals.vue'),
-        name: 'Лечения'
+        name: 'Лечения',
+        meta: {
+            requiresAuth: true,
+            requiredRole: ['admin', 'healDoctor']
+        }
     },
     {
         path: '/diagnoses',
         component: () => import('@/pages/Diagnoses.vue'),
-        name: 'Диагнозы'
+        name: 'Диагнозы',
+        meta: {
+            requiresAuth: true,
+            requiredRole: ['admin', 'healDoctor']
+        }
     },
     {
         path: '/add-department',
         component: () => import('@/pages/AddDepartment.vue'),
-        name: 'Добавление отдела'
+        name: 'Добавление отдела',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin']
+        }
     },
     {
         path: '/departments',
         component: () => import('@/pages/Departments.vue'),
-        name: 'Отделы'
+        name: 'Отделы',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin']
+        }
     },
     {
         path: '/admin',
         component: () => import('@/pages/AdminPanel.vue'),
-        name: 'Админ панель'
+        name: 'Админ панель',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin']
+        }
     },
     {
         path: '/reseptiones',
         component: () => import('@/pages/Reseptiones.vue'),
-        name: 'Приемы'
+        name: 'Приемы',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin', 'worker']
+        }
     },
     {
         path: '/add_reseptione',
         component: () => import('@/pages/AddReseptione.vue'),
-        name: 'Добавить прием'
+        name: 'Добавить прием',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin', 'worker']
+        }
     },
     {
         path: '/bindings',
         component: () => import('@/pages/Binding.vue'),
-        name: 'Прикрепления'
+        name: 'Прикрепления',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin', 'healDoctor']
+        }
     },
     {
         path: '/add-binding',
         component: () => import('@/pages/AddBinding.vue'),
-        name: 'Добавить прикрепление'
+        name: 'Добавить прикрепление',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin', 'healDoctor']
+        }
     },
     {
         path: '/add-profession',
         component: () => import('@/pages/AddProfession.vue'),
-        name: 'Добавить профессию'
+        name: 'Добавить профессию',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin']
+        }
     },
     {
         path: '/professions',
         component: () => import('@/pages/Professions.vue'),
-        name: 'Профессии'
+        name: 'Профессии',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin']
+        }
     },
     {
         path: '/specializations',
         component: () => import('@/pages/Specializations.vue'),
-        name: 'Специальности'
+        name: 'Специальности',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin']
+        }
     },
     {
         path: '/add-specialization',
         component: () => import('@/pages/AddSpecialization.vue'),
-        name: 'Добавить специальность'
+        name: 'Добавить специальность',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin']
+        }
     },
     {
         path: '/rooms',
         component: () => import('@/pages/Rooms.vue'),
-        name: 'Кабинеты'
+        name: 'Кабинеты',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin']
+        }
     },
     {
         path: '/add-room',
         component: () => import('@/pages/AddRoom.vue'),
-        name: 'Добавить кабинет'
+        name: 'Добавить кабинет',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin']
+        }
     },
     {
         path: '/chambers',
         component: () => import('@/pages/Chambers.vue'),
-        name: 'Палаты'
+        name: 'Палаты',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin']
+        }
     },
     {
         path: '/add-chamber',
         component: () => import('@/pages/AddChamber.vue'),
-        name: 'Добавить палату'
+        name: 'Добавить палату',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin']
+        }
     },
     {
         path: '/add-control',
         component: () => import('@/pages/ControlAdd.vue'),
-        name: 'Добавить контроль'
+        name: 'Добавить контроль',
+        meta: {
+            requiresAuth: true,
+            requiredRoles: ['admin']
+        }
+    },
+    {
+        path: '/forbidden',
+        component: () => import('@/pages/Forbidden.vue'),
     }
 ]
 
@@ -167,11 +279,16 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    let token = localStorage.getItem('user')
-    if (token !== '1' && to.path !== '/login' && to.path !== '/') {
-        next('/login')
+    let userRole = localStorage.getItem('userRole')
+    if (!userRole) {
+        next('/login');
     } else {
-        next()
+        let requiredRoles = to.meta.requiredRoles;
+        if (requiredRoles && requiredRoles.length > 0 && !requiredRoles.includes(userRole)) {
+            next('/forbidden');
+        } else {
+            next();
+        }
     }
 })
 

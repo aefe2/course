@@ -16,14 +16,14 @@
       </thead>
       <tbody>
       <transition-group name="timetable-list">
-        <tr v-for="doctor in filteredItems" :key="doctor.id">
-          <td>{{ doctor.user.last_name }}</td>
-          <td>{{ doctor.user.first_name }}</td>
-          <td>{{ doctor.user.patronymic }}</td>
-          <td>{{ doctor.room.number }}</td>
-          <td>{{ doctor.date }}</td>
-          <td>{{ doctor.time }}</td>
-          <td :class="theme"><a @click="deleteTimesheet(doctor.id)">X</a></td>
+        <tr v-for="item in filteredItems" :key="item.id">
+          <td>{{ item.user.last_name }}</td>
+          <td>{{ item.user.first_name }}</td>
+          <td>{{ item.user.patronymic }}</td>
+          <td>{{ item.room.number }}</td>
+          <td>{{ item.date }}</td>
+          <td>{{ item.time }}</td>
+          <td :class="theme"><a @click="deleteTimesheet(item.id)">X</a></td>
         </tr>
       </transition-group>
       </tbody>
@@ -93,7 +93,9 @@ export default {
     },
     async fetchTimetable() {
       try {
-        const response = await axios.get('http://localhost/CodingOnSideOfServer/api/')
+        const response = await axios.get(
+            'http://localhost/CodingOnSideOfServer/api/'
+        )
         this.timetable = response.data
         console.log(response.data)
       } catch (e) {

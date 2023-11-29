@@ -1,9 +1,9 @@
 <template>
   <form-item @submit="signIn" class="login-form">
     <my-label>Логин</my-label>
-    <my-input-text :class="theme" v-model="login" name="login"></my-input-text>
+    <my-input-text :class="theme" v-model.trim="login" name="login"></my-input-text>
     <my-label>Пароль</my-label>
-    <my-input-pass :class="theme" v-model="password" name="password"></my-input-pass>
+    <my-input-pass :class="theme" v-model.trim="password" name="password"></my-input-pass>
     <my-button type="submit">Войти</my-button>
   </form-item>
 </template>
@@ -41,8 +41,14 @@ export default {
   methods: {
     ...mapMutations({
       navModule: "toggleNav",
-      tokenModule: "tokenModule/getCookie"
+      tokenModule: "tokenModule/getCookie",
     }),
+    roleName(role) {
+      if (role === 1) return 'admin'
+      if (role === 2) return 'worker'
+      if (role === 3) return 'receptionDoctor'
+      if (role === 4) return 'healDoctor'
+    },
     signIn() {
       axios({
         method: 'post',
@@ -52,14 +58,13 @@ export default {
         },
         data: {
           login: this.login,
-          password: this.password,
-          token: this.myCookies
+          password: this.password
         }
       })
           .then((response) => {
             this.tokenModule()
             localStorage.setItem('token', response.data.token);
-            localStorage.setItem('user', response.data.user.role)
+            localStorage.setItem('userRole', this.roleName(response.data.user.role))
             this.$router.push({name: 'Расписание'})
           })
           .catch((err) => {
