@@ -279,7 +279,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     let userRole = localStorage.getItem('userRole')
-    if (userRole === '') {
+    if (userRole === '' || !userRole) {
         next('/login');
     } else {
         let requiredRoles = to.meta.requiredRoles;
