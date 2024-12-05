@@ -39,6 +39,7 @@ import {data} from "autoprefixer";
 import Preloader from "@/components/Preloader.vue";
 import ButtonToTop from "@/components/UI/ButtonToTop.vue";
 import SearchItem from "@/components/Search-item.vue";
+import {apiUrl} from "@/config/apiConfig";
 
 export default {
   name: "TimetablePage",
@@ -94,7 +95,7 @@ export default {
     async fetchTimetable() {
       try {
         const response = await axios.get(
-            'http://localhost/CodingOnSideOfServer/api/'
+            apiUrl
         )
         this.timetable = response.data
         console.log(response.data)

@@ -38,7 +38,7 @@ import axios from "axios";
 import {mapActions, mapState} from "vuex";
 import {useToast} from "vue-toastification";
 import Preloader from "@/components/Preloader.vue";
-import { computed } from 'vue'
+import {computed} from 'vue'
 
 export default {
   name: "Patients",
